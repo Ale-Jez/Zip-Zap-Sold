@@ -1,0 +1,71 @@
+00:00:00,080 --> 00:00:00,680 [Speaker 0]
+Dodatek to co- 
+
+00:00:00,680 --> 00:00:10,780 [Speaker 1]
+Dobra, Siemano. Mamy teraz dodatek dla Ciebie. Chcielibyśmy, żebyś wziął pod uwagę nasze, yy, wszystkie takie informacje i później żebyś to zaimplementował do naszych ogólnych transkrypcji, które podawaliśmy Ci wcześniej. 
+
+00:00:12,040 --> 00:00:16,720 [Speaker 1]
+To są nasze przemyślenia i to, co dodatkowo byśmy chcieli w naszym całym rozwiązaniu. Let's go. 
+
+00:00:16,720 --> 00:00:43,150 [Speaker 0]
+Tak. To, co na pewno chciałbym dodać, to co jest bardzo istotne, yy, że dotychczas myśleśmy o zakupie jednego produktu naraz, a bardzo też, yy, może być przydatne dla ludzi, yy, zrealizowanie jakiejś listy zakupów albo nawet przepisu typu: pani babcia chce zrobić sernik, jest przepis na sernik i ona podaje to. No i nasz agent jest w stanie zakupić wszystkie potrzebne składniki, yy, tak żeby nie trzeba było po prostu tego rozbijać. To jest- 
+
+00:00:43,150 --> 00:00:43,160 [Speaker 1]
+Super. 
+
+00:00:43,160 --> 00:00:43,840 [Speaker 0]
+To jest bardzo- 
+
+00:00:43,840 --> 00:00:44,940 [Speaker 1]
+To jest super. 
+
+00:00:44,940 --> 00:00:49,440 [Speaker 0]
+To jest, to jest super. Że, że to musi być. Yy, myślę, że też na prezentacji to trzeba pokazać. 
+
+00:00:49,440 --> 00:00:51,300 [Speaker 1]
+To jako jeden z case'ów pokażemy. 
+
+00:00:51,300 --> 00:01:05,460 [Speaker 0]
+Tak. I-i do tego też, yy, istotne będzie na przykład w dostawie, yy, pokazanie, że jak, yy, załóżmy, ku-kupowałoby się niektóre rzeczy oddzielnie, to by było jakoś tam drożej, ale jak weźmiemy- 
+
+00:01:05,460 --> 00:01:06,520 [Speaker 1]
+Od jednego sprzedawcy. 
+
+00:01:06,520 --> 00:01:15,240 [Speaker 0]
+To będzie-- może, może cena będzie tam nieco wyższa, ale przez to, że dostawa będzie tańsza, to sumarycznie, yy, całość będzie tańsza, więc to też warto- 
+
+00:01:15,240 --> 00:01:17,420 [Speaker 1]
+Musimy to wziąć pod uwagę w uwagach. 
+
+00:01:17,420 --> 00:01:39,920 [Speaker 0]
+Tak, tak pod uwagę w uwagach podczas procesu discovery. Yy, i dodatkowo też, yy, tak na koniec warto, żeby była opcja dla użytkownika pokazania w jakiś sposób ładny chain of thoughts naszego agenta. Yy, czyli żebyśmy się dowiedzieli, dlaczego na przykład wybrał taki produkt, a nie inny, yy, i na jakiej podstawie. Żeby to było też explainable AI, yy, co też jest bardzo ważne. 
+
+00:01:42,240 --> 00:01:44,220 [Speaker 0]
+Ja-ja-jakie, jakie macie jeszcze rzeczy? 
+
+00:01:44,220 --> 00:02:09,740 [Speaker 1]
+Yy, do tego powinniśmy dodać tutaj też te constrainty dla AI-a. W sensie czy możemy kupo-- czy agent może kupić w ciemno cokolwiek poniżej ustalonej kwoty, yy, a jeżeli przekraczamy do dwudziestu procent czy cokolwiek, to ma zapytać użytkownika. W sensie to też powinno być jakoś tam dopytane, yy, żeby mu potem nie zawracać, yy, nie zawracać głowy. Yy, 
+
+00:02:11,560 --> 00:02:12,840 [Speaker 1]
+chyba tyle. 
+
+00:02:14,100 --> 00:02:19,220 [Speaker 1]
+No tak, żeby generalnie ten poziom autonomii agenta wyspecyfikować. 
+
+00:02:19,220 --> 00:02:20,060 [Speaker 0]
+Tak. 
+
+00:02:20,060 --> 00:02:54,440 [Speaker 2]
+I musimy jeszcze przemyśleć, w jaki sposób chcemy, żeby kontaktowało to się z użytkownikiem. Czy przez rozmowę telefoniczną z naszej aplikacji, czy poprzez, yy, znaczy to jest rozmowa audio w naszej aplikacji, czy poprzez push na WhatsAppie, czy żeby już użytkownik mógł sobie wybrać. Dodatkowo chcemy, żeby móc zautomatyzować część ulubionych sklepów, ponieważ czasami pojawiają się na stronie CAPTCHA i te inne rzeczy i tego nie możemy rozwiązać. Agent jest blokowany. Natomiast chcielibyśmy, żeby gdzie się da, to chcielibyśmy mieć już gotowy pipeline i dodatkowo chcielibyśmy, żeby... 
+
+00:02:56,720 --> 00:02:57,280 [Speaker 2]
+Nie pamiętam. 
+
+00:02:58,900 --> 00:02:59,300 [Speaker 2]
+Dobra. 
+
+00:03:00,740 --> 00:03:11,040 [Speaker 0]
+Mhm. Dobra, no mamy jeszcze, możemy dorzucać w trakcie, co nie? Po prostu ważne, żeby, żeby to, co mamy teraz. Mamy poprzednie zapiski. Yy, o tak. 
+
+00:03:12,140 --> 00:03:12,820 [Speaker 0]
+Mamy poprzednie zapiski

@@ -1,0 +1,29 @@
+00:00:01,079 --> 00:00:43,639 [Speaker 0]
+No dobra, bo mówiliśmy o problemie, o tym, że czasem nie można zescrapować informacji ze strony, yy, i albo się w ogóle nie da wejść na stronę, jest zablokowana, albo nie da się, yy, znaleźć informacji, na przykład rozmiar buta. Yy, czyli de facto wtedy się tego nie da za-zaautomatyzować. Yy, i mnie to teraz zastanawia, bo jedyne rozwiązanie, jakie widzę, to to, że zwrócić użytkownikowi informację, że z tego, co ja znalazłem, to jest to opcja A jest najlepsza, ale na stronie Z, yy, nie mogę wejść i tam może być coś lepszego, yy, ale jestem ograniczony. Nie mogę tego sprawdzić, więc ty możesz zrobić to samemu. 
+
+00:00:43,639 --> 00:00:44,459 [Speaker 1]
+Tak. 
+
+00:00:44,459 --> 00:01:01,079 [Speaker 0]
+Albo po prostu, yy, dajesz mi, że ja po prostu kupuję tam, gdzie mam dostęp. No bo jeżeli agent nie ma dostępu, bo może to być zablokowane, no to nie zautomatyzujesz tego. Musi być człowiek. Yy, więc może być po prostu takie, wiesz, notyfikacja. 
+
+00:01:01,079 --> 00:01:01,840 [Speaker 1]
+Mhm. 
+
+00:01:01,840 --> 00:01:14,760 [Speaker 0]
+Bo ja też kurde, ja bym, wiecie co, ja bym poszedł spróbować znaleźć. Bo mnie to zastanawia ten user staying in control at every step. W sensie jak to rozumieć? No bo jeżeli mamy to oddać, że cały agent ma zrobić to, no to jak ma być user w kontroli, co nie? 
+
+00:01:16,500 --> 00:01:16,799 [Speaker 1]
+Aha. 
+
+00:01:18,099 --> 00:01:19,259 [Speaker 0]
+Jak to interpretować? 
+
+00:01:19,259 --> 00:01:25,979 [Speaker 1]
+Możesz zapytać i oni ci powiedzą, że pewnie chodzi o to, żeby wymyślić coś. 
+
+00:01:25,979 --> 00:01:30,959 [Speaker 0]
+Ale się. Ale spytam, no bo właśnie na przykład czy, czy tam ma się coś pokazywać? 
+
+00:01:30,959 --> 00:01:34,739 [Speaker 1]
+Tylko nie musisz się martwić, co oni odpowiedzą. Jak powiedzą, że wymyśl się coś, no to-

@@ -1,0 +1,20 @@
+00:00:00,599 --> 00:00:01,779 [Speaker 0]
+Jakbyś powtórzył to swoje? 
+
+00:00:01,779 --> 00:00:07,279 [Speaker 1]
+Ja wiem co? Pierwsze uruchomienie przekroczyło limit czasu podczas pobierania z inicjalizacji modelu. 
+
+00:00:08,380 --> 00:00:10,219 [Speaker 0]
+Yy Arek, idź do tego Tima. 
+
+00:00:10,219 --> 00:00:11,099 [Speaker 1]
+Taa 
+
+00:00:11,099 --> 00:00:14,239 [Speaker 0]
+Żeby dał ci coś do tego, co zamienić dobrze na tekst. 
+
+00:00:14,239 --> 00:00:16,600 [Speaker 1]
+Dobra, on niech się spinuje. Próbuje po raz kolejny. 
+
+00:00:16,600 --> 00:00:17,540 [Speaker 0]
+Ale ty możesz laptop wziąć

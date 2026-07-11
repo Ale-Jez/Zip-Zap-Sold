@@ -1,0 +1,161 @@
+00:00:00,080 --> 00:00:00,780 [Speaker 0]
+Znaleźć to. 
+
+00:00:02,140 --> 00:00:02,700 [Speaker 0]
+Czyli de facto- 
+
+00:00:02,700 --> 00:00:03,020 [Speaker 1]
+Let's go. 
+
+00:00:05,440 --> 00:00:06,080 [Speaker 0]
+Dobra. Tak. 
+
+00:00:07,200 --> 00:00:09,440 [Speaker 0]
+Mamy pierwszy punkt. Mamy pierwsze understanding. 
+
+00:00:09,440 --> 00:00:12,400 [Speaker 1]
+Teraz przechodzimy do kolejnego punktu, który będzie discover. 
+
+00:00:12,400 --> 00:00:12,620 [Speaker 0]
+Mhm. 
+
+00:00:14,140 --> 00:00:19,340 [Speaker 0]
+W fazie discover jesteśmy już po understanding. Czyli agent wie, czego człowiek potrzebuje 
+
+00:00:20,480 --> 00:00:23,620 [Speaker 0]
+i teraz po prostu potrzebuje znaleźć to na internecie, 
+
+00:00:25,360 --> 00:00:27,200 [Speaker 0]
+tak żeby później sobie porównać 
+
+00:00:28,980 --> 00:00:32,220 [Speaker 0]
+i żeby później w kolejnej fazie podjąć wybór. 
+
+00:00:32,220 --> 00:00:36,100 [Speaker 1]
+Czyli prawda jest taka, że musimy znowu znaleźć jakby 
+
+00:00:37,120 --> 00:00:42,840 [Speaker 1]
+ścieżki dla agentów, żeby każdy agent szukał tego produktu pod innymi kryteriami. 
+
+00:00:44,340 --> 00:00:58,600 [Speaker 1]
+Czy tutaj też, bo tak dostajesz piłka czerwona, fajna, różowa ten. Piłkę możesz znaleźć na Amazonie, piłkę możesz znaleźć na Media Markt. Piłkę możesz znaleźć gdzieś indziej, co nie? I teraz pytanie czy nie powinniśmy zrobić takiego, że daj nam... 
+
+00:00:59,700 --> 00:01:19,460 [Speaker 1]
+Czy powinniśmy właśnie wykorzystać web searcha od OpenAI, żeby on sam nam znalazł piłkę najlepszą? I to działa to bardzo dobrze, więc może faktycznie to będzie najlepsze rozwiązanie, ale też zależy nam na tym, żeby była dobra cena. Dobra cena, żeby była. Na czym jeszcze nam zależy? Dobra cena, żeby produkt był jakościowy, żeby to nie był scam i żeby to była zaufana strona. 
+
+00:01:19,460 --> 00:01:27,360 [Speaker 0]
+I dowóz, bo pamiętam, że oni też w jednym momencie powiedzieli, że na przykład potrzebuję to na jutro. No to jeżeli potrzebujesz to na jutro, to wtedy na przykład cena może być wyższa. 
+
+00:01:28,380 --> 00:01:32,960 [Speaker 0]
+Wtedy to właśnie, ale to w tym understanding to na przykład się dowiadujemy o tym. 
+
+00:01:32,960 --> 00:01:43,480 [Speaker 1]
+Tak, czyli musimy do understandingu dodać to, że rozumiemy potrzeby też ludzkie, czyli że ważni-- czasami ważniejsza jest czas dojazdu niż cena. 
+
+00:01:45,100 --> 00:01:59,840 [Speaker 0]
+Tak, ale to, to już mamy to w understandingu. Spojrzenie, podjęcie wyboru. Ale generalnie no dobra, jeżeli mówisz, że ten web searching, scraping, czy jak to tam się nazywa. No bo do-dosłownie ten etap polega na tym, że scrapujesz z różnych stron i porównujesz no wedle tych kryteriów. 
+
+00:01:59,840 --> 00:02:05,520 [Speaker 1]
+Tak. Tylko teraz kwestia jest taka, że nie na każdą stronę można wejść i sprawdzić cen. 
+
+00:02:05,520 --> 00:02:05,660 [Speaker 0]
+No. 
+
+00:02:06,780 --> 00:02:11,480 [Speaker 1]
+Nie każdą stronę można sprawdzić, nie każdą stronę można sprawdzić, czy jest rozmiar na przykład butów. 
+
+00:02:11,480 --> 00:02:12,840 [Speaker 0]
+No tak. 
+
+00:02:12,840 --> 00:02:19,420 [Speaker 1]
+To jest pierwsze problemy. To są pierwsze problemy, które musimy rozwiązać. Czyli nie na każdą stronę można sprawdzić. Na każdej stronie można sprawdzić wszystkie szczegóły. 
+
+00:02:21,100 --> 00:02:21,540 [Speaker 1]
+Co jeszcze? 
+
+00:02:23,300 --> 00:02:38,760 [Speaker 1]
+No bo teraz tak on zrobi web searcha i będzie szukał produktu według understandingu. Czyli agent musi też rozumieć, czego szuka. Czyli dobrze sobie zbudować kryteria poszukiwań, które muszą być walidowane. 
+
+00:02:38,760 --> 00:02:38,880 [Speaker 0]
+No. 
+
+00:02:40,120 --> 00:02:52,360 [Speaker 1]
+Czyli najlepiej w tym flow w discovery będzie to, żeby rozbudować to, że każdy daje agent swoją propozycję i ta propozycja, która będzie na przykład powielona przez kilka agentów, będzie najlepsza. 
+
+00:02:54,200 --> 00:02:55,880 [Speaker 0]
+Aha, czyli że puszczasz kilka 
+
+00:02:56,900 --> 00:03:00,320 [Speaker 0]
+i kilka niezależnie od siebie robią research i później- 
+
+00:03:00,320 --> 00:03:02,260 [Speaker 1]
+I każdy ma delikatnie inny kontekst może. 
+
+00:03:02,260 --> 00:03:03,200 [Speaker 0]
+Okej, dobra. 
+
+00:03:03,200 --> 00:03:14,269 [Speaker 1]
+Znaczy kontekst ogólny, że to ma być buty takie i takie to jest ten, ale każdy niech szuka pod trochę innym na przykład pod cena, bo też to takie kryteria: cena czy rozmiar jest, czy kolor jest. Co nie? To są takie kryteria na przykład. 
+
+00:03:14,269 --> 00:03:19,020 [Speaker 0]
+Czy strona jest na przykład reliable. W sensie czy to jest jakiś Amazon, czy jakiś dupy Janusz. 
+
+00:03:19,020 --> 00:03:23,040 [Speaker 1]
+Tak. Czy cena tak. Musimy, czyli musimy znowu znaleźć czterech agentów. 
+
+00:03:23,040 --> 00:03:34,260 [Speaker 0]
+Czyli masz różnych agentów, którzy różnie szukają i później jak masz punkty to wyciągasz z nich taki coś w typu średnią albo to coś- 
+
+00:03:34,260 --> 00:03:37,700 [Speaker 1]
+Tak, waga, waga, priorytetowa żona czy coś. 
+
+00:03:38,720 --> 00:03:42,420 [Speaker 0]
+Kurwa, to fajne. To też jest jeden ze sposobów uczenia. W sensie- 
+
+00:03:42,420 --> 00:03:44,500 [Speaker 1]
+Tak. Learning from experience, tak? 
+
+00:03:44,500 --> 00:03:52,840 [Speaker 0]
+Nie, nie, nie, nie o to mi chodziło, ale że, że właśnie masz takie, że no masz kilka niezależnych i z tego wyciągasz, co się najbardziej powtarza. To chyba kurwa w jakimś foreście było. 
+
+00:03:52,840 --> 00:03:53,760 [Speaker 1]
+A co najlepsze 
+
+00:03:55,200 --> 00:03:57,280 [Speaker 1]
+z understandingu możemy wyciągnąć wagi. 
+
+00:03:57,280 --> 00:04:00,390 [Speaker 0]
+To w foreście było. No tak, to było random forest chyba. 
+
+00:04:00,390 --> 00:04:03,260 [Speaker 1]
+A random forest, że chodzi ci losowe dzielenie- 
+
+00:04:03,260 --> 00:04:10,860 [Speaker 0]
+Las losowy, że masz drzewa, bo wiesz jak jest drzewa, co nie? Że on podejmuje jakieś tam wybory, a las jest taki, że masz dużo tych drzew i z tego się coś wyciąga. 
+
+00:04:10,860 --> 00:04:23,000 [Speaker 1]
+Znaczy tam badają na podstawie odległości, czyli jak blisko są od siebie dane produkty i wtedy dzieli na przykład ten ucina i zależny las działa też na zasadzie tej odległości. 
+
+00:04:23,000 --> 00:04:27,900 [Speaker 0]
+No dobra, po prostu efekt jest taki, że agenty będą mieć różne- 
+
+00:04:27,900 --> 00:04:28,300 [Speaker 1]
+Tak. 
+
+00:04:30,340 --> 00:04:31,700 [Speaker 0]
+Różne tak wyniki. 
+
+00:04:31,700 --> 00:04:50,180 [Speaker 1]
+Tak różne wyniki. I teraz tak to, co teraz rozmawialiśmy o random forest, no to był taki tylko taka ciekawostka. Natomiast chodzi nam o to, żeby każdy z agentów miał różne wyniki i tym wynikom będziemy dawać jakoś wagę, a wagę będziemy brali z understandingu i dzięki temu będziemy mieli lepsze dopasowanie, który produkt bardziej pasuje do użytkownika. 
+
+00:04:51,580 --> 00:04:59,700 [Speaker 1]
+Bo będzie efektem będzie kilka produktów, ale ten, który pojawi się najczęściej albo będzie miał najwyższą wagę, to znaczy, że ten będzie najlepszy, co nie? 
+
+00:05:01,780 --> 00:05:02,680 [Speaker 0]
+Fajne. Podoba mi się. 
+
+00:05:04,840 --> 00:05:06,560 [Speaker 0]
+Dobra, to zatrzymujemy ten etap? 
+
+00:05:09,000 --> 00:05:10,590 [Speaker 1]
+To poczekaj, zatrzymam i najwyżej dogramy nanti.

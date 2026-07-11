@@ -1,0 +1,107 @@
+00:00:01,260 --> 00:00:04,159 [Speaker 0]
+Dobra, teraz przechodzimy do kolejnego etapu, czyli track. 
+
+00:00:04,160 --> 00:00:27,620 [Speaker 1]
+Track. Tak generalnie to, co jest istotne w tracku, to tak, żebyśmy mieli wizualizację, prosty dashboard do zobaczenia w jaki sposób-- znaczy ile, ile paczka leci, gdzie, gdzie się dostanie, na jakim jest etapie. Czyli generalnie ja to widzę w taki sposób, jak po prostu w aplikacji InPostu masz wszystko pokazane. Wiesz dokładnie, kiedy co będzie. Później dostajesz informację odnośnie odbioru. Yy, 
+
+00:00:28,680 --> 00:00:41,880 [Speaker 1]
+tak naj-najprościej to zrobić. Problemy jakie tutaj widzę to integracja z, yy, z dostawcami, co nie? Yy, jak to może wyglądać? Na przykład wiecie, czasem może być DPD, 
+
+00:00:42,940 --> 00:00:50,260 [Speaker 1]
+DHL, kurde, Amazon, paczka czy coś. To może być problematyczne. W najgorszym wypadku po prostu można 
+
+00:00:51,280 --> 00:00:53,020 [Speaker 1]
+dać przekierowanie, 
+
+00:00:54,140 --> 00:00:54,640 [Speaker 1]
+yy, 
+
+00:00:55,780 --> 00:01:04,730 [Speaker 1]
+do jakiejś zewnętrznej strony, nie? Ale w sumie tutaj się zastanawiam, yy, czy kupujesz? Nie, bo jak kupuję na przykład na Allegro to nie muszę mieć konta, 
+
+00:01:05,990 --> 00:01:06,640 [Speaker 1]
+yy, InPosta. 
+
+00:01:08,860 --> 00:01:20,780 [Speaker 2]
+Nie, Allegro samo jakby queryuje InPosta, odbierze od niego ten sześciocyfrowy kod do odbioru paczki. Kod QR zbiera, yy, i jakby wyświetlasz to sobie w Allegro, tak? 
+
+00:01:20,780 --> 00:01:22,339 [Speaker 1]
+Okej, no dobra, to jest spoko, spoko. 
+
+00:01:23,840 --> 00:01:29,100 [Speaker 1]
+No dobra, to dosłownie kopia InPostu żeby to wyglądało. Nie trzeba będzie zrobić więcej kont. 
+
+00:01:31,580 --> 00:01:36,240 [Speaker 1]
+Mo-może czegoś nie widzę, ale nie wydaje się to jakoś turbo complicated. 
+
+00:01:37,700 --> 00:01:40,500 [Speaker 0]
+Nie ma co więcej dodać. Co ostatnie jest? 
+
+00:01:40,500 --> 00:01:40,960 [Speaker 1]
+Resolve. 
+
+00:01:42,600 --> 00:01:45,790 [Speaker 1]
+Resolve no to tak naprawdę po prostu potwierdzenie, yy, 
+
+00:01:47,740 --> 00:01:48,780 [Speaker 1]
+czy zamknięcie, 
+
+00:01:50,740 --> 00:02:03,300 [Speaker 1]
+yy, procesu. Ewentualnie ja też widzę, bo w resolve zawsze warto dopytać. W sensie, że może być właśnie notyfikacja, że jest odbiór i ewentualnie właśnie może być dopytanie, ee, agenta, 
+
+00:02:05,070 --> 00:02:11,820 [Speaker 1]
+yy, że agent pyta człowieka, że jakby ten proces czy się podobało, czy coś zmienić, żeby na przyszłość po prostu wiedział. Wiecie, po prostu taki feedback do- 
+
+00:02:11,820 --> 00:02:12,860 [Speaker 0]
+Tak. 
+
+00:02:12,860 --> 00:02:13,520 [Speaker 1]
+Agenta. 
+
+00:02:13,520 --> 00:02:26,420 [Speaker 0]
+Czyli wszelkiego rodzaju opinie, zbieranie opinii. 
+
+00:02:29,500 --> 00:02:30,820 [Speaker 1]
+Trzynasta dzisiaj dwadzieścia. 
+
+00:02:33,140 --> 00:02:35,500 [Speaker 1]
+Kurde, yy. 
+
+00:02:39,060 --> 00:02:40,300 [Speaker 2]
+Co jeszcze widzicie? Resolve. 
+
+00:02:41,900 --> 00:02:42,900 [Speaker 1]
+Co do zamknięcia. 
+
+00:02:46,820 --> 00:02:47,720 [Speaker 0]
+Chyba tyle, co nie? 
+
+00:02:47,720 --> 00:03:01,940 [Speaker 1]
+Może nie wiem. Myślę, może być nawet, yy. Nie wiem, czy to jest istotne, ale dobra, podzielę się. Może nawet taka informacja, że dzięki użyciu, yy, tam naszego Zip Zap Solved zaoszczędziłeś, yy, ileś tam minut czasu. 
+
+00:03:01,940 --> 00:03:03,260 [Speaker 0]
+O! Super. 
+
+00:03:03,260 --> 00:03:03,860 [Speaker 1]
+Żebyśmy- 
+
+00:03:03,860 --> 00:03:07,340 [Speaker 0]
+Czyli liczymy ślad węglowy. 
+
+00:03:07,340 --> 00:03:08,660 [Speaker 1]
+Znaczy nie żeby ślad węglowy- 
+
+00:03:08,660 --> 00:03:14,299 [Speaker 2]
+Zaoszczędziłeś piętnaście minut, a zużyłeś pół tony dwutlenku węgla. 
+
+00:03:14,300 --> 00:03:23,820 [Speaker 0]
+Nie no, ale trzeba zbierać informacje o tym po prostu, ile czasu zaoszczędziliśmy. Zbierać jakiś feedback, potwierdzać, że paczka została odebrana, że jesteś zadowolony z korzystania. 
+
+00:03:25,580 --> 00:03:29,640 [Speaker 0]
+Może dodawać coś do ulubionych. Może coś w ten deseń. Na tym jeszcze bazować. 
+
+00:03:31,280 --> 00:03:31,560 [Speaker 1]
+Dobra. 
+
+00:03:34,640 --> 00:03:38,000 [Speaker 1]
+Dobra, tutaj ja to wysyłam Aleksandrowi. Przygotuj link

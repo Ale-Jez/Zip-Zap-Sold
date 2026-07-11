@@ -1,0 +1,134 @@
+00:00:00,820 --> 00:00:01,780 [Speaker 0]
+Tu trzeba głośno mówić. 
+
+00:00:09,260 --> 00:00:10,940 [Speaker 1]
+Dobra. Słyszysz mnie szmato? 
+
+00:00:12,280 --> 00:00:12,790 [Speaker 0]
+Tak. 
+
+00:00:12,790 --> 00:00:29,740 [Speaker 1]
+On nie będzie odpowiadał. Nie, nie. Dobra, czyli tak. Pierwszym etapem w całym procesie zakupowym jest understanding, czyli dobre zrozumienie naszego człowieka, zrozumienie kim on jest oraz czego potrzebuje. I to chcemy zrobić, żeby było maksymalnie 
+
+00:00:30,760 --> 00:00:48,120 [Speaker 1]
+user-friendly. Więc nie chcemy robić jakichś kwestionariuszy typu forms, które są nudne, tylko nam zależy na tym, żeby przede wszystkim była rozmowa z, z naszym agentem i żeby ta rozmowa była mówiona. Więc tutaj wykorzystamy to voice OP, OpenAI Voice, jakkolwiek to się tam nazywa. 
+
+00:00:48,120 --> 00:00:49,080 [Speaker 0]
+Live coś tam, tak. 
+
+00:00:49,080 --> 00:01:16,040 [Speaker 1]
+Coś tam, coś tam, żeby powiedzieć. I tutaj, tutaj problemy jakie widzimy, że bardzo często ludzie nie wiedzą, co chcą dokładnie kupić. Dlatego musimy się skupić na tym, że człowiek podaje jakiś input typu chce kupić auto, a nasz agent musi znaleźć teraz pytania, żeby być w stanie dokładnie je zadać użytkownikowi i zrozumieć go lepiej. I tutaj chcemy zrobić kilka grup. 
+
+00:01:16,040 --> 00:02:06,300 [Speaker 0]
+Grup abstrakcyjnych. Te grupy abstrakcyjne będą dotyczyć różnych takich czynności związanych albo czynności, albo informacji związanych z danym produktem. Te grupy będą nam po to, ponieważ na podstawie każdej z tych grup zrobimy później pytania, które będziemy mogli zadać użytkownikowi w celu zebrania lepszych informacji o danym produkcie. Przykładowo, jak mamy samochód, chcemy kupić samochód, no to my za-za-zwracamy uwagę na grupę użyteczność, na grupę kolor, czyli emocjonalną grupę, na grupę personalną, na grupę cenową. I tak samo jest, i każdy produkt, który byś-- człowiek chce kupić, no to już jakby on wie na początku, bo ma w swojej głowie kilka tych grup zaprogramowanych. Natomiast my musimy to wyciągnąć, żeby agent czuł emocje człowieka i dzięki temu lepiej to wszystko rozumiał. 
+
+00:02:09,340 --> 00:02:19,220 [Speaker 1]
+Tak. Tak i te, te grupy muszą być abstrakcyjne, muszą być powtarzalne do-- tak, żeby one były aplikowane do różnych typów produktów. Myślę, że to później wymyślimy. Po prostu na razie zostawmy. 
+
+00:02:19,220 --> 00:02:48,560 [Speaker 0]
+Grupy muszą być uniwersalne. Grup nie musi być dużo, ale muszą być na tyle uniwersalne, żeby pozwoliły dobrze zrozumieć produkt. Ja myślę, że to będzie około sześciu grup, które pozwolą dobrze nam zrozumieć produkt. To jest tak, jak człowiek wchodzi na, na stronę internetową, widzi na przykład kolor, widzi kolor, widzi działa-- użyteczność, widzi cenę, widzi rekomendacje. Na to zwraca uwagę. I musimy znaleźć takich sześć grup abstrakcyjnych, które później każdy z agentów AI będzie bardziej szczegółowo dopytywał w kontekście pytań do tej grupy. 
+
+00:02:48,560 --> 00:02:59,320 [Speaker 1]
+Mhm, mhm. Tak, tak i ja jeszcze bym powiedział, że w tym kontekście mamy jeszcze takie dwa kluczowe pytania. Nie do końca o produkt, ale to jest tak: cena oraz 
+
+00:03:00,700 --> 00:03:09,780 [Speaker 1]
+dojazd. W sensie adres, na jaki to ma dojechać, czy to ma być stacjonarne. To, to są takie pytania, które też muszą być zadane. 
+
+00:03:11,480 --> 00:03:14,600 [Speaker 0]
+Tak. Czyli czy to ma być inpost, czy ma być tak? O to ci chodzi? 
+
+00:03:14,600 --> 00:03:20,320 [Speaker 1]
+Znaczy bardziej chodzi o to, że daję, że mój maksymalny budżet to jest sto złotych. 
+
+00:03:21,700 --> 00:03:32,960 [Speaker 1]
+Najbardziej chciałbym, żeby to było około osiemdziesiąt, ale powiedzmy, że mogę dać jeszcze te dwadzieścia, żeby właśnie było stówa. To jest pierwsze i na przykład masz, za żadne skarby masz nie przekraczać tych stu złotych, co nie? 
+
+00:03:34,100 --> 00:03:41,940 [Speaker 1]
+To jest jedna sprawa. A druga właśnie z tym dojazdem, że tam dla mnie na przykład nie interesuje mnie to, czy to będzie InPostem, Allegro Mart czy coś tam, ale po prostu, że to ma być- 
+
+00:03:41,940 --> 00:03:43,560 [Speaker 0]
+Spełnienie oczekiwań użytkownika. 
+
+00:03:43,560 --> 00:03:49,520 [Speaker 1]
+To ma być: ja mieszkam tutaj, ale po prostu to ma mi dotrzeć do punktu i znajdź po prostu tak 
+
+00:03:50,580 --> 00:03:55,060 [Speaker 1]
+jakieś najtańsze opcje dojazdu. No tyle. Ale po prostu żeby ten dojazd i 
+
+00:03:56,240 --> 00:03:58,200 [Speaker 1]
+hajs były. 
+
+00:03:58,200 --> 00:03:58,640 [Speaker 0]
+Tak. 
+
+00:03:58,640 --> 00:03:59,900 [Speaker 1]
+Też jakby spytane, nie? 
+
+00:03:59,900 --> 00:04:18,360 [Speaker 0]
+I co jest ważne, to jest jakby pierwszy etap naszego projektu, bo to jest na hackathon i to jest pierwszy temat, ponieważ kolejnym tematem, bo-- i to jest understanding i my chcemy z understandingu zrobić już cały profil i więcej już nie musieć dopytywać człowieka, tylko przejść do kwestii płatnościowych. 
+
+00:04:18,360 --> 00:04:25,840 [Speaker 1]
+Tak. I to, co też ważne, żeby jak robimy teraz te pytania i zapisujemy to, żeby tworzyła się przy tym persona tego człowieka- 
+
+00:04:25,840 --> 00:04:26,220 [Speaker 0]
+Tak. 
+
+00:04:26,220 --> 00:04:38,460 [Speaker 1]
+I jak on będzie później wracał i kupował jeszcze coś raz, to już nie będziemy musieli zadawać jeszcze raz tych samych pytań, tylko po prostu możemy powiedzieć to, co zwykle. Tak? To samo co wcześniej. Dzięki czemu ten proces jeszcze będzie bardziej zautomatyzowany, co nie? 
+
+00:04:38,460 --> 00:04:59,980 [Speaker 0]
+Tak. Czyli budujemy albo digital twin, albo jakąś grafową sieć predykcyjną, która będzie po prostu dopasowywała nam, dopasowywała do człowieka i będziemy dużo lepiej rozumieć każdy aspekt tego człowieka i nie będziemy musieli. Cały proces będzie po prostu bardziej user-friendly, nie? Czyli zbieramy wszystkie informacje. Dobra, teraz tak, to co kolejny krok. 
+
+00:05:01,200 --> 00:05:05,660 [Speaker 1]
+Myślę, że już tutaj understanding idą właśnie żeby, żeby to było angażujące. No ale myślę, że 
+
+00:05:07,040 --> 00:05:15,300 [Speaker 1]
+nooo ja rozumiem, że kwestionariusze są nudne, ale rozmowa, no myślę, że rozmowa to jest naj-najprzyjemniejszy sposób. Dalej nie da tego- 
+
+00:05:15,300 --> 00:05:43,460 [Speaker 0]
+Tym bardziej że bierzemy pod uwagę, że każdy człowiek umie rozmawiać i każdy człowiek uważa rozmowę za coś bardzo konkretnego. I nawet takie rozwiązania w ogóle tak pomyślałem, to może być coś takiego, że możesz mieć na chacie, tak? Nie wiem, dogsie takie co nie, że po prostu rozmawiasz z jakby w domu. Mówisz kup mi taki i taki produkt, bo potrzebuję to i to. I to jest o tyle dobre, że rozmowę możesz przeprowadzić zmywając naczynia czy prasując rzeczy, a nie musisz typować na telefonie. 
+
+00:05:43,460 --> 00:05:51,460 [Speaker 1]
+O! To jest mega ważne. My-- to musi być tak uniwersalne rozwiązanie, że my nie zwracamy, że nie zabiera nam czasu, tylko po prostu nam pomaga. Mega, mega nam. 
+
+00:05:52,480 --> 00:05:55,000 [Speaker 1]
+Uznajemy, że chcemy być jak najbardziej leniwi. 
+
+00:05:55,000 --> 00:06:08,380 [Speaker 0]
+To możemy nawet zrobić stary taką scenkę, że coś tam robię rękoma, nie wiem, nawet sprzątam na scenie i w trakcie tego po prostu odpalam laptop-- znaczy ten telefon i do niego mówię i ja w trakcie sprzątam, co nie? Żeby było to pokazane. 
+
+00:06:08,380 --> 00:06:10,120 [Speaker 1]
+Albo robisz pompki. 
+
+00:06:10,120 --> 00:06:10,740 [Speaker 0]
+Cokolwiek no. 
+
+00:06:10,740 --> 00:06:13,840 [Speaker 1]
+Pompki i mówisz: ale bym potrzebował takiego hantla dwadzieścia kilogramów, co nie? 
+
+00:06:13,840 --> 00:06:14,900 [Speaker 0]
+Może być, co nie? 
+
+00:06:14,900 --> 00:06:16,300 [Speaker 1]
+I o, i to już jest super. 
+
+00:06:16,300 --> 00:06:16,820 [Speaker 0]
+No. 
+
+00:06:16,820 --> 00:06:19,960 [Speaker 1]
+A tak, a ty tak wiesz, robisz dalej pompki, co nie? A to było zajebiste. 
+
+00:06:19,960 --> 00:06:22,120 [Speaker 0]
+Dosłownie. No to jest fajne. 
+
+00:06:22,120 --> 00:06:24,640 [Speaker 1]
+Albo przysiady później. Zajebiste. 
+
+00:06:24,640 --> 00:06:27,400 [Speaker 0]
+No ale fajnie się, mega podoba. 
+
+00:06:27,400 --> 00:06:33,599 [Speaker 1]
+Pytanie czy zatrzymywać teraz to? Zobaczymy czy w ogóle wszystko dobrze się zapisało i będziemy po prostu łączyć. 
+
+00:06:33,600 --> 00:06:37,410 [Speaker 0]
+Może tak. Tak. O! I mam jeszcze lepszy pomysł. Dam, od razu ci to wysyłam

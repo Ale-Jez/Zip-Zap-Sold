@@ -1,0 +1,302 @@
+00:00:00,100 --> 00:00:00,900 [Speaker 0]
+Jeszcze approve'a 
+
+00:00:00,900 --> 00:00:03,240 [Speaker 1]
+A nie w sumie nie, żebyśmy mogli decide, co nie? 
+
+00:00:04,580 --> 00:00:10,540 [Speaker 0]
+Znaczy approve to możemy podsumować tak gdzieś jak, a decide, decide no to to jest approve. 
+
+00:00:10,540 --> 00:00:13,139 [Speaker 1]
+Nie, masz decide i approve masz. 
+
+00:00:13,140 --> 00:00:13,480 [Speaker 0]
+Aha. 
+
+00:00:14,620 --> 00:00:15,940 [Speaker 0]
+Czekaj, discover. 
+
+00:00:15,940 --> 00:00:17,180 [Speaker 1]
+Discover, decide, approve. 
+
+00:00:18,620 --> 00:00:36,790 [Speaker 0]
+No dobra, to powiemy. Jeszcze przed approve musimy mieć jeszcze etap decide. Decide jest związany z tym, że musimy zebrać na przykład od kilku agentów, ee, produkty. Oni dadzą nam różne produkty. Musimy wyciągnąć jakąś wagę, ważność tych produktów. 
+
+00:00:36,790 --> 00:00:38,400 [Speaker 1]
+Weźmy discovery. 
+
+00:00:38,400 --> 00:00:42,840 [Speaker 0]
+Okej, czyli decide, czyli wybieramy po prostu, który produkt jest najlepszy. 
+
+00:00:42,840 --> 00:00:43,040 [Speaker 1]
+No. 
+
+00:00:43,040 --> 00:00:56,460 [Speaker 0]
+Czyli ja uważam, że decide to jest ten etap, w którym my w razie czego dzwonimy albo kontaktujemy się z naszym użytkownikiem w celu potwierdzenia różnych nieścisłości. Jeśli pojawią się jakieś nieścisłości. 
+
+00:00:56,460 --> 00:00:58,660 [Speaker 1]
+Czyli decide czy approve. Dla mnie to- 
+
+00:00:58,660 --> 00:01:04,340 [Speaker 0]
+Approve to, że po prostu już kupujemy, idziemy do kupowania. Czyli mamy już-- no to możemy połączyć w jedno, w jedno. 
+
+00:01:04,340 --> 00:01:06,570 [Speaker 1]
+Bo masz później purchase, czyli- 
+
+00:01:06,570 --> 00:01:06,610 [Speaker 0]
+Czyli purchase 
+
+00:01:06,610 --> 00:01:12,580 [Speaker 1]
+... bo masz decide, approve, purchase. Ja bym powiedział, że decide to jest, że model sam ze sobą wybiera coś. 
+
+00:01:13,640 --> 00:01:15,140 [Speaker 1]
+W approve człowiek potwierdza, 
+
+00:01:16,280 --> 00:01:19,960 [Speaker 1]
+jeżeli człowiek będzie chciał potwierdzić, a w purchase no to agent robi. 
+
+00:01:19,960 --> 00:01:28,520 [Speaker 0]
+I to jest mega ważne. Jeśli człowiek będzie chciał potwierdzić, bo jeśli człowiek nie będzie chciał potwierdzić, a to dobierzemy informację od niego na podstawie jego profilu- 
+
+00:01:28,520 --> 00:01:29,160 [Speaker 1]
+Understanding 
+
+00:01:29,160 --> 00:01:41,760 [Speaker 0]
+... understanding, to wtedy po prostu, jeśli, yy, po prostu kupujemy najlepszy produkt, który uznajemy, a w miarę takich mocnych nieścisłości z nim się kontaktujemy. Ale jeśli zaznaczy, że nie kontaktujemy się, to kurwa się nie kontaktujemy. 
+
+00:01:41,760 --> 00:01:42,160 [Speaker 1]
+Tak. 
+
+00:01:44,240 --> 00:01:47,560 [Speaker 1]
+Dobra. No to w sumie jest decide i approve tak to zrobione. 
+
+00:01:47,560 --> 00:01:49,640 [Speaker 0]
+Tak. No i dobra, teraz tak. 
+
+00:01:51,440 --> 00:01:51,570 [Speaker 0]
+Mm, 
+
+00:01:52,800 --> 00:01:54,240 [Speaker 0]
+czyli mamy approve. 
+
+00:01:54,240 --> 00:01:54,620 [Speaker 1]
+Mhm. 
+
+00:01:54,620 --> 00:01:56,340 [Speaker 0]
+Tak? No i dobra, i teraz tak. 
+
+00:01:56,340 --> 00:01:59,610 [Speaker 1]
+Discover, decide, approve, no. 
+
+00:01:59,610 --> 00:02:04,080 [Speaker 0]
+Głównym celem naszego hackathonu jest to, żebyśmy w jakiś sposób zautomatyzowali payments- 
+
+00:02:04,080 --> 00:02:04,270 [Speaker 1]
+Tak 
+
+00:02:04,270 --> 00:02:06,080 [Speaker 0]
+... w taki sposób, żeby- 
+
+00:02:06,080 --> 00:02:07,300 [Speaker 1]
+Cz-czyli chodzimy teraz do purchase 
+
+00:02:07,300 --> 00:02:47,390 [Speaker 0]
+... tak, żeby agenty same kupowały produkty, same to robiły, miały nasze dane, naszą kartę kredytową lub coś. Jakoś fajnie to wymyślić trzeba, co nie? Że agenty same robią, ee, zakupy. No i teraz tak: musi to robić sam, czyli bez naszej wiedzy. Musi sam mieć odpowiednie informacje, bo jak kupujemy produkt, to musimy mieć informację, gdzie to kupić, jakim, jakim dostawcą. Yy, czy to w ogóle jest w obrębie naszego kraju, czy, czy to, czy jakieś cło w to wchodzi. Yy, po prostu chcemy tak pomóc człowiekowi, żeby sprawiło mu to jak najmniej kłopotów, czyli zautomatyzować cały proces kupowania. 
+
+00:02:47,390 --> 00:02:48,620 [Speaker 1]
+No. 
+
+00:02:48,620 --> 00:02:51,860 [Speaker 0]
+Czyli to jest purchase, purchase, purchase? Jak to się mówi? 
+
+00:02:51,860 --> 00:02:52,360 [Speaker 1]
+Purchase. 
+
+00:02:52,360 --> 00:03:15,060 [Speaker 0]
+Purchase. I teraz tak: musimy mieć informację, jak duża cena jest, ile człowiek jest w stanie wydać. Ale to wszystko już było w approve. Czyli po prostu musimy do tej, do sekcji purchase musimy znaleźć AI agentów albo jakieś MCP serwery, albo coś, co jest w stanie na daną stronę wejść i dokonać płatności za nas. 
+
+00:03:16,140 --> 00:03:16,180 [Speaker 1]
+Tak. 
+
+00:03:16,180 --> 00:03:20,380 [Speaker 0]
+To jest, to jest to, co chcemy wykonać, czyli zautomatyzować proces płatności. 
+
+00:03:20,380 --> 00:03:27,480 [Speaker 1]
+Ta jakby faza purchase to jest stricte techniczna, jakby człowiek tutaj już nic nie ma. Wszystko już pewne. Po prostu teraz już wykonywanie. 
+
+00:03:27,480 --> 00:03:34,820 [Speaker 0]
+Tak. Natomiast tutaj pojawią się pewnie też jakieś pytania, w jaki sposób to chcemy zrobić, bo my to chcemy zrobić z efektem wow. Cały ten projekt musi być z efektem wow, co nie? 
+
+00:03:35,920 --> 00:03:37,360 [Speaker 0]
+Więc tak to wygląda. 
+
+00:03:39,300 --> 00:03:41,720 [Speaker 0]
+Yy, to co? To tyle o tym purchase? 
+
+00:03:41,720 --> 00:03:51,080 [Speaker 1]
+No ja bym to sobie powiedział, bo to jest dosłownie techniczna. Ja na przykład nie wiem jak działają te, to co mówię, że ten agent, który ma niby kupować. Nie wiem, czy to faktycznie działa czy nie, to po prostu trzeba znaleźć, yy- 
+
+00:03:51,080 --> 00:03:51,480 [Speaker 0]
+Tak 
+
+00:03:51,480 --> 00:03:52,200 [Speaker 1]
+... jak to działa- 
+
+00:03:52,200 --> 00:03:53,070 [Speaker 0]
+Bo my nie mamy kupić 
+
+00:03:53,070 --> 00:04:01,320 [Speaker 1]
+... bo tu nawet nie ma co kminić. W sensie, bo to ja nawet nie widzę jakiegoś kreatywnego podejścia, no bo to jest po prostu kupno i tyle. Masz to zrobić, po prostu to wykonaj, co nie? 
+
+00:04:01,320 --> 00:04:05,560 [Speaker 0]
+Tak. Mm, czyli tak naprawdę, jeśli dobrze rozumiem, jak coś, to mnie popraw. 
+
+00:04:05,560 --> 00:04:05,680 [Speaker 1]
+Mhm. 
+
+00:04:06,720 --> 00:04:17,100 [Speaker 0]
+W całym kon-- cały kontekst naszego projektu opiera się na tym, że chcemy zautomatyzować kupno produktów, które najbardziej spełnią oczekiwania klientów. 
+
+00:04:17,100 --> 00:04:17,820 [Speaker 1]
+Tak. 
+
+00:04:17,820 --> 00:04:26,340 [Speaker 0]
+Czyli chcemy automatyzować kupno warzyw, kupno śrubek, kupno samochodu, kupno produktów po-powtarzalnych, ale i unikalnych. 
+
+00:04:28,060 --> 00:04:28,920 [Speaker 0]
+Tak że- 
+
+00:04:28,920 --> 00:04:29,200 [Speaker 1]
+Mhm 
+
+00:04:29,200 --> 00:04:32,659 [Speaker 0]
+... człowiek nie musiał brać, poświęcać czasu na bezsensowne szukanie- 
+
+00:04:32,660 --> 00:04:32,940 [Speaker 1]
+Tak 
+
+00:04:32,940 --> 00:04:35,940 [Speaker 0]
+... niepotrzebne systemy rekomendacji, niepotrzebne pomyłki. 
+
+00:04:35,940 --> 00:04:53,640 [Speaker 1]
+Tak, tak. I ale tutaj musimy się dużo-- mo-- ja myślę, że to nie jest kwestia teraz, żebyśmy my to w tej burzy mózgów, yy, pisali, tylko to jest po prostu taka kwestia właśnie techniczna. Yy, jak my to kupujemy, jaki dostęp z tą kartą? Yy, to są, no to są takie chuje pytania techniczne, co nie? 
+
+00:04:54,969 --> 00:04:55,420 [Speaker 0]
+Tak. 
+
+00:04:55,420 --> 00:04:57,120 [Speaker 1]
+Ja myślę, że to w ogóle pewnie Olek będzie, 
+
+00:04:58,380 --> 00:04:59,160 [Speaker 1]
+mm, mógł dobrze kminić. 
+
+00:05:01,000 --> 00:05:02,350 [Speaker 0]
+Dobra, czyli to będziemy musieli- 
+
+00:05:02,350 --> 00:05:02,640 [Speaker 1]
+Kupić 
+
+00:05:02,640 --> 00:05:05,600 [Speaker 0]
+... po-pomóc musi nam czat w tym też, co nie? ChatGPT. 
+
+00:05:05,600 --> 00:05:12,000 [Speaker 1]
+Dobra i takie, takie pytania to właśnie jak kupić, jaki agent do tego? Jak, yy, dać dostęp do płatności? 
+
+00:05:12,000 --> 00:05:13,440 [Speaker 0]
+Mhm. 
+
+00:05:16,660 --> 00:05:19,720 [Speaker 1]
+Yy. Właśnie na przykład waluta. Czy chcemy płacić, wiesz- 
+
+00:05:19,720 --> 00:05:21,420 [Speaker 0]
+To bardziej obręb kraju, co nie? 
+
+00:05:22,480 --> 00:05:29,550 [Speaker 0]
+Czyli czy produkt może być kupiony zza granicy, czy jednak wolimy, żeby produkt był kupiony w Polsce. 
+
+00:05:29,550 --> 00:05:42,780 [Speaker 1]
+Ale często jest tak, że jak coś kupujesz na przykład to też jest to no jakby bardzo specyficzny use case. Zabookuj mi hotel na, nie wiem, w Amsterdamie na tydzień w środku lipca. No to możesz zapłacić w euro albo w złotówkach na jakimś bookingu czy coś. 
+
+00:05:42,780 --> 00:05:46,060 [Speaker 0]
+Nie, ale bardziej mi chodzi po prostu o destynację tego, co chcemy kupić. 
+
+00:05:46,060 --> 00:05:48,280 [Speaker 1]
+A no tak, żeby ci nie jechało skądś. 
+
+00:05:48,280 --> 00:05:51,850 [Speaker 0]
+No ale w sumie chuj cię to interesuje. W sensie jeżeli ja powiem, że ma być, yy
+
+00:05:53,284 --> 00:06:05,383 [Speaker 1]
+On na przykład w temacie understanding odnośnie dostawy, że ja mieszkam na ulicy Kwiatowej i chcę tą paczkę mieć w tydzień, no to mnie nie interesuje, czy ona leci z Chin i przyleci helikopterem, czy leci z Radomia. Po prostu jakby to miejsce nie jest ważne, co nie? 
+
+00:06:05,384 --> 00:06:14,724 [Speaker 0]
+Tak. Czyli understanding musi też brać to pod uwagę, że miejsce musi dopytywać człowieka, czy my chcemy mieć to na już, czy nie. Ważne, żeby było- 
+
+00:06:14,724 --> 00:06:15,284 [Speaker 1]
+Czas. 
+
+00:06:15,284 --> 00:06:22,234 [Speaker 0]
+Ważny jest czas, ważne są pieniądze, ważny jest czas. Co tam jeszcze? Są różne takie ważne rzeczy. Na pewno wiesz, ChatGPT, bo to jest mega mądry. 
+
+00:06:22,234 --> 00:06:22,454 [Speaker 1]
+Dojazd. Yy, 
+
+00:06:23,794 --> 00:06:39,424 [Speaker 1]
+w sensie jaki typ dostarczenia, czy to ma być do paczkomatu, czy do mieszkania, czyli, yy, typ, yy, doja-- typ kuriera, koszt, ilość oraz czas na dojazd. To są takie pytania podstawowe odnośnie zakupu. Understanding, ee, tak. 
+
+00:06:39,424 --> 00:06:39,884 [Speaker 0]
+Tak. 
+
+00:06:39,884 --> 00:06:48,684 [Speaker 1]
+Purchase. Wracając do purchase, czy właśnie jak, jak, jak tą płatność wykonać, ale bym też dał, yy, jaka waluta. Tylko że to pytanie o walutę, 
+
+00:06:50,084 --> 00:06:53,504 [Speaker 1]
+mm, albo to może być jako ta notyfikacja, co nie? W trakcie. 
+
+00:06:53,504 --> 00:06:54,204 [Speaker 0]
+Tak. 
+
+00:06:54,264 --> 00:06:57,244 [Speaker 1]
+Bo to nie-- ja myślę, że pytanie o walutę nie, nie powtarza się super często. 
+
+00:06:58,344 --> 00:07:27,483 [Speaker 0]
+Mam super pomysł w ogóle. A co jeśli byśmy zrobili tak, że dajemy możliwość na przykład człowiekowi w takiej jakby notyfikacji mówimy: „OK, zaakceptowaliśmy ten projekt, produkt i chcemy go kupić”. I dajemy człowiekowi na przykład opcję w naszym systemie, że człowiek ma na przykład pięć minut takiego jakby czasu, że dostaje notyfikację i od pięciu minut, od-- ma do pięciu minut, żeby wejść, w razie czego coś zmienić. 
+
+00:07:27,484 --> 00:07:28,284 [Speaker 1]
+No. 
+
+00:07:28,284 --> 00:07:51,494 [Speaker 0]
+Czyli na przykład, żeby nie było tak, że wszystko automatycznie się dzieje na backgroundzie, ale człowiek śledzi, co się dzieje. On dostaje powiadomienia jak na InPoście na przykład. Dostaje powiadomienie, czyli, yy, dostaje-- chce kupić to-- ty jako agent. Agent mówi, że chce kupić ten produkt. No i wysyła informację, że to będzie finalne. Wypełnione są papiery i pyta: „Czy chcesz coś jeszcze sprawdzić, czy coś?”. 
+
+00:07:51,494 --> 00:07:51,504 [Speaker 1]
+No. 
+
+00:07:51,504 --> 00:08:00,404 [Speaker 0]
+No, jeśli użytkownik powie, że nie chce, no to kupuje. Albo ten mi-limit pięciu minut minie, bo tam człowiek będzie musiał dać albo tak, albo nie. 
+
+00:08:00,404 --> 00:08:01,764 [Speaker 1]
+Nawet w ustawieniach konta może sobie- 
+
+00:08:01,764 --> 00:08:03,964 [Speaker 0]
+Tak, w ustawieniach konta jakoś musimy to, to wrzucić. 
+
+00:08:03,964 --> 00:08:05,624 [Speaker 1]
+Fajne, podoba mi się to. Kurde. 
+
+00:08:05,624 --> 00:08:06,004 [Speaker 0]
+Tak. 
+
+00:08:06,004 --> 00:08:06,984 [Speaker 1]
+Tak. 
+
+00:08:06,984 --> 00:08:16,524 [Speaker 0]
+Czyli że człowiek jeszcze ma okazję w razie czego zaingerować, żeby nie było, że wyda za coś dziesięć koła, a to będzie scam na przykład. Czyli musimy chronić się jeszcze przed scamem. 
+
+00:08:20,104 --> 00:08:20,624 [Speaker 0]
+Coś jeszcze? 
+
+00:08:22,164 --> 00:08:23,404 [Speaker 0]
+Czy na razie zatrzymać? 
+
+00:08:26,284 --> 00:08:27,124 [Speaker 1]
+Może to są jeszcze

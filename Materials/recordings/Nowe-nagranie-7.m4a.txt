@@ -1,0 +1,119 @@
+00:00:00,300 --> 00:00:18,540 [Speaker 0]
+To, że też może być na przykład takie zaznaczenie, że na przykład jeżeli to będzie Amazon, no to jest spokojnie, bo to jest pewne, ale jeżeli to będzie strona typu Janusz kropka com, to może być taka gwiazdka, że, yy, taki-- to, bo to może być typu critical error, co nie? Że możesz zostać oszukany i wtedy powiadomienie, które człowiek musi odpowiedzieć, co nie? 
+
+00:00:18,540 --> 00:00:53,820 [Speaker 1]
+Tak. Super. I to jest to, co mówisz jest super. Bo tak czasami zdarza się, że są strony, które są sca-scammerskie i nie chcemy z takich stron korzystać, przez co człowiek musi prowadzić zawsze, yy, taki, yy, być przy tym i widzieć, jeśli nasz agent będzie chciał z takiej scammerskiej strony skorzystać, co jest bardzo istotne. Jest lista na pewno gdzieś na internecie, rankingi różnych zaufanych stron, gdzie możesz coś kupić. Chcielibyśmy, żeby te rankingi były również wypisane w naszym rozwiązaniu, żeby była zebrana grupa, do której możemy dodawać w ogóle sami z siebie ulubione strony. 
+
+00:00:53,820 --> 00:00:54,660 [Speaker 0]
+Tak. 
+
+00:00:54,660 --> 00:00:54,920 [Speaker 1]
+Tak? 
+
+00:00:54,920 --> 00:00:56,480 [Speaker 0]
+O kurwa, ej! 
+
+00:00:56,480 --> 00:01:08,520 [Speaker 1]
+Dodajemy ulubione strony. Mało tego, yy, co jeszcze możemy dodać? Ulubione strony nawet możemy dodać na etapie wyszukiwania produktu czy, czy, czy coś takiego na podstawie rozmowy. Yy, 
+
+00:01:09,800 --> 00:01:15,260 [Speaker 1]
+bo czasami oczywiście pewne grupy społeczne kupują produkty, które- 
+
+00:01:15,260 --> 00:01:16,500 [Speaker 0]
+Dobra w chuj, podoba mi się 
+
+00:01:16,500 --> 00:01:32,960 [Speaker 1]
+... które na przykład śrubki nie s-- ciężko znaleźć na Amazonie, ale są u jakiejś tam innej strony. I to, to też trzeba badać tą zaufaność tych stron. I dlatego każdy musi mieć takie ulubione strony. I dodatkowo te strony musisz jakby badać na podstawie profilu użytkownika. 
+
+00:01:32,960 --> 00:01:42,960 [Speaker 0]
+No tak i zapisywać w tej personie. Tak. Typu na przykład człowiek może uznać, że jego preferowaną stroną jest Allegro, nawet jeżeli to jest droższe niż, yy, załóżmy tam kurwa, 
+
+00:01:44,080 --> 00:01:55,470 [Speaker 0]
+nie wiem, x com, to i tak on woli z Allegro korzystać, bo takie są jego preferencje. Czyli po prostu wtedy w procesie tych agentów, jak mamy pięć agentów, które myślą, to po prostu waga na stronę, yy, się po prostu zwiększa. 
+
+00:01:55,470 --> 00:01:55,480 [Speaker 1]
+Tak. 
+
+00:01:55,480 --> 00:01:56,680 [Speaker 0]
+Bo tak człowiek wybrał. 
+
+00:01:56,680 --> 00:02:30,640 [Speaker 1]
+Mało tego, jeśli na przykład mamy opcję, że człowiek mówi, że on chce jednak mieć jakiś udział w tym zakupie, czyli na przykład chce sprawdzić końcowy zakup, no to my dajemy możliwość, żeby on sam stwierdził, na przykład powie, że Amazon jest jego ulubioną stroną, natomiast jakaś inna Janusz kropka x będzie miała tańszy produkt. Ale też ta strona jest w miarę zaufana i chcemy go o tym poinformować. Czy bardziej ci zależy na tym, czy na tym? Żeby to był taki proces, w którym człowiek czuł się dobrze. A my te wszystkie informacje musimy oczywiście później zachowywać, całe te konteksty- 
+
+00:02:30,640 --> 00:02:30,780 [Speaker 0]
+No 
+
+00:02:30,780 --> 00:02:44,480 [Speaker 1]
+... embeddingami jakoś dobierać, stworzyć z tego cały jakby sieć, taką knowledge, żebyśmy po prostu później wiedzieli, jak działa nasz użytkownik, żebyśmy jeszcze bardziej byli z nim dopasowani do niego. Czyli takie systemy zaawansowane rekomendacji. 
+
+00:02:45,780 --> 00:02:48,840 [Speaker 0]
+Okej, dobra, ale podoba mi się w chuj z tymi ulubionymi stronami. 
+
+00:02:49,920 --> 00:03:03,920 [Speaker 0]
+Yy, właśnie kwestia człowiek może sobie wybrać ulubione strony. Jest zapisywane. Ale właśnie druga też sprawa przy discover czy discover decide, yy, to agent wyszukuje właśnie rankingi rzetelności tych stron. 
+
+00:03:03,920 --> 00:03:04,120 [Speaker 1]
+Tak. 
+
+00:03:04,120 --> 00:03:18,240 [Speaker 0]
+Sprawdza i jeżeli coś jest scammerskie, yy, znaczy coś śmierdzi scammersco, to na przykład właśnie wysłać powiadomienie, na które trzeba odpowiedzieć. Człowiek musi na to odpowiedzieć, czy mu się godzi, yy, no to. 
+
+00:03:18,240 --> 00:03:24,740 [Speaker 1]
+Tak fajnie. Czyli musimy badać również strony i to w kwestii już discovery, gdzie mamy już takie security nasze. 
+
+00:03:24,740 --> 00:03:27,340 [Speaker 0]
+Właśnie, właśnie to jest całe wiesz. 
+
+00:03:27,340 --> 00:03:29,260 [Speaker 1]
+To są bardzo ważne rzeczy. 
+
+00:03:29,260 --> 00:03:30,850 [Speaker 0]
+Fajne. Kurde, ej. 
+
+00:03:30,850 --> 00:03:31,560 [Speaker 1]
+No. 
+
+00:03:31,560 --> 00:03:32,609 [Speaker 0]
+Stary nie, podoba mi się w chuj no. 
+
+00:03:32,609 --> 00:03:33,780 [Speaker 1]
+Podoba mi się też no. 
+
+00:03:35,700 --> 00:03:36,040 [Speaker 1]
+Dobra. 
+
+00:03:37,400 --> 00:03:57,410 [Speaker 1]
+Ogólnie zależy nam jeszcze w całym naszym rozwiązaniu, zależy na tym, żeby to było jak najbardziej też emocjonalne, czyli bardzo wchodziło w u-- takiego użytkownika. Czyli żebyśmy rozumieli jego potrzeby, rozumieli jego personalia, rozumieli jego emocje, rozumieli w ogóle, jak działa rynek. To, to są bardzo ważne im-- informacje dla nas, żebyśmy jak najbardziej byli takim zaufanym przyjacielem człowieka. 
+
+00:03:57,410 --> 00:03:59,300 [Speaker 0]
+Aby człowiek się czuł się zaopiekowany. 
+
+00:03:59,300 --> 00:04:17,579 [Speaker 1]
+Tak. I czuł, że każdy rozumie, niezależnie od grupy społecznej czy wieku na przykład. Ponieważ, yy, chłopak lat dwadzieścia będzie inne produkty szukał niż kobieta siedemdziesiąt sześć lat. Ale chcemy tej kobiecie tak uprosić ten proces, żeby ona nie musiała się martwić, że coś jest niezrozumiałego w tym. 
+
+00:04:19,140 --> 00:04:20,840 [Speaker 0]
+Mhm. 
+
+00:04:20,840 --> 00:04:21,820 [Speaker 1]
+Tak. 
+
+00:04:21,820 --> 00:04:23,280 [Speaker 0]
+Okej. 
+
+00:04:23,280 --> 00:04:54,900 [Speaker 1]
+No i ogólnie musimy też wymyśleć, w jaki sposób chcemy uzyskiwać te notyfikacje, powiadomienia, informację zwrotną od naszego, od naszych agentów, gdzie trzeba coś zatwierdzić. Czy chcemy to przez, poprzez rozmowę telefoniczną? Możemy zrobić kilka opcji nawet. Sobie każdy wymyśla. Czy po-powiadomienie, push ups. Bo obstawiam, że na przykład osoby starsze wolałyby telefoniczną, bo one są dużo bardziej rozumieją techno-- tech-- rozmowę. Natomiast młode osoby pewnie wolałyby WhatsApp, by tylko pyk, pyk. Albo jakąś apkę do tego zrobić. Musimy też to przemyśleć. 
+
+00:04:57,380 --> 00:04:58,200 [Speaker 1]
+Dobra, co dalej? 
+
+00:04:59,260 --> 00:05:00,560 [Speaker 1]
+Dalej jest jeszcze track. 
+
+00:05:00,560 --> 00:05:02,260 [Speaker 0]
+Track i rezo-resolve. 
+
+00:05:02,260 --> 00:05:03,599 [Speaker 1]
+Może zatrzymam go. 
+
+00:05:03,600 --> 00:05:03,740 [Speaker 0]
+No.

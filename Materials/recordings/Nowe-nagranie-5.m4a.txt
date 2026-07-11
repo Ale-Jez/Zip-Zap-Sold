@@ -1,0 +1,74 @@
+00:00:00,560 --> 00:00:03,380 [Speaker 0]
+To tak. Chodzi o fazie discover. 
+
+00:00:04,640 --> 00:00:05,280 [Speaker 0]
+Tak naprawdę 
+
+00:00:06,400 --> 00:00:08,020 [Speaker 0]
+w jakiejkolwiek fazie 
+
+00:00:09,360 --> 00:00:16,100 [Speaker 0]
+nasz agent może czasem potrzebować jakichś jeszcze dodatkowych informacji od nas i potrzebuje sposobu, żeby się skomunikować. I możemy 
+
+00:00:17,460 --> 00:00:26,240 [Speaker 0]
+skomunikować się, w sensie on może do nas zadzwonić, żeby zadać dodatkowe pytania tak, żeby on nie czekał, żeby to szło dalej. 
+
+00:00:26,240 --> 00:01:05,820 [Speaker 1]
+Chodzi o to, że człowiek, żeby człowiek nie musiał czekać w tym flow, tylko żeby on na spokojnie mielił w swoim czasie. To nie musi być na już, że w ciągu dziesięciu sekund musimy znaleźć produkt. Niech to będzie w swoim czasie, niech to będzie dobrze zrobione, a w miarę pytań na przykład czy, bo słuchaj, mamy taki case na przykład mamy kilka case'ów. Pierwszy case jest taki na przykład, że OK, mamy- mam tu dziesięć produktów. Trzeci jest najlepszy aktualnie, bo do pierwszego i drugiego nie mam dostęp-- nie ma aktualnie w sklepie tego. Więc czy czekamy, czy kupujemy ten? Czy zależy ci na czasie, czy nie? Albo jest inny case, że na przykład danego dnia z najgorszych będzie najlepszy dany produkt, ale ten produkt na jutro może być na przykład najgorszy z najlepszych. 
+
+00:01:07,460 --> 00:01:12,380 [Speaker 1]
+Więc my chcemy po prostu mieć taką informację, że wraca do ciebie call i mówi, że słuchaj, 
+
+00:01:14,660 --> 00:01:30,760 [Speaker 1]
+słuchaj, taka i taka sytuacja, że musisz dogadać się ze mną, czy to na pewno spełnia twoje oczekiwania. I może to-- i ja proponuję, żebyś dał nam kilka takich opcji rozwiązania, bo możesz zadzwonić na telefon, ale to nie wiem, czy każdy będzie chciał, ale może jakieś inne. To też na pewno jest dużo takich ciekawych opcji. 
+
+00:01:30,760 --> 00:01:32,030 [Speaker 0]
+Po prostu SMS. 
+
+00:01:32,030 --> 00:01:35,400 [Speaker 1]
+SMS, WhatsApp, pushup jakiś. 
+
+00:01:35,400 --> 00:01:48,740 [Speaker 0]
+Tak. Po prostu poinformować. Bo generalnie co do idei szukamy takiego rozwiązania, które będzie, że ten agent będzie autonomiczny. I na-naszą rolą też tutaj, w tym procesie myślenia, jest ustalenie granicy, gdzie, 
+
+00:01:49,880 --> 00:01:56,340 [Speaker 0]
+znaczy jak bardzo ten człowiek może ingerować. No i my uważamy, że są takie po prostu, takie momenty, że ten człowiek faktycznie musi dać swój input, 
+
+00:01:57,860 --> 00:02:10,699 [Speaker 0]
+że to jest istotne. Chyba że możemy też dać takie inne ustawienie, że po prostu człowiek powie, że nie interesuje mnie to, masz to zrobić. Jak zrobisz, to tak będzie, bo też, też niektórzy ludzie na pewno będą tak chcieli. To też spoko, więc musimy dać 
+
+00:02:13,040 --> 00:02:15,920 [Speaker 0]
+możliwość człowiekowi ustalenia, gdzie ona granica. 
+
+00:02:15,920 --> 00:02:38,800 [Speaker 1]
+Czyli może takie rzeczy właśnie też dodać w temacie szukania produktu, czyli tym understandingu, że tam też jeszcze były informacje o tym, że jakie pytania zadać użytkownikowi. Może to też znajdziemy taką grupę pytań, które warto zadać użytkownikowi, żeby mieć ogólnie informację o tym, bo to też takie lewe przypadki. 
+
+00:02:38,800 --> 00:02:40,180 [Speaker 0]
+Co to znaczy ogólnie informacje o tym? 
+
+00:02:40,180 --> 00:02:47,640 [Speaker 1]
+Bo jak na przykład masz understanding, masz x grup, no to jedną grupą może być czas realizacji na przykład albo jakoś takie 
+
+00:02:48,920 --> 00:03:02,060 [Speaker 1]
+przypadki, przypadki, takie krzywe przypadki czy coś takiego. I wtedy dopytujesz: a co jeśli ten produkt będzie najgorszy z najlepszych, ale jutro będzie lepszy? Albo co jeśli ten produkt będzie niedostępny, czy czekamy, czy nie? Tego typu rzeczy. 
+
+00:03:03,340 --> 00:03:10,840 [Speaker 0]
+Aha, dobra. Czyli na przykład, czyli w fazie understanding chat agent pyta, czy chcesz mieć to teraz, czy na przykład 
+
+00:03:12,240 --> 00:03:17,400 [Speaker 0]
+możesz poczekać parę dni, a ja spróbuję przewidzieć, czy na przykład za dwa dni będzie lepsza cena? Okej. 
+
+00:03:17,400 --> 00:03:29,000 [Speaker 1]
+Albo on już sam przewidzi, że może jest jakoś dostępność, że może w przeciągu trzydziestu dni będzie lepsza cena czy coś. Jeśli ci na tym zależy. Na pewno w jakiś sposób to można koncepcyjnie predykcyjnie zrobić. 
+
+00:03:29,000 --> 00:03:32,920 [Speaker 0]
+Mhm. Okej, dobra. Okej, rozumiem. To jest do... 
+
+00:03:35,100 --> 00:03:40,380 [Speaker 0]
+Ale dobra, czy to jest do fazy discover czy approve? Dobra, mamy. 
+
+00:03:40,380 --> 00:03:40,820 [Speaker 1]
+Dobra, mamy. 
+
+00:03:43,280 --> 00:03:43,390 [Speaker 2]
+[głosy w tle]
