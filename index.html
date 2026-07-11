@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Zip Zap Sold: voice-first proactive shopping agent demo" />
-    <title>Zip Zap Sold — Grandma's cheesecake</title>
+    <title>Zip Zap Sold — Cheesecake shopping</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
@@ -12,32 +12,33 @@
     <link rel="stylesheet" href="account.css" />
     <link rel="stylesheet" href="dashboard.css" />
     <link rel="stylesheet" href="phone.css" />
+    <link rel="stylesheet" href="simple.css" />
   </head>
   <body>
     <div class="shell">
       <aside class="sidebar">
         <a href="#top" class="brand"><span class="logo"><i></i><i></i><i></i></span>ZIP ZAP SOLD<span>.</span></a>
         <section class="mission-card">
-          <small>LIVE MISSION</small>
-          <h2>Grandma’s<br />cheesecake</h2>
-          <p>7 ingredients. One smart decision.</p>
-          <footer><b><i></i> Agent working</b><span>Tomorrow</span></footer>
+          <small>TODAY'S SHOPPING</small>
+          <h2>Cheesecake<br />ingredients</h2>
+          <p>We will call only if we need your answer.</p>
+          <footer><b><i></i> We are checking</b><span>Tomorrow</span></footer>
         </section>
         <nav><small>PURCHASE JOURNEY</small><ol id="journey"></ol></nav>
-        <button id="openProfile" class="profile"><b>M</b><span><strong>Helena Kowalska</strong><em>Her agent knows her</em></span><i>•••</i></button>
+        <button id="openProfile" class="profile"><b>H</b><span><strong>Helena</strong><em>My shopping choices</em></span><i>•••</i></button>
       </aside>
 
       <main id="top">
         <header class="topbar">
-          <div><p class="crumb">Helena’s agent <b>/</b> purchase in progress</p><h1 id="title">A cheesecake, without the shopping trip.</h1></div>
-          <div class="top-actions"><button id="startAgent" class="dark">✦ Start agent</button><button id="reset" class="quiet">↻ Replay demo</button><button id="openAccount" class="quiet">Log in</button><button id="callPhone" class="dark">☎ Call my phone</button></div>
+          <div><p class="crumb">Hello Helena</p><h1 id="title">Let’s get your cheesecake ingredients.</h1></div>
+          <div class="top-actions"><button id="startAgent" class="dark">Start shopping</button><button id="callPhone" class="quiet">Call me</button><button id="openAccount" class="quiet">My account</button><button id="reset" class="quiet helper-action">Start over</button></div>
         </header>
-        <section class="summary"><p><span><i></i> PROACTIVE AGENT</span><strong id="summaryText">Helena only said what she wanted to bake. Zip Zap Sold is doing the rest.</strong></p><div><small>Autonomy level</small><i class="meter"><b></b><b></b><b></b><b></b></i><strong id="autonomy">Ask on exceptions</strong></div></section>
+        <section class="summary"><p><span><i></i> ZIP ZAP SOLD</span><strong id="summaryText">Tell us what you need. We compare the shops and call only if something needs your answer.</strong></p><div><small>When we call</small><i class="meter"><b></b><b></b><b></b><b></b></i><strong id="autonomy">Only for an important choice</strong></div></section>
         <nav class="workspace-tabs" aria-label="Zip Zap Sold workspace">
-          <button class="active" data-view="mission"><i>✦</i> Mission</button>
-          <button data-view="map"><i>⌖</i> Live map</button>
-          <button data-view="favourites"><i>♥</i> Favourites</button>
-          <button data-view="autonomy"><i>◉</i> Agent autonomy</button>
+          <button class="active" data-view="mission"><i>✦</i> My shopping</button>
+          <button data-view="map"><i>⌖</i> Delivery map</button>
+          <button data-view="favourites"><i>♥</i> Trusted shops</button>
+          <button data-view="autonomy"><i>◉</i> My choices</button>
         </nav>
         <section id="content" class="content" aria-live="polite"></section>
       </main>
@@ -66,17 +67,17 @@
       <section class="phone-connector" role="dialog" aria-modal="true" aria-labelledby="phoneConnectorTitle">
         <button data-close-call-connector class="x" aria-label="Close">×</button>
         <div class="connector-orbit"><span class="logo"><i></i><i></i><i></i></span></div>
-        <small>PHONE CONNECTOR</small>
-        <h2 id="phoneConnectorTitle">Call a phone<br />you control.</h2>
-        <p>For a real call, Zip Zap Sold sends this approval request through a configured phone provider. It never calls a number without your explicit confirmation.</p>
+        <small>CALL ME</small>
+        <h2 id="phoneConnectorTitle">Would you like<br />a phone call?</h2>
+        <p>Zip Zap Sold will call the number you choose only when you ask us to.</p>
         <form id="phoneCallForm" class="phone-call-form">
-          <label for="phoneNumber">Phone number</label>
+          <label for="phoneNumber">Your phone number</label>
           <input id="phoneNumber" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+48123456789" required />
-          <label class="consent-check"><input id="phoneConsent" name="consent" type="checkbox" required /><span>I own or control this number and want Zip Zap Sold to call it.</span></label>
-          <button id="placePhoneCall" class="dark" type="submit">Place phone call</button>
+          <label class="consent-check"><input id="phoneConsent" name="consent" type="checkbox" required /><span>I want Zip Zap Sold to call this number.</span></label>
+          <button id="placePhoneCall" class="dark" type="submit">Call me</button>
         </form>
-        <div id="phoneCallStatus" class="phone-call-status" role="status" aria-live="polite"><strong>Demo mode is ready.</strong><span>Use it safely in the presentation, or configure a private provider account for a real outbound call.</span></div>
-        <div class="connector-footer"><button id="previewPhoneCall" class="quiet" type="button">Preview the in-app call</button><span>Your number is never stored in the Zip Zap Sold account.</span></div>
+        <div id="phoneCallStatus" class="phone-call-status" role="status" aria-live="polite"><strong>Demo call is ready.</strong><span>For a real call, connect your private phone provider account.</span></div>
+        <div class="connector-footer"><button id="previewPhoneCall" class="quiet" type="button">See the call first</button><span>Your number is not saved in your account.</span></div>
       </section>
     </div>
 

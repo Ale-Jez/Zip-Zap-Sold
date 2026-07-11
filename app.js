@@ -5,7 +5,7 @@
   const savedPreferences = JSON.parse(localStorage.getItem("zip-zap-sold-demo-preferences") || "{}");
   const state = {
     stage: "understand", view: "mission", answers: {}, chosen: "fresh", approved: false, bought: false, feedback: null,
-    autoLimit: Number(savedPreferences.autoLimit || 65),
+    autoLimit: Number(savedPreferences.autoLimit || d.person?.preferences?.automaticPurchaseLimit || 65),
     rules: Object.assign({ substitutions: true, unknownSeller: true, deliveryChange: true }, savedPreferences.rules || {}),
     favourites: savedPreferences.favourites || ["FreshMart", "EkstraMarket", "Classic baked cheesecake"]
   };
@@ -34,6 +34,16 @@
     track: ["The agent stays with the order.", "No carrier apps and no manual tracking. Zip Zap Sold keeps the purchase moving and surfaces exceptions."],
     resolve: ["Every purchase makes the next one easier.", "After delivery, Helena’s feedback becomes a useful preference—not a forgotten chat message."]
   };
+
+  Object.assign(page, {
+    understand: ["Let's start your shopping.", "One short question at a time."],
+    discover: ["We are checking the shops.", "You do not need to compare anything."],
+    decide: ["Here is the easiest choice.", "One trusted shop, one clear delivery."],
+    approve: ["A quick question for you.", "We call only when an answer is needed."],
+    purchase: ["Your basket is ready.", "We only buy what you approved."],
+    track: ["Your delivery is on the way.", "We will call if anything changes."],
+    resolve: ["Was everything all right?", "Your answer helps with the next shop." ]
+  });
 
   const head = (n, h, p) => `<header class="stage-head"><div><small>0${n} / ${labels[n - 1].toUpperCase()}</small><h2>${h}</h2></div><p>${p}</p></header>`;
   const button = (text, id, className = "dark", disabled = false) => `<button id="${id}" class="${className}" ${disabled ? "disabled" : ""}>${text}</button>`;
@@ -135,7 +145,7 @@
     renderTabs();
     if (state.view === "mission") { render(); return; }
     if (state.view === "map") { renderMap(); return; }
-    if (state.view === "favourites") { renderFavourites(); return; }
+    if (state.view === "favourites") { simpleFavourites(); return; }
     renderAutonomy();
   }
 
@@ -172,6 +182,7 @@
 
   function persistPreferences() {
     localStorage.setItem("zip-zap-sold-demo-preferences", JSON.stringify({ autoLimit: state.autoLimit, rules: state.rules, favourites: state.favourites }));
+    if (d.person?.preferences) d.person.preferences.automaticPurchaseLimit = state.autoLimit;
     d.user.rules[0][1] = "Buy automatically up to " + state.autoLimit + " PLN";
     autonomy.textContent = "Auto-buy ≤ " + state.autoLimit + " PLN";
   }
@@ -193,7 +204,79 @@
     document.querySelector("#saveAutonomy").addEventListener("click", () => { persistPreferences(); toast("Helena’s autonomy rules were saved in this browser."); renderAutonomy(); });
   }
 
-  function render() { ({ understand, discover, decide, approve, purchase, track, resolve })[state.stage](); }
+  function simpleUnderstand() {
+    const total = d.recipe.questions.length;
+    const answered = Object.keys(state.answers).length;
+    const question = d.recipe.questions.find((item) => !state.answers[item.id]);
+    const questionCard = question
+      ? `<article class="question"><small>ONE SHORT QUESTION ${answered + 1} OF ${total}</small><h3>${question.prompt}</h3><p>${question.help}</p><div class="choices">${question.choices.map((choice) => `<button class="choice" data-simple-answer-key="${question.id}" data-simple-answer="${choice}">${choice}</button>`).join("")}</div></article>`
+      : `<article class="question answered"><small>READY TO SHOP</small><h3>Everything is clear.</h3><p>We will now check the trusted shops for you.</p></article>`;
+    content.innerHTML = `${head(1, "Tell us what you need.", "We ask one short question at a time.")}<article class="card pad request"><div class="request-user"><span class="mini-avatar">${d.person.initials}</span>Your request</div><blockquote>${d.recipe.title} for ${d.recipe.servings} people, delivered tomorrow.</blockquote></article><section class="questions">${questionCard}</section><div class="continue"><span><strong>${answered}/${total} answers</strong> are ready.</span>${button("Start background discovery ->", "goDiscover", "dark", answered < total)}</div>`;
+    document.querySelectorAll("[data-simple-answer-key]").forEach((choice) => choice.addEventListener("click", () => {
+      state.answers[choice.dataset.simpleAnswerKey] = choice.dataset.simpleAnswer;
+      simpleUnderstand();
+    }));
+    document.querySelector("#goDiscover")?.addEventListener("click", () => setStage("discover"));
+  }
+
+  function simpleDiscover() {
+    const ingredients = d.recipe.ingredients.map((ingredient) => row(`${ingredient.name} <small>${ingredient.amount}</small>`, `${ingredient.price.toFixed(2)} PLN`)).join("");
+    content.innerHTML = `${head(2, "We are checking the shops.", "You do not need to compare anything.")}<div class="grid"><article class="card pad ingredients"><small>YOUR RECIPE</small><h3>${d.recipe.title}</h3>${ingredients}</article><aside class="card info-card"><h3>We check three things</h3><p>Fresh ingredients, a trusted shop, and a delivery that suits you.</p><div class="agent-list"><div class="agent"><i class="lime">1</i><div><strong>Fresh ingredients</strong><span>Everything needed for your recipe.</span></div><b>OK</b></div><div class="agent"><i class="violet">2</i><div><strong>Trusted shops</strong><span>Only sellers we can verify.</span></div><b>OK</b></div><div class="agent"><i class="coral">3</i><div><strong>Delivery</strong><span>A time that works for you.</span></div><b>OK</b></div></div></aside></div><div class="continue"><span><strong>All done.</strong> We found one easy choice.</span>${button("See my best choice ->", "goDecide")}</div>`;
+    document.querySelector("#goDecide").addEventListener("click", () => setStage("decide"));
+  }
+
+  function simpleDecide() {
+    const recommended = d.vendors.find((vendor) => vendor.recommended);
+    const earlier = d.vendors.find((vendor) => vendor.needsApproval);
+    const blocked = d.vendors.find((vendor) => vendor.blocked);
+    content.innerHTML = `${head(3, "Here is the easiest choice.", "We picked one trusted shop for you.")}<section class="decision"><article class="card recommend"><small>OUR RECOMMENDATION</small><h3>${recommended.name}</h3><p>${recommended.reason}</p><div class="stat"><div><strong>${recommended.total.toFixed(2)} PLN</strong><span>complete basket</span></div><div><strong>${recommended.delivery}</strong><span>delivery time</span></div><div><strong>Trusted</strong><span>verified shop</span></div></div>${button(`Continue with ${recommended.name}`, "chooseRecommended")}</article><aside class="card info-card"><h3>You can keep it simple</h3><p>We can buy from your usual trusted shop. You only need to answer if you want a different delivery time.</p><details class="simple-options"><summary>See another trusted option</summary><p><strong>${earlier.name}</strong><br />${earlier.reason}</p><button id="chooseEarlier" class="quiet">Ask me about earlier delivery</button><p class="blocked-option">${blocked.name} is not shown as a choice because the seller cannot be verified.</p></details></aside></section>`;
+    document.querySelector("#chooseRecommended").addEventListener("click", () => { state.chosen = recommended.id; state.approved = true; setStage("purchase"); });
+    document.querySelector("#chooseEarlier").addEventListener("click", () => { state.chosen = earlier.id; setStage("approve"); setTimeout(openPhone, 250); });
+  }
+
+  function currentCallScenario() {
+    return state.chosen === "deal" ? d.call.scenarios.unverifiedSeller : d.call.scenarios.earlierDelivery;
+  }
+
+  function simpleApprove() {
+    const scenario = currentCallScenario();
+    const vendor = d.vendors.find((item) => item.id === scenario.vendorId);
+    content.innerHTML = `${head(4, "A quick question for you.", "We call only because this choice needs your answer.")}<section class="decision"><article class="card recommend"><small>WE NEED YOUR OK</small><h3>${scenario.title}</h3><p>${scenario.prompt}</p><div class="stat"><div><strong>${vendor.name}</strong><span>shop</span></div><div><strong>${vendor.total.toFixed(2)} PLN</strong><span>basket price</span></div><div><strong>${vendor.delivery}</strong><span>delivery</span></div></div></article><aside class="card pad"><small>YOUR CHOICE</small><h3 style="font:600 26px/1 'Fraunces',serif;letter-spacing:-.04em;margin:9px 0">We can call you now.</h3><p style="color:var(--muted);font-size:12px;line-height:1.5">You can answer with one simple choice. There is nothing else to compare.</p>${button("Call me now", "openCall", "dark")}</aside></section>`;
+    document.querySelector("#openCall").addEventListener("click", openPhone);
+  }
+
+  function simpleFavourites() {
+    const cards = d.vendors.filter((vendor) => vendor.trusted).map((vendor) => `<article class="card favourite-card"><span class="favourite-mark">${vendor.recommended ? "*" : "+"}</span><h3>${vendor.name}</h3><p>${vendor.relationship}<br />${vendor.reason}</p><footer><span>Trusted shop</span></footer></article>`).join("");
+    content.innerHTML = `<section class="workspace-view"><header class="view-intro"><div><small>TRUSTED SHOPS</small><h2>Shops Helena already trusts.</h2></div></header><div class="favourites-grid">${cards}</div><section class="preference-strip"><div><h3>Your choices are remembered</h3><p>Trusted shops are considered first, but they still have to meet your price and delivery rules.</p></div><button id="showMission">Back to my shopping</button></section></section>`;
+    document.querySelector("#showMission").addEventListener("click", () => setView("mission"));
+  }
+
+  function simpleAnswer() {
+    incoming.classList.add("hidden");
+    liveCall.classList.remove("hidden");
+    const scenario = currentCallScenario();
+    script.textContent = scenario.prompt;
+    callOptions.innerHTML = scenario.choices.map((choice) => `<button data-simple-call="${choice.id}">${choice.label}</button>`).join("");
+    callOptions.querySelectorAll("[data-simple-call]").forEach((choice) => choice.addEventListener("click", () => simpleCallChoice(choice.dataset.simpleCall)));
+    speak(scenario.prompt);
+  }
+
+  function simpleCallChoice(choice) {
+    if (choice === "approve" || choice === "use-trusted" || choice === "keep") {
+      if (choice === "use-trusted" || choice === "keep") state.chosen = "fresh";
+      state.approved = true;
+      closePhone();
+      toast("Helena's phone answer was saved.");
+      setStage("purchase");
+      return;
+    }
+    script.textContent = "Of course. I will keep the basket ready and wait for your answer.";
+    callOptions.innerHTML = `<button data-simple-call="approve">Choose the trusted option</button>`;
+    callOptions.querySelector("[data-simple-call]").addEventListener("click", () => simpleCallChoice("approve"));
+    speak(script.textContent);
+  }
+
+  function render() { ({ understand: simpleUnderstand, discover: simpleDiscover, decide: simpleDecide, approve: simpleApprove, purchase, track, resolve })[state.stage](); }
 
   function speak(text) {
     if (!window.speechSynthesis) return;
@@ -287,7 +370,7 @@
   function openAccount() { renderAccount(); accountModal.classList.add("open"); accountModal.setAttribute("aria-hidden", "false"); }
   function closeAccount() { accountModal.classList.remove("open"); accountModal.setAttribute("aria-hidden", "true"); }
   function setAccountMode(mode) { accountMode = mode; document.querySelectorAll("[data-account-mode]").forEach((button) => button.classList.toggle("active", button.dataset.accountMode === mode)); document.querySelector("#nameField").classList.toggle("hidden", mode === "login"); document.querySelector("#accountName").required = mode === "signup"; document.querySelector("#accountSubmit").textContent = mode === "signup" ? "Create my account" : "Log in"; document.querySelector("#accountPassword").autocomplete = mode === "signup" ? "new-password" : "current-password"; }
-  function renderAccount() { const signedIn = Boolean(account); accountButton.textContent = signedIn ? `Account · ${account.name.split(" ")[0]}` : "Log in"; accountForm.classList.toggle("hidden", signedIn); document.querySelector(".account-tabs").classList.toggle("hidden", signedIn); document.querySelector("#accountSummary").classList.toggle("hidden", !signedIn); if (signedIn) { document.querySelector("#savedAccountName").textContent = account.name; document.querySelector("#savedAccountEmail").textContent = account.email; } else { setAccountMode(accountMode); } }
+  function renderAccount() { const signedIn = Boolean(account); accountButton.textContent = signedIn ? `My account · ${account.name.split(" ")[0]}` : "My account"; accountForm.classList.toggle("hidden", signedIn); document.querySelector(".account-tabs").classList.toggle("hidden", signedIn); document.querySelector("#accountSummary").classList.toggle("hidden", !signedIn); if (signedIn) { document.querySelector("#savedAccountName").textContent = account.name; document.querySelector("#savedAccountEmail").textContent = account.email; } else { setAccountMode(accountMode); } }
   function saveAccount(event) { event.preventDefault(); const data = new FormData(accountForm); const email = data.get("email").trim(); const saved = JSON.parse(localStorage.getItem(accountKey) || "null"); const fallbackName = email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()); account = accountMode === "login" && saved?.email === email ? saved : { name: accountMode === "login" ? fallbackName : data.get("name").trim(), email }; localStorage.setItem(accountKey, JSON.stringify(account)); renderAccount(); closeAccount(); toast(`Welcome${accountMode === "login" ? " back" : ""}, ${account.name.split(" ")[0]}. Your agent profile is ready.`); }
   function logoutAccount() { localStorage.removeItem(accountKey); account = null; renderAccount(); toast("You are logged out on this browser."); }
 
@@ -295,14 +378,14 @@
   phoneCallForm.addEventListener("submit", requestPhoneCall);
   document.querySelector("#previewPhoneCall").addEventListener("click", () => { closeCallConnector(); openPhone(); });
   document.querySelectorAll("[data-close-call-connector]").forEach((button) => button.addEventListener("click", closeCallConnector));
-  document.querySelector("#answer").addEventListener("click", answer);
+  document.querySelector("#answer").addEventListener("click", simpleAnswer);
   document.querySelector("#hangUp").addEventListener("click", closePhone);
   document.querySelector("#repeat").addEventListener("click", () => speak(script.textContent));
   document.querySelectorAll("[data-close-phone]").forEach((button) => button.addEventListener("click", closePhone));
   document.querySelector("#openProfile").addEventListener("click", openProfile);
   document.querySelectorAll("[data-close-profile]").forEach((button) => button.addEventListener("click", closeProfile));
   document.querySelector("#reset").addEventListener("click", reset);
-  document.querySelector("#startAgent").addEventListener("click", () => { reset(); toast("Your agent is ready. Answer three quick questions to begin discovery."); });
+  document.querySelector("#startAgent").addEventListener("click", () => { reset(); toast("Let's start with one short question."); });
   document.querySelector("#openAccount").addEventListener("click", openAccount);
   document.querySelectorAll("[data-close-account]").forEach((button) => button.addEventListener("click", closeAccount));
   document.querySelectorAll("[data-account-mode]").forEach((button) => button.addEventListener("click", () => setAccountMode(button.dataset.accountMode)));

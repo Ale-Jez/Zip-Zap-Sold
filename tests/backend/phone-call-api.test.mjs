@@ -105,7 +105,7 @@ test("the local server exposes only the client files needed by the app", async (
   t.after(() => server.close());
   const { port } = server.address();
 
-  const publicFile = await fetch(`http://127.0.0.1:${port}/phone.css`);
+  const publicFile = await fetch(`http://127.0.0.1:${port}/simple.css`);
   const internalFile = await fetch(`http://127.0.0.1:${port}/server.mjs`);
 
   assert.equal(publicFile.status, 200);

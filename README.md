@@ -34,6 +34,16 @@ Helena asks by voice for a complete cheesecake ingredient basket. The app visibl
 
 All mock data lives in [mock-data.js](./mock-data.js). The in-app phone conversation remains available as a reliable presentation fallback.
 
+## Demo mockups
+
+The demo data is ready to present and kept in one place:
+
+- `recipe` — an eight-person classic baked cheesecake and six required ingredients;
+- `vendors` — FreshMart (recommended), EkstraMarket (trusted but needs approval), and DealFinder (blocked);
+- `call` — clear AI-agent scripts and answer choices for an earlier delivery or an unsafe seller.
+
+The default journey is deliberately simple: one question at a time, one recommended shop, and a call only when Helena needs to decide. The delivery map layout is unchanged.
+
 ## Account demo
 
 The top bar includes a Start agent action and a local account flow. You can create an account, log in, manage it and log out. It is deliberately browser-only: account details stay in local storage and no credentials are sent to a server.

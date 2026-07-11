@@ -1,0 +1,94 @@
+/* Default view: calm, large, and easy to scan. The delivery map keeps its own layout. */
+.shell { grid-template-columns: 224px minmax(0, 1fr); }
+.sidebar { gap: 18px; padding: 24px 16px; }
+.sidebar nav { display: none; }
+.mission-card { min-height: 176px; padding: 18px; border-radius: 18px; }
+.mission-card h2 { font-size: 27px; }
+.mission-card p { max-width: 170px; font-size: 12px; }
+.profile { margin-top: auto; }
+
+main { max-width: 1280px; padding-bottom: 48px; }
+.topbar { min-height: 124px; padding: 28px 0 20px; }
+.crumb { margin-bottom: 7px; font-size: 13px; }
+.crumb b { display: none; }
+h1 { max-width: 650px; font-size: clamp(30px, 3vw, 44px); }
+.top-actions { gap: 8px; }
+.top-actions button { padding: 10px 13px; font-size: 12px; }
+.top-actions .helper-action { display: none; }
+
+.summary { padding: 14px 17px; border-radius: 13px; }
+.summary p { gap: 10px; }
+.summary p strong { max-width: 620px; font-size: 14px; }
+.summary > div { min-width: 155px; }
+
+.workspace-tabs { max-width: 700px; margin-top: 14px; padding: 4px; border-radius: 11px; }
+.workspace-tabs button { min-width: 0; padding: 10px 9px; font-size: 11px; }
+.workspace-tabs button i { display: none; }
+
+.content { padding-top: 22px; }
+.stage-head { margin-bottom: 16px; }
+.stage-head h2 { font-size: 30px; }
+.stage-head > p { display: none; }
+.questions { max-width: 730px; }
+.question { padding: 22px; border-radius: 15px; }
+.question h3 { margin: 8px 0 7px; font-size: 20px; }
+.question p { margin-bottom: 16px; font-size: 13px; }
+.choice { min-height: 44px; padding: 10px 14px; border-radius: 10px; font-size: 13px; }
+.continue { max-width: 730px; padding: 14px 16px; }
+
+.request { min-height: auto; padding: 20px; }
+.request blockquote { font-size: 24px; }
+.request footer { display: none; }
+.memory { display: none; }
+
+.grid, .decision, .checkout, .track, .resolve { gap: 14px; }
+.info-card { padding: 16px; }
+.info-card .log { display: none; }
+.agent { padding: 9px; }
+
+.offers { grid-template-columns: 1fr; max-width: 720px; }
+.offer { min-height: auto; padding: 18px; }
+.offer:not(.best) { display: none; }
+.offer .bar, .offer .row:nth-of-type(n + 2) { display: none; }
+.price { margin: 14px 0 5px; font-size: 34px; }
+.tags { margin-top: 10px; }
+.decision { grid-template-columns: 1fr; max-width: 760px; }
+.recommend { padding: 21px; }
+.recommend p { font-size: 13px; }
+.weights { display: none; }
+.approval { max-width: 760px; padding: 15px; }
+
+.workspace-view { gap: 14px; }
+.view-intro { margin-bottom: 2px; }
+.view-intro h2 { font-size: 28px; }
+.view-intro p { display: none; }
+.favourites-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 720px; }
+.favourite-add { display: none; }
+.favourite-card { padding: 16px; }
+.favourite-card footer button { display: none; }
+.preference-strip { max-width: 720px; }
+.autonomy-layout { grid-template-columns: 1fr; max-width: 760px; }
+.autonomy-card { padding: 20px; }
+.autonomy-side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.autonomy-side .card { padding: 15px; }
+
+@media (max-width: 850px) {
+  .shell { display: block; }
+  .sidebar { position: relative; height: auto; min-height: 70px; padding: 15px 17px; }
+  .sidebar .mission-card { display: none; }
+  .sidebar .profile { position: absolute; top: 9px; right: 13px; width: auto; margin: 0; padding: 0; border: 0; }
+  .profile > span, .profile > i { display: none; }
+  main { padding: 0 17px 38px; }
+  .topbar { min-height: auto; padding-top: 24px; }
+}
+
+@media (max-width: 560px) {
+  h1 { font-size: 31px; }
+  .top-actions { width: 100%; }
+  .top-actions button { flex: 1; }
+  .summary > div { display: none; }
+  .workspace-tabs { width: 100%; }
+  .workspace-tabs button { font-size: 10px; }
+  .request blockquote { font-size: 22px; }
+  .favourites-grid, .autonomy-side { grid-template-columns: 1fr; }
+}

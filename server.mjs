@@ -25,6 +25,7 @@ const PUBLIC_FILES = new Set([
   "index.html",
   "mock-data.js",
   "phone.css",
+  "simple.css",
   "styles.css"
 ]);
 
