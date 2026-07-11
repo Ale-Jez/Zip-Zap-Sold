@@ -147,6 +147,16 @@
           { id: "use-trusted", label: "Yes, use FreshMart" },
           { id: "wait", label: "I will decide later" }
         ]
+      },
+      flourAlternative: {
+        id: "flour-alternative",
+        vendorId: "fresh",
+        title: "Flour substitution",
+        prompt: "Hello again, my dear. I’m afraid your favourite flour is currently unavailable at your usual shop. However, I can recommend a lovely alternative—fine all-purpose flour. I’m sure it will make your cheesecake just as smooth, delicate, and delicious. Would you like me to order it for you?",
+        choices: [
+          { id: "approve", label: "Yes, please. That sounds wonderful." },
+          { id: "wait", label: "No, wait for my usual flour" }
+        ]
       }
     }
   };

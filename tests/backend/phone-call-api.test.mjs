@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createHmac } from "node:crypto";
 import test from "node:test";
-import { createCallService, createZipZapServer, normalizeE164, normalizePublicHttpsUrl, validateTwilioSignature } from "../../server.mjs";
+import { buildAnswerTwiML, buildApprovalTwiML, createCallService, createZipZapServer, normalizeE164, normalizePublicHttpsUrl, validateTwilioSignature } from "../../server.mjs";
 
 test("phone numbers are normalized to a strict international format", () => {
   assert.equal(normalizeE164(" +48 (123) 456-789 "), "+48123456789");
@@ -120,6 +120,44 @@ test("the Twilio adapter sends an outbound request only after consent and allowl
   assert.match(String(requested.init.body), /StatusCallback=/);
   assert.match(String(requested.init.body), /StatusCallbackEvent=initiated/);
   assert.match(String(requested.init.body), /StatusCallbackEvent=completed/);
+});
+
+test("the flour-alternative call plays recordings and gathers a spoken answer", async () => {
+  const prompt = buildApprovalTwiML(
+    "https://zip-zap-sold.example/api/twilio/answer?callId=call-flour",
+    "flour-alternative",
+    "https://zip-zap-sold.example/audio/flour-alternative-question.mp3"
+  );
+  assert.match(prompt, /input="speech dtmf"/);
+  assert.match(prompt, /speechTimeout="auto"/);
+  assert.match(prompt, /flour-alternative-question\.mp3/);
+
+  const confirmation = buildAnswerTwiML({
+    scenario: "flour-alternative",
+    status: "approved",
+    confirmationAudioUrl: "https://zip-zap-sold.example/audio/flour-alternative-confirmation.mp3"
+  });
+  assert.match(confirmation, /flour-alternative-confirmation\.mp3/);
+});
+
+test("a spoken yes approves the flour alternative and returns the final line", async () => {
+  const service = createCallService({
+    env: {
+      CALL_PROVIDER: "twilio",
+      TWILIO_ACCOUNT_SID: "AC123",
+      TWILIO_AUTH_TOKEN: "secret",
+      TWILIO_FROM_NUMBER: "+15005550006",
+      PHONE_ALLOWLIST: "+48123456789",
+      PUBLIC_BASE_URL: "https://zip-zap-sold.example"
+    },
+    id: () => "flour-id",
+    request: async () => new Response(JSON.stringify({ sid: "CA123", status: "queued" }), { status: 201 })
+  });
+  const call = await service.create({ to: "+48123456789", consent: true, scenario: "flour-alternative" });
+  const answer = service.answer(call.id, "", "CA123", "Yes, please. That sounds wonderful.");
+
+  assert.equal(answer.status, "approved");
+  assert.match(service.answerTwiML(call.id), /Your cheesecake is going to be absolutely delightful/);
 });
 
 test("Twilio error 20003 gives a credential-specific recovery message", async () => {

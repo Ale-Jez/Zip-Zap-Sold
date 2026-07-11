@@ -13,7 +13,14 @@ const CALL_STATUSES = new Set(["queued", "initiated", "ringing", "in-progress", 
 const CALL_SCRIPTS = {
   approval: "Hello. This is Zip Zap Sold calling about a grocery order approval.",
   "earlier-delivery": "Hello Helena. EkstraMarket can deliver your cheesecake ingredients earlier for 1.55 PLN more.",
-  "unverified-seller": "Hello Helena. I found a cheaper basket, but I cannot verify the seller. I recommend your trusted FreshMart store instead."
+  "unverified-seller": "Hello Helena. I found a cheaper basket, but I cannot verify the seller. I recommend your trusted FreshMart store instead.",
+  "flour-alternative": "Hello again, my dear. I’m afraid your favourite flour is currently unavailable at your usual shop. However, I can recommend a lovely alternative—fine all-purpose flour. I’m sure it will make your cheesecake just as smooth, delicate, and delicious. Would you like me to order it for you?"
+};
+const FLOUR_CONFIRMATION = "Perfect! I’ll take care of it right away. Your cheesecake is going to be absolutely delightful!";
+const FLOUR_DECLINE = "Of course. I will not substitute the flour and will keep looking for your usual choice.";
+const VOICE_AUDIO = {
+  flourQuestion: "audio/flour-alternative-question.mp3",
+  flourConfirmation: "audio/flour-alternative-confirmation.mp3"
 };
 
 const MIME_TYPES = {
@@ -22,11 +29,14 @@ const MIME_TYPES = {
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
   ".mjs": "text/javascript; charset=utf-8",
+  ".mp3": "audio/mpeg",
   ".svg": "image/svg+xml"
 };
 
 const PUBLIC_FILES = new Set([
   "account.css",
+  VOICE_AUDIO.flourConfirmation,
+  VOICE_AUDIO.flourQuestion,
   "app.js",
   "dashboard.css",
   "index.html",
@@ -75,12 +85,33 @@ function xmlEscape(value) {
   }[character]));
 }
 
-export function buildApprovalTwiML(callbackUrl, scenario = "approval") {
+function twimlResponse(body) {
+  return `<?xml version="1.0" encoding="UTF-8"?><Response>${body}</Response>`;
+}
+
+function sayOrPlay(text, audioUrl = "") {
+  return audioUrl ? `<Play>${xmlEscape(audioUrl)}</Play>` : `<Say>${xmlEscape(text)}</Say>`;
+}
+
+export function buildApprovalTwiML(callbackUrl, scenario = "approval", audioUrl = "") {
   const opening = CALL_SCRIPTS[scenario] || CALL_SCRIPTS.approval;
-  if (!callbackUrl) {
-    return `<?xml version="1.0" encoding="UTF-8"?><Response><Say>${opening} A decision is waiting in your Zip Zap Sold dashboard.</Say></Response>`;
+  if (scenario === "flour-alternative") {
+    if (!callbackUrl) return twimlResponse(sayOrPlay(opening, audioUrl));
+    return twimlResponse(`<Gather input="speech dtmf" numDigits="1" timeout="10" speechTimeout="auto" language="en-US" action="${xmlEscape(callbackUrl)}" method="POST">${sayOrPlay(opening, audioUrl)}</Gather><Say>I did not hear an answer, so I will wait before changing the flour.</Say>`);
   }
-  return `<?xml version="1.0" encoding="UTF-8"?><Response><Gather input="dtmf" numDigits="1" timeout="8" action="${xmlEscape(callbackUrl)}" method="POST"><Say>${opening} Press 1 to approve the trusted basket, or 2 to wait.</Say></Gather><Say>No response was received. The agent will wait for your decision.</Say></Response>`;
+  if (!callbackUrl) {
+    return twimlResponse(`<Say>${xmlEscape(opening)} A decision is waiting in your Zip Zap Sold dashboard.</Say>`);
+  }
+  return twimlResponse(`<Gather input="dtmf" numDigits="1" timeout="8" action="${xmlEscape(callbackUrl)}" method="POST"><Say>${xmlEscape(opening)} Press 1 to approve the trusted basket, or 2 to wait.</Say></Gather><Say>No response was received. The agent will wait for your decision.</Say>`);
+}
+
+export function buildAnswerTwiML({ scenario, status, confirmationAudioUrl = "" }) {
+  if (scenario === "flour-alternative" && status === "approved") {
+    return twimlResponse(sayOrPlay(FLOUR_CONFIRMATION, confirmationAudioUrl));
+  }
+  if (scenario === "flour-alternative") return twimlResponse(`<Say>${xmlEscape(FLOUR_DECLINE)}</Say>`);
+  const message = status === "approved" ? "Thank you. Zip Zap Sold will complete the trusted purchase." : "Thank you. Zip Zap Sold will wait for your decision.";
+  return twimlResponse(`<Say>${xmlEscape(message)}</Say>`);
 }
 
 export function validateTwilioSignature({ authToken, signature, url, params }) {
@@ -113,6 +144,11 @@ export function createCallService({ env = process.env, request = fetch, now = ()
   const publicBaseUrl = normalizePublicHttpsUrl(suppliedPublicBaseUrl);
   const calls = new Map();
   const recentCalls = new Map();
+
+  function hostedAudioUrl(filename) {
+    if (!publicBaseUrl || !existsSync(resolve(ROOT, filename))) return "";
+    return `${publicBaseUrl}/${filename}`;
+  }
 
   function registerAttempt(phone) {
     const cutoff = now() - HOUR;
@@ -203,7 +239,11 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     const body = new URLSearchParams({
       To: phone,
       From: env.TWILIO_FROM_NUMBER,
-      Twiml: buildApprovalTwiML(callbackUrl, callScenario),
+      Twiml: buildApprovalTwiML(
+        callbackUrl,
+        callScenario,
+        callScenario === "flour-alternative" ? hostedAudioUrl(VOICE_AUDIO.flourQuestion) : ""
+      ),
       Timeout: "20"
     });
     if (statusCallbackUrl) {
@@ -262,13 +302,27 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     }
   }
 
-  function answer(callId, digit, providerId) {
+  function answer(callId, digit, providerId, speechResult = "") {
     const call = calls.get(callId);
     if (!call) throw new CallError(404, "CALL_NOT_FOUND", "This call no longer exists.");
     assertProviderId(call, providerId);
-    call.status = digit === "1" ? "approved" : digit === "2" ? "waiting" : "unrecognized";
+    const spokenAnswer = String(speechResult || "").toLowerCase();
+    const flourApproved = /\b(yes|yeah|yep|sure|please|tak)\b/.test(spokenAnswer);
+    call.status = call.scenario === "flour-alternative"
+      ? (digit === "1" || flourApproved ? "approved" : "waiting")
+      : (digit === "1" ? "approved" : digit === "2" ? "waiting" : "unrecognized");
     call.updatedAt = new Date(now()).toISOString();
     return publicCall(call);
+  }
+
+  function answerTwiML(callId) {
+    const call = calls.get(callId);
+    if (!call) throw new CallError(404, "CALL_NOT_FOUND", "This call no longer exists.");
+    return buildAnswerTwiML({
+      scenario: call.scenario,
+      status: call.status,
+      confirmationAudioUrl: call.scenario === "flour-alternative" ? hostedAudioUrl(VOICE_AUDIO.flourConfirmation) : ""
+    });
   }
 
   function updateStatus(callId, status, providerId) {
@@ -293,7 +347,7 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     });
   }
 
-  return { answer, config, create, get, provider, updateStatus, verifyWebhook };
+  return { answer, answerTwiML, config, create, get, provider, updateStatus, verifyWebhook };
 }
 
 function send(res, status, body, contentType = "application/json; charset=utf-8") {
@@ -305,8 +359,8 @@ function sendJson(res, status, payload) {
   send(res, status, JSON.stringify(payload));
 }
 
-function sendTwiML(res, text) {
-  send(res, 200, `<?xml version="1.0" encoding="UTF-8"?><Response><Say>${xmlEscape(text)}</Say></Response>`, "text/xml; charset=utf-8");
+function sendTwiML(res, twiml) {
+  send(res, 200, twiml, "text/xml; charset=utf-8");
 }
 
 async function readBody(req) {
@@ -371,9 +425,9 @@ export function createZipZapServer({ rootDir = ROOT, callService = createCallSer
         if (!callService.verifyWebhook(pathWithQuery, req.headers["x-twilio-signature"], params)) {
           throw new CallError(401, "INVALID_PHONE_WEBHOOK", "The phone provider signature could not be verified.");
         }
-        const call = callService.answer(url.searchParams.get("callId"), params.Digits, params.CallSid);
-        const message = call.status === "approved" ? "Thank you. Zip Zap Sold will complete the trusted purchase." : "Thank you. Zip Zap Sold will wait for your decision.";
-        sendTwiML(res, message);
+        const callId = url.searchParams.get("callId");
+        callService.answer(callId, params.Digits, params.CallSid, params.SpeechResult);
+        sendTwiML(res, callService.answerTwiML(callId));
         return;
       }
       if (req.method === "POST" && url.pathname === "/api/twilio/status") {

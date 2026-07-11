@@ -21,6 +21,7 @@
   const callConnector = document.querySelector("#callConnectorModal");
   const phoneCallForm = document.querySelector("#phoneCallForm");
   const phoneCallInput = document.querySelector("#phoneNumber");
+  const phoneCallScenario = document.querySelector("#phoneCallScenario");
   const phoneCallStatus = document.querySelector("#phoneCallStatus");
   const placePhoneCall = document.querySelector("#placePhoneCall");
   let phoneCallPoller = null;
@@ -236,7 +237,13 @@
   }
 
   function currentCallScenario() {
+    if (phoneCallScenario?.value === "flour-alternative") return d.call.scenarios.flourAlternative;
     return state.chosen === "deal" ? d.call.scenarios.unverifiedSeller : d.call.scenarios.earlierDelivery;
+  }
+
+  function requestedCallScenario() {
+    if (phoneCallScenario?.value === "flour-alternative") return "flour-alternative";
+    return state.stage === "approve" ? currentCallScenario().id : "approval";
   }
 
   function simpleApprove() {
@@ -293,7 +300,7 @@
       if (!response.ok) throw new Error("Phone service is unavailable.");
       phoneConfiguration = await response.json();
       if (phoneConfiguration.realCallsEnabled) {
-        const callbackNote = phoneConfiguration.supportsKeypadResponse ? "You can press 1 to approve or 2 to wait during the call." : "The call will play the approval message. Add a public HTTPS callback URL for keypad answers and live status.";
+        const callbackNote = phoneConfiguration.supportsKeypadResponse ? "For the flour script, your friend can say “Yes, please” and hear the final confirmation." : "The call will play the first message. Add a public HTTPS callback URL to hear and process a spoken answer.";
         placePhoneCall.textContent = "Call me for real";
         setPhoneCallStatus("Real calls are enabled.", callbackNote, "live");
       } else {
@@ -364,7 +371,7 @@
       const response = await fetch("/api/calls", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ to: phoneNumber, consent, scenario: state.stage === "approve" ? currentCallScenario().id : "approval" })
+        body: JSON.stringify({ to: phoneNumber, consent, scenario: requestedCallScenario() })
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.message || "The phone call could not be started.");
@@ -372,7 +379,7 @@
       if (payload.mode === "demo") {
         setPhoneCallStatus("Demo call is ringing.", "No real number was dialled. Use the in-app preview to show the approval conversation.", "live");
       } else {
-        const keypadMessage = payload.supportsKeypadResponse ? "Twilio is dialling. Press 1 to approve or 2 to wait when the call arrives." : "Twilio is dialling. The call will play the approval message; add a public HTTPS callback URL for keypad answers and live status.";
+        const keypadMessage = payload.supportsKeypadResponse ? (requestedCallScenario() === "flour-alternative" ? "Twilio is dialling. After the first recording, say “Yes, please” to play the final confirmation." : "Twilio is dialling. Press 1 to approve or 2 to wait when the call arrives.") : "Twilio is dialling. Add a public HTTPS callback URL to collect the caller’s answer.";
         setPhoneCallStatus("Real phone call requested.", keypadMessage, "live");
         if (phoneCallPoller) clearInterval(phoneCallPoller);
         phoneCallPoller = setInterval(refreshPhoneCallStatus, 2000);

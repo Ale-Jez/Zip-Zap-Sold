@@ -65,7 +65,11 @@ The **Call me** control is consent-gated and has two modes:
 
 To enable a real call, copy [phone.env.example](./phone.env.example) to `phone.env.local`, then set `CALL_PROVIDER=twilio` and provide a live Twilio Account SID, Auth Token, a voice-capable Twilio `From` number, and a narrow `PHONE_ALLOWLIST` containing only numbers you own or control. Do not put these credentials in browser code or commit `phone.env.local`.
 
-Trial Twilio projects may call only verified recipient numbers; international calls also depend on the account's Voice Geographic Permissions. A public HTTPS `PUBLIC_BASE_URL` is optional for placing the call, but required for live call-progress updates and keypad answers (`1` to approve, `2` to wait). Localhost cannot receive Twilio webhooks.
+Trial Twilio projects may call only verified recipient numbers; international calls also depend on the account's Voice Geographic Permissions. A public HTTPS `PUBLIC_BASE_URL` is optional for placing the call, but required for live call-progress updates and interactive answers. Localhost cannot receive Twilio webhooks.
+
+### Recorded flour-alternative presentation call
+
+Choose **Flour alternative — speak your answer** in the call dialog. Put your recordings in [`audio/`](./audio/) as `flour-alternative-question.mp3` and `flour-alternative-confirmation.mp3`; exact file instructions are in [`audio/README.md`](./audio/README.md). With a public HTTPS `PUBLIC_BASE_URL`, the call plays the first recording, listens for a spoken “Yes, please” (or `1`), and plays the confirmation recording. The fallback is Twilio text-to-speech when either recording is absent.
 
 No phone credentials are exposed to browser code. The server validates international format, explicit consent, the private allowlist, and signed Twilio callbacks. It places the outbound call through Twilio's Calls API with a short scripted prompt; it is not a free-form conversational voice bot.
 ## Automated tests
