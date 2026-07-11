@@ -5,6 +5,9 @@
 *.m4a
 *.mp3
 *.ogg
+node_modules/
+playwright-report/
+test-results/
 
 
 ### JupyterNotebooks ###
@@ -270,4 +273,3 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,python,jupyternotebooks,visualstudiocode
-

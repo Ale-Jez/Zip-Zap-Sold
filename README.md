@@ -45,3 +45,25 @@ The integrated Zip Zap Sold GUI also includes:
 - **Live map** — visualizes the trusted merchant, Helena's destination, delivery route and blocked seller path.
 - **Favourites** — buyer-owned trusted stores and saved shopping patterns that influence ranking.
 - **Agent autonomy** — an editable automatic-purchase limit plus safety, substitution and delivery-change rules. Changes persist locally and update the policy displayed in the buying flow.
+## Automated tests
+
+Install the test dependencies once:
+
+```sh
+npm install
+npx playwright install chromium
+```
+
+Run every available test with:
+
+```sh
+npm test
+```
+
+The suite has three layers:
+
+- `npm run test:unit` validates the basket data and UI wiring contracts.
+- `npm run test:backend` guards the current static-runtime boundary: the demo must not quietly gain untested network/API calls.
+- `npm run test:e2e` launches the app and exercises the browser journey, agent start, account creation and logout flows in Chromium and mobile Chromium.
+
+GitHub Actions runs the unit, runtime-boundary and Chromium end-to-end checks on every push and pull request. The project currently has no backend service; when one is introduced, replace the static-runtime contract with API, authentication and database integration tests.

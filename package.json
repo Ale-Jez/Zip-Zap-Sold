@@ -1,0 +1,17 @@
+{
+  "name": "zip-zap-sold",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:unit && npm run test:backend && npm run test:e2e",
+    "test:unit": "node --test tests/unit",
+    "test:backend": "node --test tests/backend",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.1"
+  }
+}
