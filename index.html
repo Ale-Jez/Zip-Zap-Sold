@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Zip Zap Sold: voice-first proactive shopping agent demo" />
+    <title>Zip Zap Sold — Grandma's cheesecake</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <a href="#top" class="brand"><span class="logo"><i></i><i></i><i></i></span>ZIP ZAP SOLD<span>.</span></a>
+        <section class="mission-card">
+          <small>LIVE MISSION</small>
+          <h2>Grandma’s<br />cheesecake</h2>
+          <p>7 ingredients. One smart decision.</p>
+          <footer><b><i></i> Agent working</b><span>Tomorrow</span></footer>
+        </section>
+        <nav><small>PURCHASE JOURNEY</small><ol id="journey"></ol></nav>
+        <button id="openProfile" class="profile"><b>M</b><span><strong>Helena Kowalska</strong><em>Her agent knows her</em></span><i>•••</i></button>
+      </aside>
+
+      <main id="top">
+        <header class="topbar">
+          <div><p class="crumb">Helena’s agent <b>/</b> purchase in progress</p><h1 id="title">A cheesecake, without the shopping trip.</h1></div>
+          <div class="top-actions"><button id="reset" class="quiet">↻ Replay demo</button><button id="callMaria" class="dark">☎ Call Helena</button></div>
+        </header>
+        <section class="summary"><p><span><i></i> PROACTIVE AGENT</span><strong id="summaryText">Helena only said what she wanted to bake. Zip Zap Sold is doing the rest.</strong></p><div><small>Autonomy level</small><i class="meter"><b></b><b></b><b></b><b></b></i><strong id="autonomy">Ask on exceptions</strong></div></section>
+        <section id="content" class="content" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <div id="phoneModal" class="modal" aria-hidden="true">
+      <button class="backdrop" data-close-phone aria-label="Close call"></button>
+      <section class="phone" role="dialog" aria-modal="true" aria-labelledby="callerName">
+        <div class="phone-top"><span>9:41</span><i></i><span>●●●</span></div>
+        <div id="incoming" class="phone-screen incoming">
+          <div class="caller-logo"><span class="logo"><i></i><i></i><i></i></span></div>
+          <small>ZIP ZAP SOLD AGENT IS CALLING</small><h2 id="callerName">Helena</h2><p>A purchase decision needs you</p>
+          <div class="call-actions"><button data-close-phone class="hang"><i>×</i>Decline</button><button id="answer" class="answer"><i>☎</i>Answer</button></div>
+        </div>
+        <div id="liveCall" class="phone-screen live hidden">
+          <header><button id="hangUp">×</button><small><i></i> LIVE CALL</small></header>
+          <div class="caller-logo small"><span class="logo"><i></i><i></i><i></i></span></div><h2>Zip Zap Sold</h2><p>00:18</p>
+          <blockquote id="callScript"></blockquote><div id="callOptions" class="call-options"></div>
+          <button id="repeat" class="repeat">↻ Repeat question</button>
+        </div>
+      </section>
+    </div>
+
+    <div id="profileModal" class="modal" aria-hidden="true">
+      <button class="backdrop" data-close-profile aria-label="Close profile"></button>
+      <section class="profile-sheet" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+        <button data-close-profile class="x">×</button><small>HELENA’S PURCHASE PROFILE</small><h2 id="profileTitle">What Zip Zap Sold knows<br />and what it may do.</h2><div id="profileRules"></div>
+      </section>
+    </div>
+    <template id="toast"><div class="toast"><i>✓</i><span></span></div></template><div id="toasts"></div>
+    <script src="mock-data.js"></script><script src="app.js"></script>
+  </body>
+</html>
