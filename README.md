@@ -4,7 +4,13 @@ A self-contained, interactive demonstration of a proactive commerce agent.
 
 ## Run
 
-Open [index.html](./index.html) directly, or run a local server:
+Double-click `start.command` on macOS, or run this from a terminal:
+
+```sh
+sh start.command
+```
+
+It opens the demo and serves it locally on `http://127.0.0.1:4173`. Alternatively, open [index.html](./index.html) directly, or run a local server:
 
 ```powershell
 python -m http.server 8000
@@ -25,3 +31,7 @@ Helena asks by voice for a complete cheesecake ingredient basket. The app visibl
 7. `Resolve` — feedback becomes a future preference.
 
 All mock data lives in [mock-data.js](./mock-data.js). The phone call is deliberately simulated in-app, making it reliable for a live demo without needing an external telephony account or a real phone number.
+
+## Account demo
+
+The top bar includes a Start agent action and a local account flow. You can create an account, log in, manage it and log out. It is deliberately browser-only: account details stay in local storage and no credentials are sent to a server.
