@@ -1,129 +1,129 @@
-﻿# Transkrypcja nagrania `Nowe-nagranie-5.m4a`
+# Transkrypcja nagrania `Nowe-nagranie-5.m4a`
 
 > Model: `gpt-4o-transcribe-diarize`
-> Mowcy i znaczniki czasu pochodza z automatycznej diarizacji.
+> Mówcy i znaczniki czasu pochodzą z automatycznej diarizacji.
 
 ## Transkrypcja
 
-**[00:00:00] Mowca A:** No no.
+**[00:00:00] Mówca A:** No no.
 
-**[00:00:00] Mowca B:** I to tak,
+**[00:00:00] Mówca B:** I to tak,
 
-**[00:00:00] Mowca A:** TrzymaÄ‡
+**[00:00:00] Mówca A:** Trzymać
 
-**[00:00:00] Mowca B:** jeĹĽeli chodzi
+**[00:00:00] Mówca B:** jeżeli chodzi
 
-**[00:00:01] Mowca A:** sobie poradnik.
+**[00:00:01] Mówca A:** sobie poradnik.
 
-**[00:00:01] Mowca B:** o o o fazie discover, uh tak naprawdÄ™
+**[00:00:01] Mówca B:** o o o fazie discover, uh tak naprawdę
 
-**[00:00:06] Mowca B:** w jakiejkolwiek uh fazie uh nasz uh agent moĹĽe czasem potrzebowaÄ‡ jakichĹ› jeszcze dodatkowych informacji od nas i potrzebuje sposobu, ĹĽeby siÄ™ skomunikowaÄ‡ i moĹĽemy uh skomunikowaÄ‡ siÄ™, w sensie on moĹĽe do nas zadzwoniÄ‡.
+**[00:00:06] Mówca B:** w jakiejkolwiek uh fazie uh nasz uh agent może czasem potrzebować jakichś jeszcze dodatkowych informacji od nas i potrzebuje sposobu, żeby się skomunikować i możemy uh skomunikować się, w sensie on może do nas zadzwonić.
 
-**[00:00:20] Mowca B:** Ĺ»eby zadaÄ‡ dodatkowe pytania, tak,
+**[00:00:20] Mówca B:** Żeby zadać dodatkowe pytania, tak,
 
-**[00:00:22] Mowca C:** WĹ‚aĹ›ciwie
+**[00:00:22] Mówca C:** Właściwie
 
-**[00:00:22] Mowca B:** tak ĹĽeby on nie czekaĹ‚, ĹĽeby to szĹ‚o.
+**[00:00:22] Mówca B:** tak żeby on nie czekał, żeby to szło.
 
-**[00:00:25] Mowca B:** Daj.
+**[00:00:25] Mówca B:** Daj.
 
-**[00:00:25] Mowca C:** Chodzi o to, ĹĽeby czĹ‚owiek nie musiaĹ‚ czekaÄ‡ w tym flow,
+**[00:00:25] Mówca C:** Chodzi o to, żeby człowiek nie musiał czekać w tym flow,
 
-**[00:00:29] Mowca C:** tylko ĹĽeby on na spokojnie mieliĹ‚ w swoim czasie. To nie musi byÄ‡ na juĹĽ,
+**[00:00:29] Mówca C:** tylko żeby on na spokojnie mielił w swoim czasie. To nie musi być na już,
 
-**[00:00:32] Mowca C:** ĹĽe w ciÄ…gu dziesiÄ™ciu sekund musimy znaleĹşÄ‡ produkt.
+**[00:00:32] Mówca C:** że w ciągu dziesięciu sekund musimy znaleźć produkt.
 
-**[00:00:35] Mowca C:** Niech to bÄ™dzie w swoim czasie, niech to bÄ™dzie dobrze zrobione.
+**[00:00:35] Mówca C:** Niech to będzie w swoim czasie, niech to będzie dobrze zrobione.
 
-**[00:00:37] Mowca C:** A w miarÄ™ pytaĹ„, na przykĹ‚ad,
+**[00:00:37] Mówca C:** A w miarę pytań, na przykład,
 
-**[00:00:39] Mowca C:** czy,
+**[00:00:39] Mówca C:** czy,
 
-**[00:00:39] Mowca C:** bo sĹ‚uchaj, mamy taki case na przykĹ‚ad, mamy kilka case'Ăłw. Pierwszy case jest taki na przykĹ‚ad, ĹĽe,
+**[00:00:39] Mówca C:** bo słuchaj, mamy taki case na przykład, mamy kilka case'ów. Pierwszy case jest taki na przykład, że,
 
-**[00:00:44] Mowca C:** okej, mamy,
+**[00:00:44] Mówca C:** okej, mamy,
 
-**[00:00:45] Mowca C:** mam tu dziesiÄ™Ä‡ produktĂłw.
+**[00:00:45] Mówca C:** mam tu dziesięć produktów.
 
-**[00:00:46] Mowca C:** trzeci jest najlepszy aktualnie bo do pierwszego i do drugiego nie mam dostÄ™p nie ma aktualnie w sklepie tego wiÄ™c czy czekamy czy kupujemy ten czy zaleĹĽy ci na czasie czy nie albo jest inny case ĹĽe na przykĹ‚ad danego dnia z najgorszych bÄ™dzie najlepszy dany produkt ale ten produkt na jutro moĹĽe byÄ‡ np.
+**[00:00:46] Mówca C:** trzeci jest najlepszy aktualnie bo do pierwszego i do drugiego nie mam dostęp nie ma aktualnie w sklepie tego więc czy czekamy czy kupujemy ten czy zależy ci na czasie czy nie albo jest inny case że na przykład danego dnia z najgorszych będzie najlepszy dany produkt ale ten produkt na jutro może być np.
 
-**[00:01:04] Mowca C:** najgorszy z najlepszych wiÄ™c my chcemy po prostu mieÄ‡ takÄ… informacjÄ™ ĹĽe wraca do ciebie call i mĂłwi ĹĽe sĹ‚uchaj
+**[00:01:04] Mówca C:** najgorszy z najlepszych więc my chcemy po prostu mieć taką informację że wraca do ciebie call i mówi że słuchaj
 
-**[00:01:13] Mowca C:** yyy sĹ‚uchaj taka i taka sytuacja ĹĽe musisz dogadaÄ‡ siÄ™ ze mnÄ… czy to na pewno speĹ‚nia twoje oczekiwania
+**[00:01:13] Mówca C:** yyy słuchaj taka i taka sytuacja że musisz dogadać się ze mną czy to na pewno spełnia twoje oczekiwania
 
-**[00:01:19] Mowca B:** Tak.
+**[00:01:19] Mówca B:** Tak.
 
-**[00:01:19] Mowca C:** i moĹĽe to i ja proponujÄ™ ĹĽebyĹ› daĹ‚ nam kilka takich opcji rozwiÄ…zania bo moĹĽesz zadzwoniÄ‡ na telefon ale to nie wiem czy kaĹĽdy bÄ™dzie chciaĹ‚ ale moĹĽe jakieĹ› inne to teĹĽ na pewno jest duĹĽo takich ciekawych opcji
+**[00:01:19] Mówca C:** i może to i ja proponuję żebyś dał nam kilka takich opcji rozwiązania bo możesz zadzwonić na telefon ale to nie wiem czy każdy będzie chciał ale może jakieś inne to też na pewno jest dużo takich ciekawych opcji
 
-**[00:01:30] Mowca B:** ProszÄ™, SMS.
+**[00:01:30] Mówca B:** Proszę, SMS.
 
-**[00:01:31] Mowca B:** Chyba jakiĹ› poprosiÄ‡.
+**[00:01:31] Mówca B:** Chyba jakiś poprosić.
 
-**[00:01:32] Mowca C:** sms whatsapp push up jakiĹ›
+**[00:01:32] Mówca C:** sms whatsapp push up jakiś
 
-**[00:01:34] Mowca B:** Tak, proszÄ™ poinformowaÄ‡,
+**[00:01:34] Mówca B:** Tak, proszę poinformować,
 
-**[00:01:36] Mowca B:** bo generalnie co do idei szukamy takiego rozwiÄ…zania, ktĂłre bÄ™dzie.
+**[00:01:36] Mówca B:** bo generalnie co do idei szukamy takiego rozwiązania, które będzie.
 
-**[00:01:41] Mowca B:** uh is it like a medium autonomy, uh and m la our medium autonomy is the installation of a boundary, where uh it actually acting like a person can interfere, and we we think that some like these sort of uh like these sort of uh like situations that a person has to give us his input.
+**[00:01:41] Mówca B:** uh is it like a medium autonomy, uh and m la our medium autonomy is the installation of a boundary, where uh it actually acting like a person can interfere, and we we think that some like these sort of uh like these sort of uh like situations that a person has to give us his input.
 
-**[00:01:57] Mowca B:** a rzecz jest istotne chyba ĹĽe moĹĽemy teĹĽ daÄ‡ takie inne ustawienie,
+**[00:01:57] Mówca B:** a rzecz jest istotne chyba że możemy też dać takie inne ustawienie,
 
-**[00:02:01] Mowca B:** ĹĽe po prostu czĹ‚owiek powie, ĹĽe nie interesuje mnie to, masz to zrobiÄ‡, uh
+**[00:02:01] Mówca B:** że po prostu człowiek powie, że nie interesuje mnie to, masz to zrobić, uh
 
-**[00:02:05] Mowca C:** Mm-hmm.
+**[00:02:05] Mówca C:** Mm-hmm.
 
-**[00:02:05] Mowca D:** uh like
+**[00:02:05] Mówca D:** uh like
 
-**[00:02:05] Mowca B:** jak zrobisz to tak bÄ™dzie. But there's there's t niektĂłrzy ludzi na pewno bÄ™dÄ… tak chcieli,
+**[00:02:05] Mówca B:** jak zrobisz to tak będzie. But there's there's t niektórzy ludzi na pewno będą tak chcieli,
 
-**[00:02:08] Mowca C:** It's
+**[00:02:08] Mówca C:** It's
 
-**[00:02:08] Mowca B:** that's
+**[00:02:08] Mówca B:** that's
 
-**[00:02:09] Mowca C:** true. teĹĽ spoko, then so we have to.
+**[00:02:09] Mówca C:** true. też spoko, then so we have to.
 
-**[00:02:10] Mowca B:** wiÄ™c musimy daÄ‡
+**[00:02:10] Mówca B:** więc musimy dać
 
-**[00:02:10] Mowca C:** So
+**[00:02:10] Mówca C:** So
 
-**[00:02:10] Mowca B:** siÄ™
+**[00:02:10] Mówca B:** się
 
-**[00:02:10] Mowca C:** we have to.
+**[00:02:10] Mówca C:** we have to.
 
-**[00:02:11] Mowca B:** y
+**[00:02:11] Mówca B:** y
 
-**[00:02:12] Mowca B:** moĹĽliwoĹ›Ä‡ czĹ‚owiekowi ustalenia gdzie oma granica.
+**[00:02:12] Mówca B:** możliwość człowiekowi ustalenia gdzie oma granica.
 
-**[00:02:15] Mowca C:** Czyli moĹĽe takie rzeczy wĹ‚aĹ›nie teĹĽ dodaÄ‡ w temacie szukania produktĂłw, czyli tym understandingu, ĹĽe tam teĹĽ jeszcze byĹ‚y informacje o tym, ĹĽe jakie pytania zadaÄ‡ uĹĽytkownikowi. MoĹĽe to teĹĽ znajdziemy takÄ… grupÄ™ pytaĹ„,
+**[00:02:15] Mówca C:** Czyli może takie rzeczy właśnie też dodać w temacie szukania produktów, czyli tym understandingu, że tam też jeszcze były informacje o tym, że jakie pytania zadać użytkownikowi. Może to też znajdziemy taką grupę pytań,
 
-**[00:02:31] Mowca C:** ktĂłre warto zadaÄ‡ uĹĽytkownikowi, ĹĽeby mieÄ‡ ogĂłlnie.
+**[00:02:31] Mówca C:** które warto zadać użytkownikowi, żeby mieć ogólnie.
 
-**[00:02:34] Mowca C:** Informacje o tym. Bo to teĹĽ takie lewy przypadki.
+**[00:02:34] Mówca C:** Informacje o tym. Bo to też takie lewy przypadki.
 
-**[00:02:38] Mowca E:** To znaczy ogĂłlnie informacja panu.
+**[00:02:38] Mówca E:** To znaczy ogólnie informacja panu.
 
-**[00:02:39] Mowca C:** Bo jak na przykĹ‚ad masz understanding, masz X grup,
+**[00:02:39] Mówca C:** Bo jak na przykład masz understanding, masz X grup,
 
-**[00:02:43] Mowca C:** no to jednÄ… grupÄ… moĹĽe byÄ‡ czas realizacji na przykĹ‚ad,
+**[00:02:43] Mówca C:** no to jedną grupą może być czas realizacji na przykład,
 
-**[00:02:45] Mowca C:** albo jakoĹ› takie przypadki, przypadki takie, krzywe przypadki czy coĹ› takiego.
+**[00:02:45] Mówca C:** albo jakoś takie przypadki, przypadki takie, krzywe przypadki czy coś takiego.
 
-**[00:02:52] Mowca C:** I wtedy dopytujesz, a co jeĹ›li ten produkt bÄ™dzie najgorszy z najlepszych, ale jutro bÄ™dzie lepszy. Albo co jeĹ›li ten produkt bÄ™dzie niedostÄ™pny, czy czekamy czy nie.
+**[00:02:52] Mówca C:** I wtedy dopytujesz, a co jeśli ten produkt będzie najgorszy z najlepszych, ale jutro będzie lepszy. Albo co jeśli ten produkt będzie niedostępny, czy czekamy czy nie.
 
-**[00:03:00] Mowca C:** Nie, tego typu rzeczy.
+**[00:03:00] Mówca C:** Nie, tego typu rzeczy.
 
-**[00:03:03] Mowca B:** Aha, dobra. Czy na przykĹ‚ad, czyli faze understanding, uh chat, uh agent pyta, uh czy chcesz mieÄ‡ to teraz? Czy na przykĹ‚ad uh moĹĽe poczekaÄ‡ parÄ™ dni,
+**[00:03:03] Mówca B:** Aha, dobra. Czy na przykład, czyli faze understanding, uh chat, uh agent pyta, uh czy chcesz mieć to teraz? Czy na przykład uh może poczekać parę dni,
 
-**[00:03:13] Mowca B:** a ja sprĂłbujÄ™ uh przewidzieÄ‡, czy na przykĹ‚ad za dwa dni bÄ™dzie lepsza cena? Okay, to teĹĽ moĹĽliwe.
+**[00:03:13] Mówca B:** a ja spróbuję uh przewidzieć, czy na przykład za dwa dni będzie lepsza cena? Okay, to też możliwe.
 
-**[00:03:17] Mowca C:** On juĹĽ sam przewidzi, ĹĽe moĹĽe jest jakoĹ› dostÄ™pnoĹ›Ä‡, ĹĽe moĹĽe w przeciÄ…gu 30 dni bÄ™dzie lepsza cena, czy coĹ›, czy siÄ™ na tym zaleĹĽy.
+**[00:03:17] Mówca C:** On już sam przewidzi, że może jest jakoś dostępność, że może w przeciągu 30 dni będzie lepsza cena, czy coś, czy się na tym zależy.
 
-**[00:03:24] Mowca C:** Na pewno w jakiĹ› sposĂłb to moĹĽna koncepcyjnie, projekcyjnie zrobiÄ‡.
+**[00:03:24] Mówca C:** Na pewno w jakiś sposób to można koncepcyjnie, projekcyjnie zrobić.
 
-**[00:03:28] Mowca C:** Uh-huh. Okay, dobra. Okej, rozumiem.
+**[00:03:28] Mówca C:** Uh-huh. Okay, dobra. Okej, rozumiem.
 
-**[00:03:30] Mowca C:** To jest do...
+**[00:03:30] Mówca C:** To jest do...
 
-**[00:03:34] Mowca C:** A wiÄ™c dobra, czy to jest do fazy discover czy approve? Znowu mamy. Dobra, mamy.
+**[00:03:34] Mówca C:** A więc dobra, czy to jest do fazy discover czy approve? Znowu mamy. Dobra, mamy.
 

@@ -1,145 +1,145 @@
-﻿# Transkrypcja nagrania `Nowe-nagranie-7.m4a`
+# Transkrypcja nagrania `Nowe-nagranie-7.m4a`
 
 > Model: `gpt-4o-transcribe-diarize`
-> Mowcy i znaczniki czasu pochodza z automatycznej diarizacji.
+> Mówcy i znaczniki czasu pochodzą z automatycznej diarizacji.
 
 ## Transkrypcja
 
-**[00:00:00] Mowca A:** To teĹĽ moĹĽe byÄ‡ na przykĹ‚ad takie zaĹ‚Ä…czenia, ĹĽe na przykĹ‚ad jeĹĽeli to bÄ™dzie Amazon, no to jest spokojnie, bo bezpieczne.
+**[00:00:00] Mówca A:** To też może być na przykład takie załączenia, że na przykład jeżeli to będzie Amazon, no to jest spokojnie, bo bezpieczne.
 
-**[00:00:05] Mowca B:** Hmm.
+**[00:00:05] Mówca B:** Hmm.
 
-**[00:00:05] Mowca A:** Ale jeĹĽeli to bÄ™dzie strona typu janusz.com, to moĹĽe byÄ‡ taka gwiazdka, ĹĽe taki to, bo to moĹĽe byÄ‡ typu critical error,
+**[00:00:05] Mówca A:** Ale jeżeli to będzie strona typu janusz.com, to może być taka gwiazdka, że taki to, bo to może być typu critical error,
 
-**[00:00:13] Mowca A:** co nie?
+**[00:00:13] Mówca A:** co nie?
 
-**[00:00:14] Mowca A:** Ĺ»e moĹĽe coĹ› uszukamy i wtedy powiadomienie, ktĂłre czĹ‚owiek musi odpowiedzieÄ‡,
+**[00:00:14] Mówca A:** Że może coś uszukamy i wtedy powiadomienie, które człowiek musi odpowiedzieć,
 
-**[00:00:18] Mowca B:** Tak.
+**[00:00:18] Mówca B:** Tak.
 
-**[00:00:18] Mowca A:** co nie?
+**[00:00:18] Mówca A:** co nie?
 
-**[00:00:18] Mowca B:** Super.
+**[00:00:18] Mówca B:** Super.
 
-**[00:00:19] Mowca B:** I to jest to, co mĂłwisz jest super.
+**[00:00:19] Mówca B:** I to jest to, co mówisz jest super.
 
-**[00:00:20] Mowca B:** Bo tak czasami zdarza siÄ™, ĹĽe sÄ… strony, ktĂłre sÄ… skamerskie i nie chcemy z takich stron korzystaÄ‡.
+**[00:00:20] Mówca B:** Bo tak czasami zdarza się, że są strony, które są skamerskie i nie chcemy z takich stron korzystać.
 
-**[00:00:27] Mowca B:** Przez co czĹ‚owiek musi prowadziÄ‡ zawsze taki bycz przy tym i widzieÄ‡, jeĹ›li nasz agent bÄ™dzie chciaĹ‚ z takiej scammerskiej strony skorzystaÄ‡. Co jest bardzo istotne.
+**[00:00:27] Mówca B:** Przez co człowiek musi prowadzić zawsze taki bycz przy tym i widzieć, jeśli nasz agent będzie chciał z takiej scammerskiej strony skorzystać. Co jest bardzo istotne.
 
-**[00:00:37] Mowca B:** Jest lista, na pewno gdzieĹ› na internecie, rankingi rĂłĹĽnych zaufanych stron,
+**[00:00:37] Mówca B:** Jest lista, na pewno gdzieś na internecie, rankingi różnych zaufanych stron,
 
-**[00:00:41] Mowca B:** gdzie moĹĽesz coĹ› kupiÄ‡. ChcielibyĹ›my, ĹĽeby te rankingi byĹ‚y rĂłwnieĹĽ wypisane w naszym rozwiÄ…zaniu. Ĺ»eby byĹ‚a zebrana grupa, do ktĂłrej moĹĽemy dodawaÄ‡ w ogĂłle sami z siebie ulubione strony.
+**[00:00:41] Mówca B:** gdzie możesz coś kupić. Chcielibyśmy, żeby te rankingi były również wypisane w naszym rozwiązaniu. Żeby była zebrana grupa, do której możemy dodawać w ogóle sami z siebie ulubione strony.
 
-**[00:00:53] Mowca A:** Tak tak o kurwa ej
+**[00:00:53] Mówca A:** Tak tak o kurwa ej
 
-**[00:00:56] Mowca B:** Dodajemy ulubione strony.
+**[00:00:56] Mówca B:** Dodajemy ulubione strony.
 
-**[00:00:57] Mowca A:** o kurwa
+**[00:00:57] Mówca A:** o kurwa
 
-**[00:00:57] Mowca B:** MaĹ‚o tego, co jeszcze moĹĽemy dodaÄ‡. Ulubione strony. Nawet moĹĽemy dodaÄ‡ na etapie wyszukiwania produktu, czy coĹ› takiego na podstawie rozmowy.
+**[00:00:57] Mówca B:** Mało tego, co jeszcze możemy dodać. Ulubione strony. Nawet możemy dodać na etapie wyszukiwania produktu, czy coś takiego na podstawie rozmowy.
 
-**[00:01:09] Mowca B:** Bo czasami oczywiĹ›cie pewne grupy spoĹ‚eczne kupujÄ… produkty,
+**[00:01:09] Mówca B:** Bo czasami oczywiście pewne grupy społeczne kupują produkty,
 
-**[00:01:14] Mowca B:** ktĂłre
+**[00:01:14] Mówca B:** które
 
-**[00:01:14] Mowca A:** Dobre w chuj to oni siÄ™
+**[00:01:14] Mówca A:** Dobre w chuj to oni się
 
-**[00:01:16] Mowca B:** ktĂłre na przykĹ‚ad Ĺ›rubki nie s nie ciÄ™ĹĽko znaleĹşÄ‡ na Amazonie, ale sÄ… w jakiejĹ› tam innej stronie i i to to teĹĽ trzeba badaÄ‡ tÄ… zaufalnoĹ›Ä‡ tych stron. I dlatego kaĹĽdy musi mieÄ‡ takie ulubione strony i dodatkowo te strony musisz jakby badaÄ‡ na podstawie profilu uĹĽytkownika.
+**[00:01:16] Mówca B:** które na przykład śrubki nie s nie ciężko znaleźć na Amazonie, ale są w jakiejś tam innej stronie i i to to też trzeba badać tą zaufalność tych stron. I dlatego każdy musi mieć takie ulubione strony i dodatkowo te strony musisz jakby badać na podstawie profilu użytkownika.
 
-**[00:01:32] Mowca A:** No tak jak zapisaĹ‚eĹ› tutaj personiÄ™, tak typu na przykĹ‚ad czĹ‚owiek moĹĽe uznaÄ‡, ĹĽe jego preferowanÄ… stronÄ… jest Allegro, nawet jeĹĽeli to jest droĹĽsze niĹĽ zawsze tam kurwa...
+**[00:01:32] Mówca A:** No tak jak zapisałeś tutaj personię, tak typu na przykład człowiek może uznać, że jego preferowaną stroną jest Allegro, nawet jeżeli to jest droższe niż zawsze tam kurwa...
 
-**[00:01:43] Mowca A:** w nim x-kom to i tak on bÄ™dzie za lekko korzystaÄ‡, bo taka jest jego preferencja. Czy po prostu wtedy w procesie tych agentĂłw, jak mamy 5 agentĂłw, ktĂłre myĹ›lÄ…, to po prostu waga na stronÄ™ siÄ™ po prostu zwiÄ™ksza.
+**[00:01:43] Mówca A:** w nim x-kom to i tak on będzie za lekko korzystać, bo taka jest jego preferencja. Czy po prostu wtedy w procesie tych agentów, jak mamy 5 agentów, które myślą, to po prostu waga na stronę się po prostu zwiększa.
 
-**[00:01:55] Mowca A:** No tak czĹ‚owiek by wybraĹ‚.
+**[00:01:55] Mówca A:** No tak człowiek by wybrał.
 
-**[00:01:56] Mowca B:** MaĹ‚o tego, jeĹ›li na przykĹ‚ad mamy opcjÄ™, ĹĽe czĹ‚owiek mĂłwi,
+**[00:01:56] Mówca B:** Mało tego, jeśli na przykład mamy opcję, że człowiek mówi,
 
-**[00:02:00] Mowca B:** ĹĽe on chce jednak mieÄ‡ jakiĹ› udziaĹ‚ w tym zakupie, czyli na przykĹ‚ad chce sprawdziÄ‡ koĹ„cowy zakup, no to my dajemy moĹĽliwoĹ›Ä‡, ĹĽeby on sam stwierdziĹ‚. Na przykĹ‚ad powie, ĹĽe Amazon jest jego ulubionÄ… stronÄ….
+**[00:02:00] Mówca B:** że on chce jednak mieć jakiś udział w tym zakupie, czyli na przykład chce sprawdzić końcowy zakup, no to my dajemy możliwość, żeby on sam stwierdził. Na przykład powie, że Amazon jest jego ulubioną stroną.
 
-**[00:02:12] Mowca B:** Natomiast jakaĹ› inna Janusz.x bÄ™dzie miaĹ‚a taĹ„szy produkt,
+**[00:02:12] Mówca B:** Natomiast jakaś inna Janusz.x będzie miała tańszy produkt,
 
-**[00:02:16] Mowca B:** ale teĹĽ ta strona jest w miarÄ™ zaufana i chcemy go o tym poinformowaÄ‡, czy bardziej Ci zaleĹĽy na tym czy na tym, ĹĽeby to byĹ‚ taki proces,
+**[00:02:16] Mówca B:** ale też ta strona jest w miarę zaufana i chcemy go o tym poinformować, czy bardziej Ci zależy na tym czy na tym, żeby to był taki proces,
 
-**[00:02:24] Mowca B:** w ktĂłrym czĹ‚owiek czuĹ‚ siÄ™ dobrze.
+**[00:02:24] Mówca B:** w którym człowiek czuł się dobrze.
 
-**[00:02:25] Mowca B:** A my te wszystkie informacje musimy oczywiĹ›cie pĂłĹşniej zachowywaÄ‡, caĹ‚e te konteksty,
+**[00:02:25] Mówca B:** A my te wszystkie informacje musimy oczywiście później zachowywać, całe te konteksty,
 
-**[00:02:30] Mowca B:** embedningami jakoĹ› dobieraÄ‡, tworzyÄ‡ z tego caĹ‚y jakby sieÄ‡ takÄ… knowledge,
+**[00:02:30] Mówca B:** embedningami jakoś dobierać, tworzyć z tego cały jakby sieć taką knowledge,
 
-**[00:02:35] Mowca B:** ĹĽebyĹ›my po prostu pĂłĹşniej wiedzieli jak dziaĹ‚a nasz uĹĽytkownik, ĹĽebyĹ›my jeszcze bardziej byli z nim.
+**[00:02:35] Mówca B:** żebyśmy po prostu później wiedzieli jak działa nasz użytkownik, żebyśmy jeszcze bardziej byli z nim.
 
-**[00:02:40] Mowca B:** nim dopasowanie do niego. Czyli takie systemy zaawansowanej rekomendacji.
+**[00:02:40] Mówca B:** nim dopasowanie do niego. Czyli takie systemy zaawansowanej rekomendacji.
 
-**[00:02:45] Mowca A:** Okay, dobra, a podaĹ‚o siÄ™ w chuj ze stronami ulubionymi stronami.
+**[00:02:45] Mówca A:** Okay, dobra, a podało się w chuj ze stronami ulubionymi stronami.
 
-**[00:02:49] Mowca A:** Uh d d wĹ‚aĹ›nie kwestia, czĹ‚owiek moĹĽe sobie wybraÄ‡ lubiÄ…c stronÄ™, to jest zapisywalne, ale wĹ‚aĹ›nie druga teĹĽ sprawa przy discover, czy instacode decide
+**[00:02:49] Mówca A:** Uh d d właśnie kwestia, człowiek może sobie wybrać lubiąc stronę, to jest zapisywalne, ale właśnie druga też sprawa przy discover, czy instacode decide
 
-**[00:02:58] Mowca A:** uh to agent wyszukuje wĹ‚aĹ›nie rankingi rzetelnoĹ›ci tych stron,
+**[00:02:58] Mówca A:** uh to agent wyszukuje właśnie rankingi rzetelności tych stron,
 
-**[00:03:03] Mowca A:** tak?
+**[00:03:03] Mówca A:** tak?
 
-**[00:03:03] Mowca B:** Tak.
+**[00:03:03] Mówca B:** Tak.
 
-**[00:03:03] Mowca A:** Sprawdza, i jeĹĽeli coĹ› jest skamerskie
+**[00:03:03] Mówca A:** Sprawdza, i jeżeli coś jest skamerskie
 
-**[00:03:06] Mowca A:** Znaczy to Ĺ›mierdzi z kamer skon, to na przykĹ‚ad wĹ‚aĹ›nie wysĹ‚aÄ‡ powiadomienia na ktĂłre trzeba odpowiedzieÄ‡, czĹ‚owiek musi na to odpowiedzieÄ‡, czemu siÄ™ godzi na to.
+**[00:03:06] Mówca A:** Znaczy to śmierdzi z kamer skon, to na przykład właśnie wysłać powiadomienia na które trzeba odpowiedzieć, człowiek musi na to odpowiedzieć, czemu się godzi na to.
 
-**[00:03:17] Mowca B:** Tak, fajne, bo
+**[00:03:17] Mówca B:** Tak, fajne, bo
 
-**[00:03:18] Mowca A:** Czyli
+**[00:03:18] Mówca A:** Czyli
 
-**[00:03:19] Mowca B:** bardzo musimy badaÄ‡ siÄ™ rĂłwnieĹĽ w stronÄ™ i to w kwestii juĹĽ Discovery,
+**[00:03:19] Mówca B:** bardzo musimy badać się również w stronę i to w kwestii już Discovery,
 
-**[00:03:22] Mowca B:** gdzie mamy juĹĽ takie security nasze.
+**[00:03:22] Mówca B:** gdzie mamy już takie security nasze.
 
-**[00:03:24] Mowca A:** WĹ‚aĹ›nie, wĹ‚aĹ›nie to jest cyber.
+**[00:03:24] Mówca A:** Właśnie, właśnie to jest cyber.
 
-**[00:03:26] Mowca B:** To sÄ… bardzo waĹĽne rzeczy.
+**[00:03:26] Mówca B:** To są bardzo ważne rzeczy.
 
-**[00:03:28] Mowca A:** Fajne, cool,
+**[00:03:28] Mówca A:** Fajne, cool,
 
-**[00:03:29] Mowca A:** ej, stare,
+**[00:03:29] Mówca A:** ej, stare,
 
-**[00:03:31] Mowca A:** nie, podoba siÄ™ full,
+**[00:03:31] Mówca A:** nie, podoba się full,
 
-**[00:03:32] Mowca B:** Podoba
+**[00:03:32] Mówca B:** Podoba
 
-**[00:03:32] Mowca A:** no.
+**[00:03:32] Mówca A:** no.
 
-**[00:03:32] Mowca B:** mi siÄ™ teĹĽ.
+**[00:03:32] Mówca B:** mi się też.
 
-**[00:03:35] Mowca B:** No dobra.
+**[00:03:35] Mówca B:** No dobra.
 
-**[00:03:37] Mowca B:** OgĂłlnie zaleĹĽy nam jeszcze w caĹ‚ym naszym rozwiÄ…zaniu, zaleĹĽy na tym, ĹĽeby to byĹ‚o jak najbardziej teĹĽ emocjonalne, czyli bardzo wchodziĹ‚o w takiego uĹĽytkownika, czyli byĹ›my rozumieli jego potrzeby, rozumieli jego personalia, rozumieli jego emocje, rozumieli w ogĂłle jak dziaĹ‚a rynek. To sÄ… bardzo waĹĽne informacje dla nas, ĹĽebyĹ›my jak najbardziej byli takim zaufanym przyjacielem czĹ‚owieka.
+**[00:03:37] Mówca B:** Ogólnie zależy nam jeszcze w całym naszym rozwiązaniu, zależy na tym, żeby to było jak najbardziej też emocjonalne, czyli bardzo wchodziło w takiego użytkownika, czyli byśmy rozumieli jego potrzeby, rozumieli jego personalia, rozumieli jego emocje, rozumieli w ogóle jak działa rynek. To są bardzo ważne informacje dla nas, żebyśmy jak najbardziej byli takim zaufanym przyjacielem człowieka.
 
-**[00:03:57] Mowca A:** ĹĽeby czĹ‚owiek siÄ™ czuĹ‚ siÄ™ zaopiekowany.
+**[00:03:57] Mówca A:** żeby człowiek się czuł się zaopiekowany.
 
-**[00:03:58] Mowca B:** Tak.
+**[00:03:58] Mówca B:** Tak.
 
-**[00:03:59] Mowca B:** I czuĹ‚, ĹĽe kaĹĽdy rozumie, niezaleĹĽnie od grupy spoĹ‚ecznej czy wieku na przykĹ‚ad,
+**[00:03:59] Mówca B:** I czuł, że każdy rozumie, niezależnie od grupy społecznej czy wieku na przykład,
 
-**[00:04:04] Mowca A:** Mm
+**[00:04:04] Mówca A:** Mm
 
-**[00:04:04] Mowca B:** poniewaĹĽ
+**[00:04:04] Mówca B:** ponieważ
 
-**[00:04:04] Mowca A:** -hmm.
+**[00:04:04] Mówca A:** -hmm.
 
-**[00:04:04] Mowca B:** chĹ‚opak lat 20 bÄ™dzie inne produkty szukaĹ‚ niĹĽ kobieta 76 lat,
+**[00:04:04] Mówca B:** chłopak lat 20 będzie inne produkty szukał niż kobieta 76 lat,
 
-**[00:04:10] Mowca B:** ale chcemy tej kobiecie tak uproĹ›ciÄ‡ ten proces,
+**[00:04:10] Mówca B:** ale chcemy tej kobiecie tak uprościć ten proces,
 
-**[00:04:13] Mowca B:** ĹĽeby ona nie musiaĹ‚a siÄ™ martwiÄ‡, ĹĽe coĹ› jest niezrozumiaĹ‚ego w tym.
+**[00:04:13] Mówca B:** żeby ona nie musiała się martwić, że coś jest niezrozumiałego w tym.
 
-**[00:04:22] Mowca B:** No i ogĂłlnie musimy teĹĽ wymyĹ›leÄ‡, w jaki sposĂłb chcemy uzyskiwaÄ‡ te notyfikacje, powiadomienia.
+**[00:04:22] Mówca B:** No i ogólnie musimy też wymyśleć, w jaki sposób chcemy uzyskiwać te notyfikacje, powiadomienia.
 
-**[00:04:29] Mowca B:** informacjÄ™ zwrotnÄ… od naszego od naszych agentĂłw gdzie trzeba coĹ› zatwierdziÄ‡, czy chcemy to przed poprzez rozmowÄ™ telefonicznÄ…. MoĹĽemy zrobiÄ‡ kilka opcji nawet, sobie kaĹĽdy wymyĹ›la, czy powiadomienie push-ups. Bo obstawiam, ĹĽe na przykĹ‚ad osoby starsze wolaĹ‚yby telefonicznÄ…, bo one sÄ… duĹĽo bardziej rozumiejÄ… technologii rozrywki rozmowÄ™, natomiast mĹ‚ode osoby pewnie wolaĹ‚yby WhatsApp, by tylko pyk pyk, albo jakÄ…Ĺ› appkÄ™ do tego zrobiÄ‡. Musimy teĹĽ to przemyĹ›leÄ‡.
+**[00:04:29] Mówca B:** informację zwrotną od naszego od naszych agentów gdzie trzeba coś zatwierdzić, czy chcemy to przed poprzez rozmowę telefoniczną. Możemy zrobić kilka opcji nawet, sobie każdy wymyśla, czy powiadomienie push-ups. Bo obstawiam, że na przykład osoby starsze wolałyby telefoniczną, bo one są dużo bardziej rozumieją technologii rozrywki rozmowę, natomiast młode osoby pewnie wolałyby WhatsApp, by tylko pyk pyk, albo jakąś appkę do tego zrobić. Musimy też to przemyśleć.
 
-**[00:04:57] Mowca B:** No to co dalej?
+**[00:04:57] Mówca B:** No to co dalej?
 
-**[00:04:59] Mowca B:** Dalej jest jeszcze tak.
+**[00:04:59] Mówca B:** Dalej jest jeszcze tak.
 
-**[00:05:00] Mowca C:** Chart is resolved.
+**[00:05:00] Mówca C:** Chart is resolved.
 
-**[00:05:02] Mowca B:** MoĹĽe teĹĽ zatrzymam go.
+**[00:05:02] Mówca B:** Może też zatrzymam go.
 
