@@ -4,7 +4,7 @@ A self-contained, interactive demonstration of a proactive commerce agent.
 
 ## Run
 
-On Windows, run `./start.ps1` from PowerShell.
+On Windows, run `.\start.ps1` from PowerShell.
 
 Double-click `start.command` on macOS, or run this from a terminal:
 
@@ -12,13 +12,13 @@ Double-click `start.command` on macOS, or run this from a terminal:
 sh start.command
 ```
 
-It opens the demo and serves it locally on `http://127.0.0.1:4173`. Alternatively, open [index.html](./index.html) directly, or run a local server:
+It opens the demo and its local call connector at `http://127.0.0.1:4173`. You can also run it directly with Node:
 
 ```powershell
-python -m http.server 8000
+npm start
 ```
 
-Then visit `http://localhost:8000`.
+Then visit `http://127.0.0.1:4173`.
 
 ## Included demo flow
 
@@ -32,7 +32,7 @@ Helena asks by voice for a complete cheesecake ingredient basket. The app visibl
 6. `Track` — fulfillment timeline and exception paths.
 7. `Resolve` — feedback becomes a future preference.
 
-All mock data lives in [mock-data.js](./mock-data.js). The phone call is deliberately simulated in-app, making it reliable for a live demo without needing an external telephony account or a real phone number.
+All mock data lives in [mock-data.js](./mock-data.js). The in-app phone conversation remains available as a reliable presentation fallback.
 
 ## Account demo
 
@@ -45,6 +45,15 @@ The integrated Zip Zap Sold GUI also includes:
 - **Live map** — visualizes the trusted merchant, Helena's destination, delivery route and blocked seller path.
 - **Favourites** — buyer-owned trusted stores and saved shopping patterns that influence ranking.
 - **Agent autonomy** — an editable automatic-purchase limit plus safety, substitution and delivery-change rules. Changes persist locally and update the policy displayed in the buying flow.
+
+## Phone connector
+
+The **Call my phone** control is consent-gated and has two modes:
+
+- **Demo mode** is the default. It never dials a real number and opens the polished in-app call preview.
+- **Twilio mode** places a real outbound approval call. Copy [phone.env.example](./phone.env.example) to `phone.env.local`, set `CALL_PROVIDER=twilio`, add the Twilio credentials, sender number, and a narrow `PHONE_ALLOWLIST` containing only numbers you own or control.
+
+No phone credentials are exposed to browser code. The server accepts only a user-confirmed number, validates international format, enforces the private allowlist and applies a small per-number rate limit. A public HTTPS `PUBLIC_BASE_URL` is optional; when configured it enables keypad answers (`1` to approve, `2` to wait) with signed Twilio webhook validation.
 ## Automated tests
 
 Install the test dependencies once:
@@ -63,7 +72,7 @@ npm test
 The suite has three layers:
 
 - `npm run test:unit` validates the basket data and UI wiring contracts.
-- `npm run test:backend` guards the current static-runtime boundary: the demo must not quietly gain untested network/API calls.
-- `npm run test:e2e` launches the app and exercises the browser journey, agent start, account creation and logout flows in Chromium and mobile Chromium.
+- `npm run test:backend` validates the local phone-call API, phone format, consent, allowlist safeguards and the provider adapter with no external call.
+- `npm run test:e2e` launches the app and exercises the browser journey, account flow, phone connector, dashboard views, and mobile Chromium.
 
-GitHub Actions runs the unit, runtime-boundary and Chromium end-to-end checks on every push and pull request. The project currently has no backend service; when one is introduced, replace the static-runtime contract with API, authentication and database integration tests.
+GitHub Actions runs the unit, runtime-boundary and Chromium end-to-end checks on every push and pull request.

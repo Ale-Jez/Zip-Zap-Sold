@@ -11,4 +11,5 @@ Write-Host "Starting Zip Zap Sold at $url"
 Start-Process $url
 
 Set-Location $root
-python -m http.server $Port --bind 127.0.0.1
+$env:PORT = $Port
+node server.mjs

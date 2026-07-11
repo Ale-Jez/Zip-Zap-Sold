@@ -18,6 +18,13 @@
   const liveCall = document.querySelector("#liveCall");
   const script = document.querySelector("#callScript");
   const callOptions = document.querySelector("#callOptions");
+  const callConnector = document.querySelector("#callConnectorModal");
+  const phoneCallForm = document.querySelector("#phoneCallForm");
+  const phoneCallInput = document.querySelector("#phoneNumber");
+  const phoneCallStatus = document.querySelector("#phoneCallStatus");
+  const placePhoneCall = document.querySelector("#placePhoneCall");
+  let phoneCallPoller = null;
+  let activePhoneCall = null;
   const page = {
     understand: ["A cheesecake, without the shopping trip.", "Helena only said what she wanted to bake. Zip Zap Sold asks only what it cannot safely infer."],
     discover: ["Three agents research in the background.", "The agent validates freshness, value and seller trust while Helena carries on with her day."],
@@ -195,6 +202,66 @@
   }
   function openPhone() { incoming.classList.remove("hidden"); liveCall.classList.add("hidden"); phone.classList.add("open"); phone.setAttribute("aria-hidden", "false"); }
   function closePhone() { phone.classList.remove("open"); phone.setAttribute("aria-hidden", "true"); if (window.speechSynthesis) window.speechSynthesis.cancel(); }
+  function setPhoneCallStatus(title, detail, tone = "") { phoneCallStatus.className = `phone-call-status ${tone}`; phoneCallStatus.innerHTML = `<strong>${title}</strong><span>${detail}</span>`; }
+  function openCallConnector() {
+    const savedPhone = sessionStorage.getItem("zip-zap-sold-demo-phone") || "";
+    phoneCallInput.value = savedPhone;
+    setPhoneCallStatus("Demo mode is ready.", "Use it safely in the presentation, or configure a private provider account for a real outbound call.");
+    callConnector.classList.add("open");
+    callConnector.setAttribute("aria-hidden", "false");
+  }
+  function closeCallConnector() {
+    callConnector.classList.remove("open");
+    callConnector.setAttribute("aria-hidden", "true");
+    if (phoneCallPoller) { clearInterval(phoneCallPoller); phoneCallPoller = null; }
+  }
+  async function refreshPhoneCallStatus() {
+    if (!activePhoneCall) return;
+    try {
+      const response = await fetch(`/api/calls/${encodeURIComponent(activePhoneCall.id)}`);
+      if (!response.ok) return;
+      const call = await response.json();
+      activePhoneCall = call;
+      if (call.status === "approved") {
+        state.approved = true;
+        setPhoneCallStatus("Approval received from the phone.", "Zip Zap Sold recorded the approval and can continue the trusted purchase.", "live");
+        clearInterval(phoneCallPoller); phoneCallPoller = null;
+      } else if (call.status === "waiting") {
+        setPhoneCallStatus("The caller chose to wait.", "Zip Zap Sold is holding the basket until the user decides.", "live");
+        clearInterval(phoneCallPoller); phoneCallPoller = null;
+      }
+    } catch { /* A temporary status check failure should not interrupt the demo. */ }
+  }
+  async function requestPhoneCall(event) {
+    event.preventDefault();
+    const phoneNumber = phoneCallInput.value.trim();
+    const consent = document.querySelector("#phoneConsent").checked;
+    sessionStorage.setItem("zip-zap-sold-demo-phone", phoneNumber);
+    placePhoneCall.disabled = true;
+    setPhoneCallStatus("Placing your call...", "Zip Zap Sold is requesting a private approval call.", "live");
+    try {
+      const response = await fetch("/api/calls", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ to: phoneNumber, consent, scenario: state.stage === "approve" ? "approval" : "demo" })
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.message || "The phone call could not be started.");
+      activePhoneCall = payload;
+      if (payload.mode === "demo") {
+        setPhoneCallStatus("Demo call is ringing.", "No real number was dialled. Use the in-app preview to show the approval conversation.", "live");
+      } else {
+        const keypadMessage = payload.supportsKeypadResponse ? "Press 1 to approve or 2 to wait when the call arrives." : "The call will announce the approval request. Add a public callback URL to enable keypad responses.";
+        setPhoneCallStatus("Phone call requested.", keypadMessage, "live");
+        if (phoneCallPoller) clearInterval(phoneCallPoller);
+        phoneCallPoller = setInterval(refreshPhoneCallStatus, 2000);
+      }
+    } catch (error) {
+      setPhoneCallStatus("The call was not placed.", error.message || "Please check the phone configuration and try again.", "error");
+    } finally {
+      placePhoneCall.disabled = false;
+    }
+  }
   function answer() {
     incoming.classList.add("hidden"); liveCall.classList.remove("hidden");
     const isRisk = state.chosen === "deal";
@@ -224,7 +291,25 @@
   function saveAccount(event) { event.preventDefault(); const data = new FormData(accountForm); const email = data.get("email").trim(); const saved = JSON.parse(localStorage.getItem(accountKey) || "null"); const fallbackName = email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()); account = accountMode === "login" && saved?.email === email ? saved : { name: accountMode === "login" ? fallbackName : data.get("name").trim(), email }; localStorage.setItem(accountKey, JSON.stringify(account)); renderAccount(); closeAccount(); toast(`Welcome${accountMode === "login" ? " back" : ""}, ${account.name.split(" ")[0]}. Your agent profile is ready.`); }
   function logoutAccount() { localStorage.removeItem(accountKey); account = null; renderAccount(); toast("You are logged out on this browser."); }
 
-  document.querySelector("#callMaria").addEventListener("click", openPhone); document.querySelector("#answer").addEventListener("click", answer); document.querySelector("#hangUp").addEventListener("click", closePhone); document.querySelector("#repeat").addEventListener("click", () => speak(script.textContent)); document.querySelectorAll("[data-close-phone]").forEach((b) => b.addEventListener("click", closePhone)); document.querySelector("#openProfile").addEventListener("click", openProfile); document.querySelectorAll("[data-close-profile]").forEach((b) => b.addEventListener("click", closeProfile)); document.querySelector("#reset").addEventListener("click", reset); document.querySelector("#startAgent").addEventListener("click", () => { reset(); toast("Your agent is ready. Answer three quick questions to begin discovery."); }); document.querySelector("#openAccount").addEventListener("click", openAccount); document.querySelectorAll("[data-close-account]").forEach((b) => b.addEventListener("click", closeAccount)); document.querySelectorAll("[data-account-mode]").forEach((b) => b.addEventListener("click", () => setAccountMode(b.dataset.accountMode))); accountForm.addEventListener("submit", saveAccount); document.querySelector("#logoutAccount").addEventListener("click", logoutAccount); document.querySelector("#editAccount").addEventListener("click", () => { account = null; localStorage.removeItem(accountKey); renderAccount(); setAccountMode("signup"); }); document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closePhone(); closeProfile(); closeAccount(); } });
+  document.querySelector("#callPhone").addEventListener("click", openCallConnector);
+  phoneCallForm.addEventListener("submit", requestPhoneCall);
+  document.querySelector("#previewPhoneCall").addEventListener("click", () => { closeCallConnector(); openPhone(); });
+  document.querySelectorAll("[data-close-call-connector]").forEach((button) => button.addEventListener("click", closeCallConnector));
+  document.querySelector("#answer").addEventListener("click", answer);
+  document.querySelector("#hangUp").addEventListener("click", closePhone);
+  document.querySelector("#repeat").addEventListener("click", () => speak(script.textContent));
+  document.querySelectorAll("[data-close-phone]").forEach((button) => button.addEventListener("click", closePhone));
+  document.querySelector("#openProfile").addEventListener("click", openProfile);
+  document.querySelectorAll("[data-close-profile]").forEach((button) => button.addEventListener("click", closeProfile));
+  document.querySelector("#reset").addEventListener("click", reset);
+  document.querySelector("#startAgent").addEventListener("click", () => { reset(); toast("Your agent is ready. Answer three quick questions to begin discovery."); });
+  document.querySelector("#openAccount").addEventListener("click", openAccount);
+  document.querySelectorAll("[data-close-account]").forEach((button) => button.addEventListener("click", closeAccount));
+  document.querySelectorAll("[data-account-mode]").forEach((button) => button.addEventListener("click", () => setAccountMode(button.dataset.accountMode)));
+  accountForm.addEventListener("submit", saveAccount);
+  document.querySelector("#logoutAccount").addEventListener("click", logoutAccount);
+  document.querySelector("#editAccount").addEventListener("click", () => { account = null; localStorage.removeItem(accountKey); renderAccount(); setAccountMode("signup"); });
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") { closePhone(); closeProfile(); closeAccount(); closeCallConnector(); } });
   document.querySelectorAll(".workspace-tabs [data-view]").forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
   renderAccount(); renderJourney(); renderWorkspace();
 })();

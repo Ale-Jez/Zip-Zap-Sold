@@ -1,0 +1,149 @@
+.phone-connector {
+  position: relative;
+  z-index: 1;
+  width: min(470px, calc(100vw - 30px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 34px;
+  border: 1px solid rgba(217, 242, 100, .35);
+  border-radius: 24px;
+  color: #edf4ef;
+  background: radial-gradient(circle at 85% 0, rgba(217, 242, 100, .21), transparent 34%), #17221e;
+  box-shadow: 0 32px 95px rgba(0, 0, 0, .4);
+  transform: translateY(15px) scale(.98);
+  transition: transform .22s ease;
+}
+
+.modal.open .phone-connector { transform: none; }
+
+.phone-connector .x {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #f6faf7;
+  background: rgba(255, 255, 255, .1);
+  font-size: 20px;
+}
+
+.connector-orbit {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 0 10px rgba(217, 242, 100, .1), 0 18px 35px rgba(0, 0, 0, .15);
+}
+
+.connector-orbit .logo { transform: scale(1.65); }
+
+.phone-connector > small {
+  display: block;
+  color: #c5dda6;
+  font: 500 10px "DM Mono", monospace;
+  letter-spacing: .13em;
+}
+
+.phone-connector h2 {
+  margin: 10px 0 12px;
+  font: 600 37px/.95 "Fraunces", serif;
+  letter-spacing: -.06em;
+}
+
+.phone-connector > p {
+  max-width: 385px;
+  margin: 0 0 22px;
+  color: #c2d1ca;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.phone-call-form {
+  display: grid;
+  gap: 9px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, .13);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, .06);
+}
+
+.phone-call-form > label:first-child {
+  color: #d6e1db;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.phone-call-form input[type="tel"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 9px;
+  outline: 0;
+  color: #f4f8f5;
+  background: rgba(10, 20, 16, .35);
+  font: 500 14px "DM Mono", monospace;
+}
+
+.phone-call-form input[type="tel"]:focus { border-color: var(--lime); box-shadow: 0 0 0 3px rgba(217, 242, 100, .12); }
+.phone-call-form input[type="tel"]::placeholder { color: #92a69c; }
+
+.consent-check {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  margin: 3px 0 5px;
+  color: #c4d0c9;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.consent-check input { margin: 2px 0 0; accent-color: var(--lime); }
+
+.phone-call-form .dark {
+  border: 1px solid var(--lime);
+  color: var(--ink);
+  background: var(--lime);
+}
+
+.phone-call-status {
+  display: grid;
+  gap: 4px;
+  min-height: 66px;
+  margin-top: 14px;
+  padding: 13px 14px;
+  border-radius: 12px;
+  color: #d5e7df;
+  background: rgba(255, 255, 255, .06);
+  font-size: 11px;
+  line-height: 1.42;
+}
+
+.phone-call-status strong { color: var(--lime); font-size: 11px; }
+.phone-call-status.error { border: 1px solid rgba(241, 166, 143, .55); color: #ffd7ca; }
+.phone-call-status.error strong { color: var(--coral); }
+.phone-call-status.live { border: 1px solid rgba(217, 242, 100, .32); }
+
+.connector-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.connector-footer .quiet { color: #e7efe9; background: rgba(255, 255, 255, .1); }
+.connector-footer span { max-width: 210px; color: #a9bcb3; font-size: 10px; line-height: 1.35; text-align: right; }
+
+@media (max-width: 520px) {
+  .phone-connector { padding: 28px 20px 21px; border-radius: 20px; }
+  .phone-connector h2 { font-size: 32px; }
+  .connector-footer { align-items: flex-start; flex-direction: column; }
+  .connector-footer span { max-width: none; text-align: left; }
+}

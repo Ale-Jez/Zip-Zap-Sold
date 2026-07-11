@@ -36,3 +36,30 @@ test("account modal can be reopened and logged out", async ({ page }) => {
   await page.getByRole("button", { name: "Log out" }).click();
   await expect(page.locator("#openAccount")).toHaveText("Log in");
 });
+
+test("the phone connector is consent-gated and works in safe demo mode", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Call my phone" }).click();
+  await page.getByLabel("Phone number").fill("+48123456789");
+  await page.getByLabel(/I own or control this number/).check();
+  await page.getByRole("button", { name: "Place phone call" }).click();
+  await expect(page.getByText("Demo call is ringing.")).toBeVisible();
+  await page.getByRole("button", { name: "Preview the in-app call" }).click();
+  await expect(page.locator("#phoneModal")).toHaveClass(/open/);
+  await expect(page.getByText("ZIP ZAP SOLD AGENT IS CALLING")).toBeVisible();
+});
+
+test("map, favourites and autonomy views remain available alongside the journey", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: /Live map/ }).click();
+  await expect(page.getByRole("heading", { name: "One basket. One trusted route." })).toBeVisible();
+  await page.getByRole("button", { name: /Favourites/ }).click();
+  await expect(page.getByRole("heading", { name: "The agent remembers what Helena trusts." })).toBeVisible();
+  await page.getByRole("button", { name: /Agent autonomy/ }).click();
+  await page.locator("#autoLimitSlider").evaluate((element) => {
+    element.value = "70";
+    element.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+  await page.getByRole("button", { name: "Save Helena’s autonomy rules" }).click();
+  await expect(page.getByText("Automatic checkout is allowed.")).toBeVisible();
+});
