@@ -42,6 +42,7 @@ test("account modal can be reopened and logged out", async ({ page }) => {
 test("the phone connector is consent-gated and works in safe demo mode", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Call me" }).first().click();
+  await expect(page.getByText("Demo call is ready.")).toBeVisible();
   await page.getByLabel("Your phone number").fill("+48123456789");
   await page.getByLabel(/I want Zip Zap Sold to call this number/).check();
   await page.locator("#placePhoneCall").click();

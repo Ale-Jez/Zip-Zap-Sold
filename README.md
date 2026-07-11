@@ -58,12 +58,16 @@ The integrated Zip Zap Sold GUI also includes:
 
 ## Phone connector
 
-The **Call my phone** control is consent-gated and has two modes:
+The **Call me** control is consent-gated and has two modes:
 
-- **Demo mode** is the default. It never dials a real number and opens the polished in-app call preview.
-- **Twilio mode** places a real outbound approval call. Copy [phone.env.example](./phone.env.example) to `phone.env.local`, set `CALL_PROVIDER=twilio`, add the Twilio credentials, sender number, and a narrow `PHONE_ALLOWLIST` containing only numbers you own or control.
+- **Demo mode** is the default. It never dials a real number and opens the in-app call preview.
+- **Twilio mode** places a real outbound approval call and reports its progress in the app.
 
-No phone credentials are exposed to browser code. The server accepts only a user-confirmed number, validates international format, enforces the private allowlist and applies a small per-number rate limit. A public HTTPS `PUBLIC_BASE_URL` is optional; when configured it enables keypad answers (`1` to approve, `2` to wait) with signed Twilio webhook validation.
+To enable a real call, copy [phone.env.example](./phone.env.example) to `phone.env.local`, then set `CALL_PROVIDER=twilio` and provide a live Twilio Account SID, Auth Token, a voice-capable Twilio `From` number, and a narrow `PHONE_ALLOWLIST` containing only numbers you own or control. Do not put these credentials in browser code or commit `phone.env.local`.
+
+Trial Twilio projects may call only verified recipient numbers; international calls also depend on the account's Voice Geographic Permissions. A public HTTPS `PUBLIC_BASE_URL` is optional for placing the call, but required for live call-progress updates and keypad answers (`1` to approve, `2` to wait). Localhost cannot receive Twilio webhooks.
+
+No phone credentials are exposed to browser code. The server validates international format, explicit consent, the private allowlist, and signed Twilio callbacks. It places the outbound call through Twilio's Calls API with a short scripted prompt; it is not a free-form conversational voice bot.
 ## Automated tests
 
 Install the test dependencies once:

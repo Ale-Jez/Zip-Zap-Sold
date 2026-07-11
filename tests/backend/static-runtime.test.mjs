@@ -13,11 +13,14 @@ test("the browser uses only the local phone endpoint and never exposes provider 
   const phoneEnvExample = read("phone.env.example");
 
   assert.match(app, /fetch\("\/api\/calls"/);
+  assert.match(app, /fetch\("\/api\/phone-config"/);
   assert.doesNotMatch(app, /\b(XMLHttpRequest|axios)\s*\(/);
   assert.doesNotMatch(app, /(TWILIO_|api\.twilio\.com|Authorization:\s*Basic)/);
   assert.match(server, /PHONE_ALLOWLIST/);
   assert.match(server, /PHONE_PROVIDER_NOT_CONFIGURED/);
+  assert.match(server, /StatusCallbackEvent/);
   assert.match(launcher, /node server\.mjs/);
   assert.match(readme, /phone\.env\.local/);
+  assert.match(readme, /Trial Twilio/i);
   assert.match(phoneEnvExample, /CALL_PROVIDER=demo/);
 });

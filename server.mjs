@@ -8,6 +8,13 @@ const ROOT = resolve(fileURLToPath(new URL(".", import.meta.url)));
 const MAX_BODY_BYTES = 16 * 1024;
 const MAX_CALLS_PER_HOUR = 3;
 const HOUR = 60 * 60 * 1000;
+const CALL_PROGRESS_EVENTS = ["initiated", "ringing", "answered", "completed"];
+const CALL_STATUSES = new Set(["queued", "initiated", "ringing", "in-progress", "completed", "busy", "failed", "no-answer", "canceled"]);
+const CALL_SCRIPTS = {
+  approval: "Hello. This is Zip Zap Sold calling about a grocery order approval.",
+  "earlier-delivery": "Hello Helena. EkstraMarket can deliver your cheesecake ingredients earlier for 1.55 PLN more.",
+  "unverified-seller": "Hello Helena. I found a cheaper basket, but I cannot verify the seller. I recommend your trusted FreshMart store instead."
+};
 
 const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
@@ -42,6 +49,17 @@ export function normalizeE164(value) {
   return /^\+[1-9]\d{7,14}$/.test(normalized) ? normalized : null;
 }
 
+export function normalizePublicHttpsUrl(value) {
+  try {
+    const url = new URL(String(value || "").trim());
+    const localHosts = new Set(["localhost", "127.0.0.1", "::1"]);
+    if (url.protocol !== "https:" || localHosts.has(url.hostname.toLowerCase()) || !url.hostname) return "";
+    return url.toString().replace(/\/$/, "");
+  } catch {
+    return "";
+  }
+}
+
 function parseAllowlist(value) {
   return new Set(
     String(value || "")
@@ -57,8 +75,8 @@ function xmlEscape(value) {
   }[character]));
 }
 
-export function buildApprovalTwiML(callbackUrl) {
-  const opening = "Hello. This is Zip Zap Sold calling about a grocery order approval.";
+export function buildApprovalTwiML(callbackUrl, scenario = "approval") {
+  const opening = CALL_SCRIPTS[scenario] || CALL_SCRIPTS.approval;
   if (!callbackUrl) {
     return `<?xml version="1.0" encoding="UTF-8"?><Response><Say>${opening} A decision is waiting in your Zip Zap Sold dashboard.</Say></Response>`;
   }
@@ -91,7 +109,8 @@ function publicCall(call) {
 export function createCallService({ env = process.env, request = fetch, now = () => Date.now(), id = randomUUID } = {}) {
   const provider = String(env.CALL_PROVIDER || "demo").toLowerCase();
   const allowlist = parseAllowlist(env.PHONE_ALLOWLIST);
-  const publicBaseUrl = String(env.PUBLIC_BASE_URL || "").replace(/\/$/, "");
+  const suppliedPublicBaseUrl = String(env.PUBLIC_BASE_URL || "").trim();
+  const publicBaseUrl = normalizePublicHttpsUrl(suppliedPublicBaseUrl);
   const calls = new Map();
   const recentCalls = new Map();
 
@@ -105,12 +124,36 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     recentCalls.set(phone, recent);
   }
 
-  function configuredTwilio() {
+  function twilioConfigError() {
     const required = ["TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN", "TWILIO_FROM_NUMBER"];
     const missing = required.filter((name) => !env[name]);
     if (missing.length || !allowlist.size) {
-      throw new CallError(503, "PHONE_PROVIDER_NOT_CONFIGURED", "Real phone calls need Twilio credentials and a PHONE_ALLOWLIST in phone.env.local.");
+      return new CallError(503, "PHONE_PROVIDER_NOT_CONFIGURED", "Real phone calls need Twilio credentials, a voice-capable sender number, and a PHONE_ALLOWLIST in phone.env.local.");
     }
+    if (!normalizeE164(env.TWILIO_FROM_NUMBER)) {
+      return new CallError(503, "INVALID_TWILIO_FROM_NUMBER", "TWILIO_FROM_NUMBER must be a voice-capable E.164 number from your Twilio account.");
+    }
+    if (suppliedPublicBaseUrl && !publicBaseUrl) {
+      return new CallError(503, "INVALID_PUBLIC_CALLBACK_URL", "PUBLIC_BASE_URL must be a public HTTPS URL. Localhost cannot receive Twilio callbacks.");
+    }
+    return null;
+  }
+
+  function configuredTwilio() {
+    const error = twilioConfigError();
+    if (error) throw error;
+  }
+
+  function config() {
+    const error = provider === "twilio" ? twilioConfigError() : null;
+    return {
+      provider,
+      realCallsEnabled: provider === "twilio" && !error,
+      supportsKeypadResponse: Boolean(publicBaseUrl) && !error,
+      message: provider === "demo"
+        ? "Demo mode is active. No real phone number will be dialled."
+        : error ? error.message : "Real Twilio calls are enabled for the private allowlist."
+    };
   }
 
   async function create({ to, consent, scenario = "approval" }) {
@@ -121,9 +164,8 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     if (!phone) {
       throw new CallError(422, "INVALID_PHONE", "Use an international phone number, for example +48123456789.");
     }
-    registerAttempt(phone);
-
     if (provider === "demo") {
+      registerAttempt(phone);
       const call = {
         id: `demo-${id()}`,
         mode: "demo",
@@ -144,22 +186,31 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     if (!allowlist.has(phone)) {
       throw new CallError(403, "PHONE_NOT_ALLOWED", "That phone number is not on the private call allowlist.");
     }
+    registerAttempt(phone);
 
+    const callScenario = CALL_SCRIPTS[scenario] ? scenario : "approval";
     const call = {
       id: `call-${id()}`,
       mode: "twilio",
-      scenario,
+      scenario: callScenario,
       status: "placing",
       supportsKeypadResponse: Boolean(publicBaseUrl),
       to: phone,
       updatedAt: new Date(now()).toISOString()
     };
     const callbackUrl = publicBaseUrl ? `${publicBaseUrl}/api/twilio/answer?callId=${encodeURIComponent(call.id)}` : "";
+    const statusCallbackUrl = publicBaseUrl ? `${publicBaseUrl}/api/twilio/status?callId=${encodeURIComponent(call.id)}` : "";
     const body = new URLSearchParams({
       To: phone,
       From: env.TWILIO_FROM_NUMBER,
-      Twiml: buildApprovalTwiML(callbackUrl)
+      Twiml: buildApprovalTwiML(callbackUrl, callScenario),
+      Timeout: "20"
     });
+    if (statusCallbackUrl) {
+      body.set("StatusCallback", statusCallbackUrl);
+      body.set("StatusCallbackMethod", "POST");
+      CALL_PROGRESS_EVENTS.forEach((event) => body.append("StatusCallbackEvent", event));
+    }
     const authorization = Buffer.from(`${env.TWILIO_ACCOUNT_SID}:${env.TWILIO_AUTH_TOKEN}`).toString("base64");
     let response;
     try {
@@ -174,10 +225,19 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     } catch {
       throw new CallError(502, "PHONE_PROVIDER_UNAVAILABLE", "The phone provider could not be reached. Please try again.");
     }
-    if (!response.ok) {
-      throw new CallError(502, "PHONE_PROVIDER_REJECTED", "The phone provider rejected the call request. Check the local phone configuration.");
+    let providerCall = {};
+    try {
+      providerCall = await response.json();
+    } catch {
+      throw new CallError(502, "PHONE_PROVIDER_INVALID_RESPONSE", "The phone provider returned an invalid response.");
     }
-    const providerCall = await response.json();
+    if (!response.ok) {
+      const code = providerCall.code ? ` (Twilio error ${providerCall.code})` : "";
+      throw new CallError(502, "PHONE_PROVIDER_REJECTED", `The phone provider rejected the call request${code}. Check the local phone configuration.`);
+    }
+    if (!providerCall.sid) {
+      throw new CallError(502, "PHONE_PROVIDER_INVALID_RESPONSE", "The phone provider did not return a call identifier.");
+    }
     call.providerId = providerCall.sid;
     call.status = providerCall.status || "queued";
     call.updatedAt = new Date(now()).toISOString();
@@ -189,10 +249,29 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     return publicCall(calls.get(callId));
   }
 
-  function answer(callId, digit) {
+  function assertProviderId(call, providerId) {
+    if (!providerId || providerId !== call.providerId) {
+      throw new CallError(403, "CALL_PROVIDER_ID_MISMATCH", "The callback does not match the requested phone call.");
+    }
+  }
+
+  function answer(callId, digit, providerId) {
     const call = calls.get(callId);
     if (!call) throw new CallError(404, "CALL_NOT_FOUND", "This call no longer exists.");
+    assertProviderId(call, providerId);
     call.status = digit === "1" ? "approved" : digit === "2" ? "waiting" : "unrecognized";
+    call.updatedAt = new Date(now()).toISOString();
+    return publicCall(call);
+  }
+
+  function updateStatus(callId, status, providerId) {
+    const call = calls.get(callId);
+    if (!call) throw new CallError(404, "CALL_NOT_FOUND", "This call no longer exists.");
+    assertProviderId(call, providerId);
+    if (!CALL_STATUSES.has(status)) {
+      throw new CallError(422, "INVALID_CALL_STATUS", "The phone provider returned an unknown call status.");
+    }
+    call.status = status;
     call.updatedAt = new Date(now()).toISOString();
     return publicCall(call);
   }
@@ -207,7 +286,7 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     });
   }
 
-  return { answer, create, get, provider, verifyWebhook };
+  return { answer, config, create, get, provider, updateStatus, verifyWebhook };
 }
 
 function send(res, status, body, contentType = "application/json; charset=utf-8") {
@@ -274,6 +353,10 @@ export function createZipZapServer({ rootDir = ROOT, callService = createCallSer
         sendJson(res, 200, call);
         return;
       }
+      if (req.method === "GET" && url.pathname === "/api/phone-config") {
+        sendJson(res, 200, callService.config());
+        return;
+      }
       if (req.method === "POST" && url.pathname === "/api/twilio/answer") {
         const raw = await readBody(req);
         const params = Object.fromEntries(new URLSearchParams(raw));
@@ -281,9 +364,20 @@ export function createZipZapServer({ rootDir = ROOT, callService = createCallSer
         if (!callService.verifyWebhook(pathWithQuery, req.headers["x-twilio-signature"], params)) {
           throw new CallError(401, "INVALID_PHONE_WEBHOOK", "The phone provider signature could not be verified.");
         }
-        const call = callService.answer(url.searchParams.get("callId"), params.Digits);
+        const call = callService.answer(url.searchParams.get("callId"), params.Digits, params.CallSid);
         const message = call.status === "approved" ? "Thank you. Zip Zap Sold will complete the trusted purchase." : "Thank you. Zip Zap Sold will wait for your decision.";
         sendTwiML(res, message);
+        return;
+      }
+      if (req.method === "POST" && url.pathname === "/api/twilio/status") {
+        const raw = await readBody(req);
+        const params = Object.fromEntries(new URLSearchParams(raw));
+        const pathWithQuery = `${url.pathname}${url.search}`;
+        if (!callService.verifyWebhook(pathWithQuery, req.headers["x-twilio-signature"], params)) {
+          throw new CallError(401, "INVALID_PHONE_WEBHOOK", "The phone provider signature could not be verified.");
+        }
+        const call = callService.updateStatus(url.searchParams.get("callId"), params.CallStatus, params.CallSid);
+        sendJson(res, 200, { ok: true, call });
         return;
       }
       if (req.method === "GET" && url.pathname === "/api/health") {

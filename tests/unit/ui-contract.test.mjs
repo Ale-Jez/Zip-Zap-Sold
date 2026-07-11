@@ -15,7 +15,7 @@ test("the document exposes the main interactive controls", () => {
 
 test("the client wires agent, account and safety interactions", () => {
   const app = read("app.js");
-  for (const hook of ["startAgent", "openAccount", "accountForm", "localStorage", "openPhone", "closeAccount", "requestPhoneCall", "refreshPhoneCallStatus", "simpleUnderstand", "simpleDecide", "simpleAnswer", "d.recipe", "d.call"]) {
+  for (const hook of ["startAgent", "openAccount", "accountForm", "localStorage", "openPhone", "closeAccount", "loadPhoneConfiguration", "requestPhoneCall", "refreshPhoneCallStatus", "simpleUnderstand", "simpleDecide", "simpleAnswer", "d.recipe", "d.call"]) {
     assert.match(app, new RegExp(hook));
   }
 });

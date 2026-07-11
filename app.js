@@ -25,6 +25,7 @@
   const placePhoneCall = document.querySelector("#placePhoneCall");
   let phoneCallPoller = null;
   let activePhoneCall = null;
+  let phoneConfiguration = null;
   const page = {
     understand: ["A cheesecake, without the shopping trip.", "Helena only said what she wanted to bake. Zip Zap Sold asks only what it cannot safely infer."],
     discover: ["Three agents research in the background.", "The agent validates freshness, value and seller trust while Helena carries on with her day."],
@@ -286,12 +287,32 @@
   function openPhone() { incoming.classList.remove("hidden"); liveCall.classList.add("hidden"); phone.classList.add("open"); phone.setAttribute("aria-hidden", "false"); }
   function closePhone() { phone.classList.remove("open"); phone.setAttribute("aria-hidden", "true"); if (window.speechSynthesis) window.speechSynthesis.cancel(); }
   function setPhoneCallStatus(title, detail, tone = "") { phoneCallStatus.className = `phone-call-status ${tone}`; phoneCallStatus.innerHTML = `<strong>${title}</strong><span>${detail}</span>`; }
+  async function loadPhoneConfiguration() {
+    try {
+      const response = await fetch("/api/phone-config");
+      if (!response.ok) throw new Error("Phone service is unavailable.");
+      phoneConfiguration = await response.json();
+      if (phoneConfiguration.realCallsEnabled) {
+        const callbackNote = phoneConfiguration.supportsKeypadResponse ? "You can press 1 to approve or 2 to wait during the call." : "The call will play the approval message. Add a public HTTPS callback URL for keypad answers and live status.";
+        placePhoneCall.textContent = "Call me for real";
+        setPhoneCallStatus("Real calls are enabled.", callbackNote, "live");
+      } else {
+        placePhoneCall.textContent = "Start demo call";
+        setPhoneCallStatus("Demo call is ready.", phoneConfiguration.message || "No real number will be dialled.");
+      }
+    } catch (error) {
+      phoneConfiguration = null;
+      placePhoneCall.textContent = "Start demo call";
+      setPhoneCallStatus("Phone setup could not be checked.", error.message || "Use the in-app call preview instead.", "error");
+    }
+  }
   function openCallConnector() {
     const savedPhone = sessionStorage.getItem("zip-zap-sold-demo-phone") || "";
     phoneCallInput.value = savedPhone;
-    setPhoneCallStatus("Demo mode is ready.", "Use it safely in the presentation, or configure a private provider account for a real outbound call.");
+    setPhoneCallStatus("Checking phone setup...", "Zip Zap Sold is checking whether real calls are enabled.");
     callConnector.classList.add("open");
     callConnector.setAttribute("aria-hidden", "false");
+    void loadPhoneConfiguration();
   }
   function closeCallConnector() {
     callConnector.classList.remove("open");
@@ -312,6 +333,23 @@
       } else if (call.status === "waiting") {
         setPhoneCallStatus("The caller chose to wait.", "Zip Zap Sold is holding the basket until the user decides.", "live");
         clearInterval(phoneCallPoller); phoneCallPoller = null;
+      } else {
+        const statusMessage = {
+          queued: "Twilio accepted the call and is preparing to dial.",
+          initiated: "Twilio has started dialling the phone.",
+          ringing: "The phone is ringing now.",
+          "in-progress": "The phone call has been answered.",
+          completed: "The phone call has ended.",
+          busy: "The phone number was busy.",
+          failed: "The phone call could not be completed.",
+          "no-answer": "Nobody answered the phone call.",
+          canceled: "The phone call was cancelled."
+        }[call.status];
+        if (statusMessage) {
+          const terminal = ["completed", "busy", "failed", "no-answer", "canceled"].includes(call.status);
+          setPhoneCallStatus(terminal ? "Phone call finished." : "Real phone call update.", statusMessage, terminal && call.status !== "completed" ? "error" : "live");
+          if (terminal) { clearInterval(phoneCallPoller); phoneCallPoller = null; }
+        }
       }
     } catch { /* A temporary status check failure should not interrupt the demo. */ }
   }
@@ -326,7 +364,7 @@
       const response = await fetch("/api/calls", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ to: phoneNumber, consent, scenario: state.stage === "approve" ? "approval" : "demo" })
+        body: JSON.stringify({ to: phoneNumber, consent, scenario: state.stage === "approve" ? currentCallScenario().id : "approval" })
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.message || "The phone call could not be started.");
@@ -334,8 +372,8 @@
       if (payload.mode === "demo") {
         setPhoneCallStatus("Demo call is ringing.", "No real number was dialled. Use the in-app preview to show the approval conversation.", "live");
       } else {
-        const keypadMessage = payload.supportsKeypadResponse ? "Press 1 to approve or 2 to wait when the call arrives." : "The call will announce the approval request. Add a public callback URL to enable keypad responses.";
-        setPhoneCallStatus("Phone call requested.", keypadMessage, "live");
+        const keypadMessage = payload.supportsKeypadResponse ? "Twilio is dialling. Press 1 to approve or 2 to wait when the call arrives." : "Twilio is dialling. The call will play the approval message; add a public HTTPS callback URL for keypad answers and live status.";
+        setPhoneCallStatus("Real phone call requested.", keypadMessage, "live");
         if (phoneCallPoller) clearInterval(phoneCallPoller);
         phoneCallPoller = setInterval(refreshPhoneCallStatus, 2000);
       }
