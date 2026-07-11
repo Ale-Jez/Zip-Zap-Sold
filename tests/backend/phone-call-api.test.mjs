@@ -160,6 +160,30 @@ test("a spoken yes approves the flour alternative and returns the final line", a
   assert.match(service.answerTwiML(call.id), /Your cheesecake is going to be absolutely delightful/);
 });
 
+test("the morning cheesecake call listens twice before playing its goodbye", async () => {
+  const service = createCallService({
+    env: {
+      CALL_PROVIDER: "twilio",
+      TWILIO_ACCOUNT_SID: "AC123",
+      TWILIO_AUTH_TOKEN: "secret",
+      TWILIO_FROM_NUMBER: "+15005550006",
+      PHONE_ALLOWLIST: "+48123456789",
+      PUBLIC_BASE_URL: "https://zip-zap-sold.example"
+    },
+    id: () => "morning-id",
+    request: async () => new Response(JSON.stringify({ sid: "CA456", status: "queued" }), { status: 201 })
+  });
+  const call = await service.create({ to: "+48123456789", consent: true, scenario: "morning-cheesecake" });
+  const firstAnswer = service.answer(call.id, "", "CA456", "My legs hurt a little, but I am glad you asked.");
+
+  assert.equal(firstAnswer.status, "in-progress");
+  assert.match(service.answerTwiML(call.id), /How can I help you today/);
+
+  const secondAnswer = service.answer(call.id, "", "CA456", "I would like to make a cheesecake, as usual.");
+  assert.equal(secondAnswer.status, "approved");
+  assert.match(service.answerTwiML(call.id), /What a lovely idea/);
+});
+
 test("Twilio error 20003 gives a credential-specific recovery message", async () => {
   const service = createCallService({
     env: {

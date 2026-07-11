@@ -127,6 +127,16 @@
     callerName: "Zip Zap Sold",
     purpose: "Ask only when Helena's rule needs an answer.",
     scenarios: {
+      morningCheesecake: {
+        id: "morning-cheesecake",
+        vendorId: "fresh",
+        title: "Good morning, Helena",
+        prompt: "Good morning, my dear! How are you feeling today?",
+        choices: [
+          { id: "approve", label: "Continue our cheesecake conversation" },
+          { id: "wait", label: "Talk later" }
+        ]
+      },
       earlierDelivery: {
         id: "earlier-delivery",
         vendorId: "extra",

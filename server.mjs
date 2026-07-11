@@ -14,11 +14,17 @@ const CALL_SCRIPTS = {
   approval: "Hello. This is Zip Zap Sold calling about a grocery order approval.",
   "earlier-delivery": "Hello Helena. EkstraMarket can deliver your cheesecake ingredients earlier for 1.55 PLN more.",
   "unverified-seller": "Hello Helena. I found a cheaper basket, but I cannot verify the seller. I recommend your trusted FreshMart store instead.",
+  "morning-cheesecake": "Good morning, my dear! How are you feeling today?",
   "flour-alternative": "Hello again, my dear. I’m afraid your favourite flour is currently unavailable at your usual shop. However, I can recommend a lovely alternative—fine all-purpose flour. I’m sure it will make your cheesecake just as smooth, delicate, and delicious. Would you like me to order it for you?"
 };
 const FLOUR_CONFIRMATION = "Perfect! I’ll take care of it right away. Your cheesecake is going to be absolutely delightful!";
 const FLOUR_DECLINE = "Of course. I will not substitute the flour and will keep looking for your usual choice.";
+const MORNING_HELP = "I’m sorry to hear that. How can I help you today?";
+const MORNING_GOODBYE = "A cheesecake? What a lovely idea! Let’s make it together. Take care, sweetheart!";
 const VOICE_AUDIO = {
+  morningGreeting: "audio/morning-cheesecake-greeting.mp3",
+  morningHelp: "audio/morning-cheesecake-help.mp3",
+  morningGoodbye: "audio/morning-cheesecake-goodbye.mp3",
   flourQuestion: "audio/flour-alternative-question.mp3",
   flourConfirmation: "audio/flour-alternative-confirmation.mp3"
 };
@@ -37,6 +43,9 @@ const PUBLIC_FILES = new Set([
   "account.css",
   VOICE_AUDIO.flourConfirmation,
   VOICE_AUDIO.flourQuestion,
+  VOICE_AUDIO.morningGoodbye,
+  VOICE_AUDIO.morningGreeting,
+  VOICE_AUDIO.morningHelp,
   "app.js",
   "dashboard.css",
   "index.html",
@@ -93,8 +102,16 @@ function sayOrPlay(text, audioUrl = "") {
   return audioUrl ? `<Play>${xmlEscape(audioUrl)}</Play>` : `<Say>${xmlEscape(text)}</Say>`;
 }
 
+function conversationGatherTwiML(callbackUrl, text, audioUrl, noResponseText) {
+  return twimlResponse(`<Gather input="speech" timeout="10" speechTimeout="auto" language="en-US" action="${xmlEscape(callbackUrl)}" method="POST">${sayOrPlay(text, audioUrl)}</Gather><Say>${xmlEscape(noResponseText)}</Say>`);
+}
+
 export function buildApprovalTwiML(callbackUrl, scenario = "approval", audioUrl = "") {
   const opening = CALL_SCRIPTS[scenario] || CALL_SCRIPTS.approval;
+  if (scenario === "morning-cheesecake") {
+    if (!callbackUrl) return twimlResponse(sayOrPlay(opening, audioUrl));
+    return conversationGatherTwiML(callbackUrl, opening, audioUrl, "I will be here when you are ready to talk.");
+  }
   if (scenario === "flour-alternative") {
     if (!callbackUrl) return twimlResponse(sayOrPlay(opening, audioUrl));
     return twimlResponse(`<Gather input="speech dtmf" numDigits="1" timeout="10" speechTimeout="auto" language="en-US" action="${xmlEscape(callbackUrl)}" method="POST">${sayOrPlay(opening, audioUrl)}</Gather><Say>I did not hear an answer, so I will wait before changing the flour.</Say>`);
@@ -105,7 +122,11 @@ export function buildApprovalTwiML(callbackUrl, scenario = "approval", audioUrl 
   return twimlResponse(`<Gather input="dtmf" numDigits="1" timeout="8" action="${xmlEscape(callbackUrl)}" method="POST"><Say>${xmlEscape(opening)} Press 1 to approve the trusted basket, or 2 to wait.</Say></Gather><Say>No response was received. The agent will wait for your decision.</Say>`);
 }
 
-export function buildAnswerTwiML({ scenario, status, confirmationAudioUrl = "" }) {
+export function buildAnswerTwiML({ scenario, status, callbackUrl = "", confirmationAudioUrl = "", helpAudioUrl = "", goodbyeAudioUrl = "", turn = 0 }) {
+  if (scenario === "morning-cheesecake" && turn === 1) {
+    return conversationGatherTwiML(callbackUrl, MORNING_HELP, helpAudioUrl, "I will be here when you need me.");
+  }
+  if (scenario === "morning-cheesecake") return twimlResponse(sayOrPlay(MORNING_GOODBYE, goodbyeAudioUrl));
   if (scenario === "flour-alternative" && status === "approved") {
     return twimlResponse(sayOrPlay(FLOUR_CONFIRMATION, confirmationAudioUrl));
   }
@@ -242,7 +263,7 @@ export function createCallService({ env = process.env, request = fetch, now = ()
       Twiml: buildApprovalTwiML(
         callbackUrl,
         callScenario,
-        callScenario === "flour-alternative" ? hostedAudioUrl(VOICE_AUDIO.flourQuestion) : ""
+        callScenario === "morning-cheesecake" ? hostedAudioUrl(VOICE_AUDIO.morningGreeting) : callScenario === "flour-alternative" ? hostedAudioUrl(VOICE_AUDIO.flourQuestion) : ""
       ),
       Timeout: "20"
     });
@@ -308,7 +329,10 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     assertProviderId(call, providerId);
     const spokenAnswer = String(speechResult || "").toLowerCase();
     const flourApproved = /\b(yes|yeah|yep|sure|please|tak)\b/.test(spokenAnswer);
-    call.status = call.scenario === "flour-alternative"
+    if (call.scenario === "morning-cheesecake") {
+      call.turn = (call.turn || 0) + 1;
+      call.status = call.turn >= 2 ? "approved" : "in-progress";
+    } else call.status = call.scenario === "flour-alternative"
       ? (digit === "1" || flourApproved ? "approved" : "waiting")
       : (digit === "1" ? "approved" : digit === "2" ? "waiting" : "unrecognized");
     call.updatedAt = new Date(now()).toISOString();
@@ -321,7 +345,11 @@ export function createCallService({ env = process.env, request = fetch, now = ()
     return buildAnswerTwiML({
       scenario: call.scenario,
       status: call.status,
-      confirmationAudioUrl: call.scenario === "flour-alternative" ? hostedAudioUrl(VOICE_AUDIO.flourConfirmation) : ""
+      callbackUrl: `${publicBaseUrl}/api/twilio/answer?callId=${encodeURIComponent(call.id)}`,
+      confirmationAudioUrl: call.scenario === "flour-alternative" ? hostedAudioUrl(VOICE_AUDIO.flourConfirmation) : "",
+      helpAudioUrl: call.scenario === "morning-cheesecake" ? hostedAudioUrl(VOICE_AUDIO.morningHelp) : "",
+      goodbyeAudioUrl: call.scenario === "morning-cheesecake" ? hostedAudioUrl(VOICE_AUDIO.morningGoodbye) : "",
+      turn: call.turn || 0
     });
   }
 

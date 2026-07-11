@@ -69,7 +69,7 @@ Trial Twilio projects may call only verified recipient numbers; international ca
 
 ### Recorded flour-alternative presentation call
 
-Choose **Flour alternative — speak your answer** in the call dialog. Put your recordings in [`audio/`](./audio/) as `flour-alternative-question.mp3` and `flour-alternative-confirmation.mp3`; exact file instructions are in [`audio/README.md`](./audio/README.md). With a public HTTPS `PUBLIC_BASE_URL`, the call plays the first recording, listens for a spoken “Yes, please” (or `1`), and plays the confirmation recording. The fallback is Twilio text-to-speech when either recording is absent.
+Choose **Call 1 — morning cheesecake conversation** or **Call 2 — flour alternative** in the call dialog. Put the five recordings in [`audio/`](./audio/); exact filenames and scripts are in [`audio/README.md`](./audio/README.md). With a public HTTPS `PUBLIC_BASE_URL`, Call 1 plays three assistant recordings with two spoken pauses for your friend, while Call 2 plays the flour question, listens for a spoken “Yes, please” (or `1`), then plays its confirmation. The fallback is Twilio text-to-speech when a recording is absent.
 
 No phone credentials are exposed to browser code. The server validates international format, explicit consent, the private allowlist, and signed Twilio callbacks. It places the outbound call through Twilio's Calls API with a short scripted prompt; it is not a free-form conversational voice bot.
 ## Automated tests

@@ -237,11 +237,13 @@
   }
 
   function currentCallScenario() {
+    if (phoneCallScenario?.value === "morning-cheesecake") return d.call.scenarios.morningCheesecake;
     if (phoneCallScenario?.value === "flour-alternative") return d.call.scenarios.flourAlternative;
     return state.chosen === "deal" ? d.call.scenarios.unverifiedSeller : d.call.scenarios.earlierDelivery;
   }
 
   function requestedCallScenario() {
+    if (phoneCallScenario?.value === "morning-cheesecake") return "morning-cheesecake";
     if (phoneCallScenario?.value === "flour-alternative") return "flour-alternative";
     return state.stage === "approve" ? currentCallScenario().id : "approval";
   }
@@ -300,7 +302,7 @@
       if (!response.ok) throw new Error("Phone service is unavailable.");
       phoneConfiguration = await response.json();
       if (phoneConfiguration.realCallsEnabled) {
-        const callbackNote = phoneConfiguration.supportsKeypadResponse ? "For the flour script, your friend can say “Yes, please” and hear the final confirmation." : "The call will play the first message. Add a public HTTPS callback URL to hear and process a spoken answer.";
+        const callbackNote = phoneConfiguration.supportsKeypadResponse ? "Call 1 listens twice; Call 2 listens for “Yes, please” before its final confirmation." : "The call will play the first message. Add a public HTTPS callback URL to hear and process a spoken answer.";
         placePhoneCall.textContent = "Call me for real";
         setPhoneCallStatus("Real calls are enabled.", callbackNote, "live");
       } else {
@@ -379,7 +381,7 @@
       if (payload.mode === "demo") {
         setPhoneCallStatus("Demo call is ringing.", "No real number was dialled. Use the in-app preview to show the approval conversation.", "live");
       } else {
-        const keypadMessage = payload.supportsKeypadResponse ? (requestedCallScenario() === "flour-alternative" ? "Twilio is dialling. After the first recording, say “Yes, please” to play the final confirmation." : "Twilio is dialling. Press 1 to approve or 2 to wait when the call arrives.") : "Twilio is dialling. Add a public HTTPS callback URL to collect the caller’s answer.";
+        const keypadMessage = payload.supportsKeypadResponse ? (requestedCallScenario() === "morning-cheesecake" ? "Twilio is dialling. Your friend speaks after each of the first two recordings; the final warm goodbye then plays." : requestedCallScenario() === "flour-alternative" ? "Twilio is dialling. After the first recording, say “Yes, please” to play the final confirmation." : "Twilio is dialling. Press 1 to approve or 2 to wait when the call arrives.") : "Twilio is dialling. Add a public HTTPS callback URL to collect the caller’s answer.";
         setPhoneCallStatus("Real phone call requested.", keypadMessage, "live");
         if (phoneCallPoller) clearInterval(phoneCallPoller);
         phoneCallPoller = setInterval(refreshPhoneCallStatus, 2000);
