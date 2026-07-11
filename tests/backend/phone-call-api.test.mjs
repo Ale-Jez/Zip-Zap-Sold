@@ -122,6 +122,24 @@ test("the Twilio adapter sends an outbound request only after consent and allowl
   assert.match(String(requested.init.body), /StatusCallbackEvent=completed/);
 });
 
+test("Twilio error 20003 gives a credential-specific recovery message", async () => {
+  const service = createCallService({
+    env: {
+      CALL_PROVIDER: "twilio",
+      TWILIO_ACCOUNT_SID: "AC123",
+      TWILIO_AUTH_TOKEN: "secret",
+      TWILIO_FROM_NUMBER: "+15005550006",
+      PHONE_ALLOWLIST: "+48123456789"
+    },
+    request: async () => new Response(JSON.stringify({ code: 20003 }), { status: 401 })
+  });
+
+  await assert.rejects(
+    () => service.create({ to: "+48123456789", consent: true }),
+    (error) => error.code === "PHONE_PROVIDER_AUTHENTICATION_FAILED" && /Account SID and current Auth Token/.test(error.message)
+  );
+});
+
 test("Twilio callback signatures are verified before a keypad response is accepted", () => {
   const url = "https://zip-zap-sold.example/api/twilio/answer?callId=call-approval-id";
   const params = { CallSid: "CA123", Digits: "1" };

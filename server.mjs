@@ -232,6 +232,13 @@ export function createCallService({ env = process.env, request = fetch, now = ()
       throw new CallError(502, "PHONE_PROVIDER_INVALID_RESPONSE", "The phone provider returned an invalid response.");
     }
     if (!response.ok) {
+      if (Number(providerCall.code) === 20003) {
+        throw new CallError(
+          502,
+          "PHONE_PROVIDER_AUTHENTICATION_FAILED",
+          "Twilio authentication failed (error 20003). In phone.env.local, use the Account SID and current Auth Token from the same active Twilio project, then restart the server. Do not use an API Key SID or API Key Secret here."
+        );
+      }
       const code = providerCall.code ? ` (Twilio error ${providerCall.code})` : "";
       throw new CallError(502, "PHONE_PROVIDER_REJECTED", `The phone provider rejected the call request${code}. Check the local phone configuration.`);
     }
