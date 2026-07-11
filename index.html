@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="account.css" />
+    <link rel="stylesheet" href="dashboard.css" />
   </head>
   <body>
     <div class="shell">
@@ -27,9 +29,15 @@
       <main id="top">
         <header class="topbar">
           <div><p class="crumb">Helena’s agent <b>/</b> purchase in progress</p><h1 id="title">A cheesecake, without the shopping trip.</h1></div>
-          <div class="top-actions"><button id="reset" class="quiet">↻ Replay demo</button><button id="callMaria" class="dark">☎ Call Helena</button></div>
+          <div class="top-actions"><button id="startAgent" class="dark">✦ Start agent</button><button id="reset" class="quiet">↻ Replay demo</button><button id="openAccount" class="quiet">Log in</button><button id="callMaria" class="dark">☎ Call Helena</button></div>
         </header>
         <section class="summary"><p><span><i></i> PROACTIVE AGENT</span><strong id="summaryText">Helena only said what she wanted to bake. Zip Zap Sold is doing the rest.</strong></p><div><small>Autonomy level</small><i class="meter"><b></b><b></b><b></b><b></b></i><strong id="autonomy">Ask on exceptions</strong></div></section>
+        <nav class="workspace-tabs" aria-label="Zip Zap Sold workspace">
+          <button class="active" data-view="mission"><i>✦</i> Mission</button>
+          <button data-view="map"><i>⌖</i> Live map</button>
+          <button data-view="favourites"><i>♥</i> Favourites</button>
+          <button data-view="autonomy"><i>◉</i> Agent autonomy</button>
+        </nav>
         <section id="content" class="content" aria-live="polite"></section>
       </main>
     </div>
@@ -56,6 +64,16 @@
       <button class="backdrop" data-close-profile aria-label="Close profile"></button>
       <section class="profile-sheet" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
         <button data-close-profile class="x">×</button><small>HELENA’S PURCHASE PROFILE</small><h2 id="profileTitle">What Zip Zap Sold knows<br />and what it may do.</h2><div id="profileRules"></div>
+      </section>
+    </div>
+    <div id="accountModal" class="modal" aria-hidden="true">
+      <button class="backdrop" data-close-account aria-label="Close account"></button>
+      <section class="profile-sheet account-sheet" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+        <button data-close-account class="x" aria-label="Close">×</button><small>YOUR ZIP ZAP SOLD ACCOUNT</small><h2 id="accountTitle">Keep your agent<br />working for you.</h2>
+        <p class="account-intro">Your preferences, trusted stores and autonomy rules stay with your account. This demo stores them only in this browser.</p>
+        <div class="account-tabs"><button class="active" data-account-mode="signup">Create account</button><button data-account-mode="login">Log in</button></div>
+        <form id="accountForm"><div id="nameField" class="account-field"><label for="accountName">Your name</label><input id="accountName" name="name" autocomplete="name" placeholder="Helena Kowalska" required /></div><div class="account-field"><label for="accountEmail">Email address</label><input id="accountEmail" name="email" type="email" autocomplete="email" placeholder="helena@example.com" required /></div><div class="account-field"><label for="accountPassword">Password</label><input id="accountPassword" name="password" type="password" minlength="8" autocomplete="new-password" placeholder="At least 8 characters" required /></div><button class="dark" id="accountSubmit" type="submit">Create my account</button></form>
+        <section id="accountSummary" class="account-summary hidden"><strong id="savedAccountName"></strong><span id="savedAccountEmail"></span><div><button id="editAccount" class="quiet">Manage account</button><button id="logoutAccount" class="quiet">Log out</button></div></section>
       </section>
     </div>
     <template id="toast"><div class="toast"><i>✓</i><span></span></div></template><div id="toasts"></div>

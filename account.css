@@ -1,0 +1,17 @@
+.account-sheet { width:min(470px,calc(100vw - 32px)); }
+.account-intro { max-width:390px; margin:-9px 0 20px; color:var(--muted); font-size:12px; line-height:1.5; }
+.account-tabs { display:grid; grid-template-columns:1fr 1fr; gap:4px; margin-bottom:16px; padding:4px; border-radius:9px; background:#eeece5; }
+.account-tabs button { border:0; border-radius:6px; padding:8px; color:var(--muted); background:transparent; font-size:11px; font-weight:700; }
+.account-tabs button.active { color:var(--ink); background:#fff; box-shadow:0 2px 7px rgba(30,41,36,.08); }
+.account-field { display:grid; gap:6px; margin:11px 0; }
+.account-field label { font-size:10px; font-weight:700; }
+.account-field input { width:100%; padding:10px 11px; border:1px solid #d9d8d0; border-radius:8px; color:var(--ink); background:#fff; font:12px "DM Sans",sans-serif; outline:none; }
+.account-field input:focus { border-color:var(--moss); box-shadow:0 0 0 3px rgba(23,110,100,.1); }
+.account-sheet form > .dark { width:100%; margin-top:5px; }
+.account-summary { padding:16px; border-radius:11px; background:#f1f0e9; }
+.account-summary strong,.account-summary span { display:block; }
+.account-summary strong { font-size:14px; }
+.account-summary span { margin-top:3px; color:var(--muted); font-size:11px; }
+.account-summary div { display:flex; gap:8px; margin-top:14px; }
+.account-summary button { border:0; border-radius:7px; padding:8px 10px; font-size:10px; font-weight:700; }
+.account-summary button:last-child { color:#9b4439; background:#ffe9e4; }
