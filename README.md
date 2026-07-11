@@ -4,6 +4,8 @@ A self-contained, interactive demonstration of a proactive commerce agent.
 
 ## Run
 
+On Windows, run `./start.ps1` from PowerShell.
+
 Double-click `start.command` on macOS, or run this from a terminal:
 
 ```sh
@@ -35,3 +37,11 @@ All mock data lives in [mock-data.js](./mock-data.js). The phone call is deliber
 ## Account demo
 
 The top bar includes a Start agent action and a local account flow. You can create an account, log in, manage it and log out. It is deliberately browser-only: account details stay in local storage and no credentials are sent to a server.
+
+## Dashboard views
+
+The integrated Zip Zap Sold GUI also includes:
+
+- **Live map** — visualizes the trusted merchant, Helena's destination, delivery route and blocked seller path.
+- **Favourites** — buyer-owned trusted stores and saved shopping patterns that influence ranking.
+- **Agent autonomy** — an editable automatic-purchase limit plus safety, substitution and delivery-change rules. Changes persist locally and update the policy displayed in the buying flow.

@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="account.css" />
+    <link rel="stylesheet" href="dashboard.css" />
   </head>
   <body>
     <div class="shell">
@@ -31,6 +32,12 @@
           <div class="top-actions"><button id="startAgent" class="dark">✦ Start agent</button><button id="reset" class="quiet">↻ Replay demo</button><button id="openAccount" class="quiet">Log in</button><button id="callMaria" class="dark">☎ Call Helena</button></div>
         </header>
         <section class="summary"><p><span><i></i> PROACTIVE AGENT</span><strong id="summaryText">Helena only said what she wanted to bake. Zip Zap Sold is doing the rest.</strong></p><div><small>Autonomy level</small><i class="meter"><b></b><b></b><b></b><b></b></i><strong id="autonomy">Ask on exceptions</strong></div></section>
+        <nav class="workspace-tabs" aria-label="Zip Zap Sold workspace">
+          <button class="active" data-view="mission"><i>✦</i> Mission</button>
+          <button data-view="map"><i>⌖</i> Live map</button>
+          <button data-view="favourites"><i>♥</i> Favourites</button>
+          <button data-view="autonomy"><i>◉</i> Agent autonomy</button>
+        </nav>
         <section id="content" class="content" aria-live="polite"></section>
       </main>
     </div>

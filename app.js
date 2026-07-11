@@ -2,7 +2,13 @@
   const d = window.ZIP_ZAP_SOLD_DEMO;
   const stages = ["understand", "discover", "decide", "approve", "purchase", "track", "resolve"];
   const labels = ["Understand", "Discover", "Decide", "Approve", "Purchase", "Track", "Resolve"];
-  const state = { stage: "understand", answers: {}, chosen: "fresh", approved: false, bought: false, feedback: null };
+  const savedPreferences = JSON.parse(localStorage.getItem("zip-zap-sold-demo-preferences") || "{}");
+  const state = {
+    stage: "understand", view: "mission", answers: {}, chosen: "fresh", approved: false, bought: false, feedback: null,
+    autoLimit: Number(savedPreferences.autoLimit || 65),
+    rules: Object.assign({ substitutions: true, unknownSeller: true, deliveryChange: true }, savedPreferences.rules || {}),
+    favourites: savedPreferences.favourites || ["FreshMart", "EkstraMarket", "Classic baked cheesecake"]
+  };
   const content = document.querySelector("#content");
   const title = document.querySelector("#title");
   const summaryText = document.querySelector("#summaryText");
@@ -35,9 +41,10 @@
 
   function setStage(stage) {
     state.stage = stage;
+    state.view = "mission";
     [title.textContent, summaryText.textContent] = page[stage];
-    autonomy.textContent = stage === "approve" ? "Human confirmation required" : "Ask on exceptions";
-    renderJourney(); render(); window.scrollTo({ top: 0, behavior: "smooth" });
+    autonomy.textContent = stage === "approve" ? "Human confirmation required" : `Auto-buy ≤ ${state.autoLimit} PLN`;
+    renderJourney(); renderWorkspace(); window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function savedContext() {
@@ -105,6 +112,80 @@
     document.querySelector("#finish")?.addEventListener("click", () => { toast("Mission closed. Helena’s profile is ready for the next request."); openProfile(); });
   }
 
+  function renderTabs() {
+    document.querySelectorAll(".workspace-tabs [data-view]").forEach((button) => {
+      button.classList.toggle("active", button.dataset.view === state.view);
+    });
+  }
+
+  function setView(view) {
+    state.view = view;
+    renderWorkspace();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderWorkspace() {
+    renderTabs();
+    if (state.view === "mission") { render(); return; }
+    if (state.view === "map") { renderMap(); return; }
+    if (state.view === "favourites") { renderFavourites(); return; }
+    renderAutonomy();
+  }
+
+  function renderMap() {
+    content.innerHTML = [
+      '<section class="workspace-view">',
+      '<header class="view-intro"><div><small>LIVE DELIVERY MAP</small><h2>One basket. One trusted route.</h2></div><p>Zip Zap Sold consolidates the order, confirms the delivery slot and shows the background route in a view Helena can understand.</p></header>',
+      '<div class="map-layout"><section class="mock-map"><span class="map-label one">KRAKOW · TOMORROW</span><span class="map-label two">ACTIVE ROUTE</span><i class="route"></i>',
+      '<i class="map-pin home"><span>⌂</span></i><i class="map-pin store"><span>⌘</span></i><i class="map-pin unsafe"><span>!</span></i>',
+      '<div class="map-popover home"><strong>Helena’s home</strong><span>Kwiatowa 12 · delivery before 15:00</span></div>',
+      '<div class="map-popover store"><strong>FreshMart</strong><span>6 items reserved · 12:30–14:00</span></div>',
+      '<div class="map-popover unsafe"><strong>DealFinder</strong><span>Blocked: seller data cannot be verified</span></div>',
+      '<div class="map-legend"><span>● Home</span><span>● Trusted merchant</span><span>● Safety exception</span></div></section>',
+      '<aside class="map-side"><article class="card"><small>ACTIVE DELIVERY</small><h3>FreshMart → Helena</h3><p>Complete basket, one merchant, one delivery window. The chosen route avoids multiple errands.</p><div class="map-step"><i>1</i><div><strong>Basket reserved</strong><span>All six ingredients are available</span></div></div><div class="map-step"><i>2</i><div><strong>Freshness check</strong><span>Dairy expiry validated before pickup</span></div></div><div class="map-step"><i>3</i><div><strong>Doorstep delivery</strong><span>Tomorrow, 12:30–14:00</span></div></div></article>',
+      '<article class="card"><small>BACKGROUND DECISION</small><h3>Why not the cheapest route?</h3><p>DealFinder would save 7.73 PLN, but its seller data is hidden behind a CAPTCHA. Zip Zap Sold keeps the user safe by refusing unverifiable automation.</p></article></aside></div></section>'
+    ].join("");
+  }
+
+  function renderFavourites() {
+    const cards = [
+      ["FreshMart", "Primary grocery partner", "Trusted store · home delivery", "★"],
+      ["EkstraMarket", "Trusted backup", "Earlier slots when timing matters", "✦"],
+      ["Classic baked cheesecake", "Saved purchase pattern", "Ingredients and quantities ready", "⌁"]
+    ].map((item) => '<article class="card favourite-card"><span class="favourite-mark">' + item[3] + '</span><h3>' + item[0] + '</h3><p>' + item[1] + '<br />' + item[2] + '</p><footer><span>Saved preference</span><button data-favourite="' + item[0] + '">Remove</button></footer></article>').join("");
+    content.innerHTML = [
+      '<section class="workspace-view"><header class="view-intro"><div><small>FAVOURITES</small><h2>The agent remembers what Helena trusts.</h2></div><p>Favourites are not advertisements. They are buyer-side preferences that influence ranking while still allowing better options to win.</p></header>',
+      '<div class="favourites-grid">', cards, '<button id="addFavourite" class="favourite-add"><i>+</i> Add a trusted store</button></div>',
+      '<section class="preference-strip"><div><h3>Preference in action</h3><p>FreshMart receives a trust and familiarity boost in every grocery search, but it cannot bypass Helena’s spending or safety rules.</p></div><button id="showMission">See it in the mission →</button></section></section>'
+    ].join("");
+    document.querySelectorAll("[data-favourite]").forEach((button) => button.addEventListener("click", () => { toast(button.dataset.favourite + " removed from this demo profile."); }));
+    document.querySelector("#addFavourite").addEventListener("click", () => toast("In a real account, Helena can add a shop after a successful purchase."));
+    document.querySelector("#showMission").addEventListener("click", () => setView("mission"));
+  }
+
+  function persistPreferences() {
+    localStorage.setItem("zip-zap-sold-demo-preferences", JSON.stringify({ autoLimit: state.autoLimit, rules: state.rules, favourites: state.favourites }));
+    d.user.rules[0][1] = "Buy automatically up to " + state.autoLimit + " PLN";
+    autonomy.textContent = "Auto-buy ≤ " + state.autoLimit + " PLN";
+  }
+
+  function renderAutonomy() {
+    const checked = (name) => state.rules[name] ? "checked" : "";
+    content.innerHTML = [
+      '<section class="workspace-view"><header class="view-intro"><div><small>AGENT AUTONOMY</small><h2>Helena chooses where the agent stops.</h2></div><p>These rules transform a generic shopping assistant into a trusted buyer-side agent. They persist only in this browser demo.</p></header>',
+      '<div class="autonomy-layout"><article class="card autonomy-card"><small>SPENDING AUTHORITY</small><h3>Automatic grocery purchases</h3><p>Zip Zap Sold may complete a trusted grocery basket without interrupting Helena only below this limit.</p>',
+      '<section class="limit-control"><div class="limit-top"><div><span>Current automatic limit</span><strong id="autoLimitValue">' + state.autoLimit + ' PLN</strong></div><span>Hard budget remains 80 PLN</span></div><input id="autoLimitSlider" type="range" min="40" max="80" step="1" value="' + state.autoLimit + '" /><div class="limit-scale"><span>40 PLN</span><span>60 PLN</span><span>80 PLN</span></div></section>',
+      '<label class="rule-switch"><span><strong>Ask when a substitute is needed</strong><span>Helena confirms a changed ingredient.</span></span><b class="switch"><input data-rule="substitutions" type="checkbox" ' + checked("substitutions") + ' /><i></i></b></label>',
+      '<label class="rule-switch"><span><strong>Block unknown sellers</strong><span>Never auto-buy when trust cannot be verified.</span></span><b class="switch"><input data-rule="unknownSeller" type="checkbox" ' + checked("unknownSeller") + ' /><i></i></b></label>',
+      '<label class="rule-switch"><span><strong>Call if delivery changes</strong><span>Protect the promised time window.</span></span><b class="switch"><input data-rule="deliveryChange" type="checkbox" ' + checked("deliveryChange") + ' /><i></i></b></label>',
+      '<button id="saveAutonomy" class="save-autonomy">Save Helena’s autonomy rules</button></article>',
+      '<aside class="autonomy-side"><article class="card autonomy-preview"><small>WHAT ZIP ZAP SOLD CAN DO NOW</small><h3>Buy, call or stop.</h3><ul><li>Auto-buy trusted baskets up to ' + state.autoLimit + ' PLN.</li><li>Call Helena for a permitted exception.</li><li class="block">Stop when seller evidence cannot be verified.</li></ul></article><article class="card"><small>IMPACT ON THIS MISSION</small><h3>EkstraMarket is 65.78 PLN</h3><p>' + (state.autoLimit >= 66 ? "It now falls within Helena’s automatic limit, so the agent can proceed without a call." : "It remains above Helena’s automatic limit, so the agent calls before checkout.") + '</p><div class="policy-event"><b>Current policy</b><span>' + (state.autoLimit >= 66 ? "Automatic checkout is allowed." : "Human confirmation is required.") + '</span></div></article></aside></div></section>'
+    ].join("");
+    document.querySelector("#autoLimitSlider").addEventListener("input", (event) => { state.autoLimit = Number(event.target.value); document.querySelector("#autoLimitValue").textContent = state.autoLimit + " PLN"; document.querySelector(".autonomy-preview li").textContent = "Auto-buy trusted baskets up to " + state.autoLimit + " PLN."; });
+    document.querySelectorAll("[data-rule]").forEach((input) => input.addEventListener("change", () => { state.rules[input.dataset.rule] = input.checked; }));
+    document.querySelector("#saveAutonomy").addEventListener("click", () => { persistPreferences(); toast("Helena’s autonomy rules were saved in this browser."); renderAutonomy(); });
+  }
+
   function render() { ({ understand, discover, decide, approve, purchase, track, resolve })[state.stage](); }
 
   function speak(text) {
@@ -144,5 +225,6 @@
   function logoutAccount() { localStorage.removeItem(accountKey); account = null; renderAccount(); toast("You are logged out on this browser."); }
 
   document.querySelector("#callMaria").addEventListener("click", openPhone); document.querySelector("#answer").addEventListener("click", answer); document.querySelector("#hangUp").addEventListener("click", closePhone); document.querySelector("#repeat").addEventListener("click", () => speak(script.textContent)); document.querySelectorAll("[data-close-phone]").forEach((b) => b.addEventListener("click", closePhone)); document.querySelector("#openProfile").addEventListener("click", openProfile); document.querySelectorAll("[data-close-profile]").forEach((b) => b.addEventListener("click", closeProfile)); document.querySelector("#reset").addEventListener("click", reset); document.querySelector("#startAgent").addEventListener("click", () => { reset(); toast("Your agent is ready. Answer three quick questions to begin discovery."); }); document.querySelector("#openAccount").addEventListener("click", openAccount); document.querySelectorAll("[data-close-account]").forEach((b) => b.addEventListener("click", closeAccount)); document.querySelectorAll("[data-account-mode]").forEach((b) => b.addEventListener("click", () => setAccountMode(b.dataset.accountMode))); accountForm.addEventListener("submit", saveAccount); document.querySelector("#logoutAccount").addEventListener("click", logoutAccount); document.querySelector("#editAccount").addEventListener("click", () => { account = null; localStorage.removeItem(accountKey); renderAccount(); setAccountMode("signup"); }); document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closePhone(); closeProfile(); closeAccount(); } });
-  renderAccount(); renderJourney(); render();
+  document.querySelectorAll(".workspace-tabs [data-view]").forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
+  renderAccount(); renderJourney(); renderWorkspace();
 })();
